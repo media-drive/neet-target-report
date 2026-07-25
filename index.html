@@ -335,7 +335,7 @@
 
         .file-actions { display: flex; gap: 15px; margin-top: 4px; }
         .action-link {
-            font-size: 0.75em; 
+            font-size: 0.85em; 
             color: var(--secondary-color);
             text-decoration: none;
             cursor: pointer;
@@ -553,7 +553,7 @@
         </div>
     </div>
 
-    <!-- Edit Target List Modal (With 2 Different Search Boxes) -->
+    <!-- Edit Target List Modal -->
     <div class="modal-overlay" id="editListModal">
         <div class="modal-box" style="max-width: 650px;">
             <h2>✏️ Edit Target List</h2>
@@ -561,10 +561,7 @@
             
             <!-- Separate Search Boxes for ID and Date -->
             <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <!-- Search by ID Box -->
                 <input type="text" id="editSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
-                
-                <!-- Search by Date Box -->
                 <input type="text" id="editSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
             </div>
             
@@ -671,7 +668,7 @@
             event.currentTarget.classList.add('active');
         }
 
-        // --- NAYA FILE UPLOAD FUNCTION ---
+        // --- UPDATED FILE UPLOAD FUNCTION (CORS FIX) ---
         async function handleFileUpload(fieldKey, input) {
             if (!cumulativeFiles[fieldKey]) cumulativeFiles[fieldKey] = [];
             if (input.files.length === 0) return;
@@ -693,8 +690,14 @@
                 try {
                     // File ko read karke Drive par bhejna
                     let base64Data = await getBase64(file);
+                    
+                    // Yahan par Headers me text/plain set kar diya gaya hai taki CORS Error na aaye
                     let response = await fetch(webAppUrl, {
+                        redirect: "follow",
                         method: "POST",
+                        headers: {
+                            "Content-Type": "text/plain;charset=utf-8",
+                        },
                         body: JSON.stringify({
                             fileName: file.name,
                             mimeType: file.type,
@@ -758,8 +761,7 @@
                     <input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
                     <div class="upload-status" data-field-key="${fieldKey}"></div>
                     <div class="file-actions">
-                        <span class="action-link" onclick="alert('Files list update ho gai hai.')">👁️ View</span>
-                        <span class="action-link" onclick="alert('Upar choose file button daba kar aur files jodein.')"><span style="font-size: 0.8em; font-weight: bold;">➕</span> Add More</span>
+                        <span class="action-link" onclick="alert('File upload hone ke baad form ko Submit karein, aur uske baad list me jakar View Uploads par click karke dekhein.')">👁️ View Uploaded File</span>
                     </div>
                 </div>`;
             });
@@ -881,7 +883,7 @@
         // --- COMPACT RECORD FOUND UI ---
         const compactRecordFoundHTML = `<div style="font-size: 1.25em; color: #2ea043; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">Record Found! <span style="background: #2ea043; color: white; border-radius: 4px; padding: 1px 6px; font-size: 0.7em; line-height: 1.3;">✔</span></div>`;
 
-        // 1. Target Submit List (Mobile Added Back)
+        // 1. Target Submit List
         function openTargetListModal() {
             const container = document.getElementById('targetListContainer');
             let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
@@ -889,7 +891,6 @@
             else {
                 let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
                 savedList.forEach(item => { 
-                    // Edit Date and Time shown directly in the badge
                     let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;" title="Edited on ${item.edited}">Edited on: ${item.edited}</span>` : '';
                     html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-left: 10px; background: var(--secondary-color); color: white; border: none; border-radius:4px; cursor: pointer;">👁️ View Uploads</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; 
                 });
@@ -922,7 +923,6 @@
             }
         }
 
-        // Live filtering triggers for Edit box
         function filterEditListById() {
             document.getElementById('editSearchDateInput').value = ''; 
             document.getElementById('editSearchDateInput').type = 'text'; 
@@ -944,7 +944,6 @@
         
         function closeEditListModal() { document.getElementById('editListModal').style.display = 'none'; }
 
-        // Start editing the selected target
         function startEditingTarget(targetId) {
             let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
             const record = savedList.find(item => item.targetId === targetId);
@@ -1045,7 +1044,7 @@
             }
         }
 
-        // --- NAYA VIEW FILES FUNCTION ---
+        // --- VIEW FILES FUNCTION ---
         function viewSubmissionFiles(targetId) {
             const record = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === targetId);
             const container = document.getElementById('viewFilesContainer');
@@ -1060,7 +1059,6 @@
                         <ul style="margin: 0 0 0 20px; padding: 0; line-height: 2;">`;
                         
                         files.forEach(f => { 
-                            // Asli live link button par laga diya gaya hai
                             html += `<li>📄 <span style="color:#334155;">${f.name}</span> <small style="color: #64748b;">(${f.size})</small> 
                             <a href="${f.link}" target="_blank" style="text-decoration: none;">
                                 <button class="mini-btn">👁️ View / ⬇️ Download</button>
