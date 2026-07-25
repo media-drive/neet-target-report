@@ -30,7 +30,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #001f3f, var(--primary-color));
             z-index: 9999;
-            display: flex;
+            display: flex; /* By default hidden via JS if logged in */
             justify-content: center;
             align-items: center;
         }
@@ -430,7 +430,7 @@
 
         /* Modal Popups */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); justify-content: center; align-items: center; z-index: 1000; padding: 15px; box-sizing: border-box; backdrop-filter: blur(4px); }
-        .modal-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; }
+        .modal-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; }
         .modal-box h2 { color: var(--primary-color); margin-top: 0; font-size: 1.6em; margin-bottom: 20px;}
         .target-id-badge { background: #f8fafc; padding: 14px; border-radius: 10px; font-size: 1.35em; font-weight: bold; color: var(--primary-color); margin: 18px 0; border: 2px dashed var(--primary-color); word-break: break-all; }
         
@@ -457,25 +457,44 @@
         }
         .mini-btn:hover { background: var(--primary-color); }
 
-        /* Professional Alert Modal Styles */
-        #customAlertIcon {
-            font-size: 3.5em;
-            margin-bottom: 10px;
+        /* --- ANIMATIONS (SUCCESS & ERROR) --- */
+        .success-animation {
+            margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%;
+            border: 4px solid #28a745; display: flex; align-items: center; justify-content: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #e8f5e9;
         }
-        #customAlertTitle {
-            margin-top: 0;
-            color: var(--primary-color);
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        #customAlertMessage {
-            font-size: 1.1em;
-            color: #475569;
-            margin-bottom: 20px;
-            line-height: 1.5;
+        .success-animation::after {
+            content: '✔'; font-size: 40px; color: #28a745;
+            animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0);
         }
 
+        .error-animation {
+            margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%;
+            border: 4px solid #dc3545; display: flex; align-items: center; justify-content: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #fff5f5;
+        }
+        .error-animation::after {
+            content: '✖'; font-size: 35px; color: #dc3545;
+            animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0);
+        }
+
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes scaleUp { to { opacity: 1; transform: scale(1); } }
+
+        /* Professional Alert Modal Styles */
+        #customAlertIcon { font-size: 3.5em; margin-bottom: 10px; }
+        #customAlertTitle { margin-top: 0; color: var(--primary-color); font-size: 1.5em; margin-bottom: 10px; }
+        #customAlertMessage { font-size: 1.1em; color: #475569; margin-bottom: 20px; line-height: 1.5; }
+        .close-icon-btn {
+            position: absolute; top: 12px; right: 15px; font-size: 1.8em; color: #94a3b8; 
+            cursor: pointer; background: transparent; border: none; padding: 0; line-height: 1;
+        }
+        .close-icon-btn:hover { color: #dc3545; }
+
         @media (max-width: 768px) {
+            .header { padding: 12px 15px; }
+            .datetime { font-size: 0.85em; }
+            .menu-btn { padding: 8px 12px; font-size: 0.9em; }
             .dashboard-title-container { margin-top: -70px; }
             .chem-columns { flex-direction: column; }
             .tabs { gap: 10px; }
@@ -495,6 +514,16 @@
             <h3 id="customAlertTitle">Notification</h3>
             <p id="customAlertMessage"></p>
             <button class="btn-primary" onclick="closeCustomAlert()" style="width: 100%; padding: 12px; font-size: 1.1em;">OK</button>
+        </div>
+    </div>
+
+    <!-- Login Animated Status Modal -->
+    <div class="modal-overlay" id="loginStatusModal" style="z-index: 10002;">
+        <div class="modal-box" style="max-width: 350px;">
+            <button class="close-icon-btn" onclick="closeLoginStatusModal()">&times;</button>
+            <div id="loginAnimContainer"></div>
+            <h2 id="loginStatusTitle" style="margin-top: 15px;"></h2>
+            <p id="loginStatusMessage" style="color: #64748b; font-size: 0.95em;"></p>
         </div>
     </div>
 
@@ -524,6 +553,8 @@
                 <div style="border-top: 1px solid #cbd5e1; margin: 5px 0;"></div>
                 <a onclick="openCreateUserModal()">➕ Create New User ID</a>
                 <a onclick="openResetUserModal()">⚙️ Set/Reset User ID & Password</a>
+                <div style="border-top: 1px solid #cbd5e1; margin: 5px 0;"></div>
+                <a onclick="logoutUser()" style="color: #dc3545;">🚪 Logout</a>
             </div>
         </div>
     </div>
@@ -557,18 +588,15 @@
 
     <!-- MAIN FORM -->
     <form id="neetForm" onsubmit="handleFormSubmit(event)">
-        <!-- DR. ATUL -->
         <div id="atul" class="tab-content active">
             <div class="profile-name">Tracking Project: Dr. Atul Target</div>
             <div id="atul-subjects" class="subject-grid"></div>
         </div>
-        <!-- DR. SHIVANI -->
         <div id="shivani" class="tab-content">
             <div class="profile-name">Tracking Project: Dr. Shivani Target</div>
             <div id="shivani-subjects" class="subject-grid"></div>
         </div>
 
-        <!-- Authentication -->
         <div class="auth-submit-container">
             <div id="editingBanner" style="display:none; background:#fff3cd; color:#856404; padding:8px; border-radius:6px; margin-bottom:15px; font-weight:bold; font-size:0.9em;"></div>
             <div class="auth-group">
@@ -637,43 +665,23 @@
         </div>
     </div>
 
-    <!-- Modal: Search By Target ID -->
-    <div class="modal-overlay" id="searchModal">
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
         <div class="modal-box">
-            <h2>Search By Target ID</h2>
-            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
-            <div class="modal-btn-group">
-                <button class="btn-primary" onclick="executeSearch()">Search</button>
-                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
-            </div>
-            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+            <div class="success-animation"></div>
+            <h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2>
+            <p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p>
+            <div class="target-id-badge" id="generatedTargetId"></div>
+            <button class="btn-primary" onclick="closeSuccessModal()">OK</button>
         </div>
     </div>
 
-    <!-- Modal: Search By Date -->
-    <div class="modal-overlay" id="dateSearchModal">
-        <div class="modal-box">
-            <h2>Search By Date</h2>
-            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
-            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            <div class="modal-btn-group">
-                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
-            </div>
-            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
-        </div>
-    </div>
-
-    <!-- Manage Modal -->
-    <div class="modal-overlay" id="manageModal">
-        <div class="modal-box" style="max-width: 650px;">
-            <h2>🗑️ Manage & Delete Targets</h2>
-            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
-                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            </div>
-            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
-            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
+    <!-- List Modal (Normal Submit List) -->
+    <div class="modal-overlay" id="listModal">
+        <div class="modal-box" style="max-width: 600px;">
+            <h2>Target Submit List</h2>
+            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
+            <button class="btn-secondary" onclick="closeListModal()">Close</button>
         </div>
     </div>
 
@@ -691,12 +699,45 @@
         </div>
     </div>
 
-    <!-- List Modal (Normal Submit List) -->
-    <div class="modal-overlay" id="listModal">
-        <div class="modal-box" style="max-width: 600px;">
-            <h2>Target Submit List</h2>
-            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
-            <button class="btn-secondary" onclick="closeListModal()">Close</button>
+    <!-- Search By Target ID Modal -->
+    <div class="modal-overlay" id="searchModal">
+        <div class="modal-box">
+            <h2>Search By Target ID</h2>
+            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
+            <div class="modal-btn-group">
+                <button class="btn-primary" onclick="executeSearch()">Search</button>
+                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
+            </div>
+            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- Date Search Modal -->
+    <div class="modal-overlay" id="dateSearchModal">
+        <div class="modal-box">
+            <h2>Search By Date</h2>
+            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
+            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            <div class="modal-btn-group">
+                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
+            </div>
+            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- Manage Modal with Search Functionality -->
+    <div class="modal-overlay" id="manageModal">
+        <div class="modal-box" style="max-width: 650px;">
+            <h2>🗑️ Manage & Delete Targets</h2>
+            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
+                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            </div>
+
+            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
+            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
         </div>
     </div>
 
@@ -710,7 +751,6 @@
     </div>
 
     <script>
-        // GOOGLE APPS SCRIPT URL
         const webAppUrl = "https://script.google.com/macros/s/AKfycbwI2PbcfW5g_UNcCWWsIHL24EYLdiCP1l8mMMAtEH9PjTD6jJImli1VR2_6Mf8NwyY_3Q/exec"; 
         
         let loginTimerInterval;
@@ -726,6 +766,49 @@
         function closeCustomAlert() {
             document.getElementById('customAlertModal').style.display = 'none';
         }
+
+        // --- LOGIN STATUS MODAL LOGIC ---
+        function closeLoginStatusModal() {
+            document.getElementById('loginStatusModal').style.display = 'none';
+        }
+
+        function loginSuccess() {
+            localStorage.setItem('loginAttempts', '0');
+            localStorage.setItem('isLoggedIn', 'true'); // Session maintained
+            document.getElementById('loginStatusTitle').innerText = "Successful Authentication";
+            document.getElementById('loginStatusTitle').style.color = "#28a745";
+            document.getElementById('loginStatusMessage').innerText = "Aapka login safal raha. Dashboard khul raha hai...";
+            document.getElementById('loginAnimContainer').innerHTML = '<div class="success-animation"></div>';
+            document.getElementById('loginStatusModal').style.display = 'flex';
+
+            setTimeout(() => {
+                document.getElementById('loginStatusModal').style.display = 'none';
+                document.getElementById('loginOverlay').style.display = 'none';
+                document.getElementById('loginErrorMsg').innerText = "";
+                document.getElementById('loginSubmitBtn').innerText = "Login";
+                document.getElementById('loginSubmitBtn').disabled = false;
+                document.getElementById('loginUser').value = "";
+                document.getElementById('loginPass').value = "";
+            }, 2000); // Auto close after 2 seconds
+        }
+
+        function loginFailure(isBlocked = false) {
+            let attempts = parseInt(localStorage.getItem('loginAttempts') || '0');
+            document.getElementById('loginStatusTitle').innerText = "Authentication Failed";
+            document.getElementById('loginStatusTitle').style.color = "#dc3545";
+            document.getElementById('loginAnimContainer').innerHTML = '<div class="error-animation"></div>';
+            
+            if(isBlocked) {
+                document.getElementById('loginStatusMessage').innerText = "Lagatar 3 galat attempts! Ab aap 30 minutes ke liye block hain.";
+            } else {
+                document.getElementById('loginStatusMessage').innerText = `Galat User ID ya Password. Attempts left: ${3 - attempts}`;
+                document.getElementById('loginErrorMsg').innerText = `Attempts left: ${3 - attempts}`;
+            }
+            
+            document.getElementById('loginStatusModal').style.display = 'flex';
+            document.getElementById('loginSubmitBtn').innerText = "Login";
+            document.getElementById('loginSubmitBtn').disabled = false;
+        }
         
         // --- LOGIN SYSTEM LOGIC ---
         function initLoginSystem() {
@@ -735,6 +818,13 @@
             } else {
                 localStorage.removeItem('loginBlockUntil');
                 localStorage.setItem('loginAttempts', '0');
+            }
+
+            // Persistence check (Refresh hone par logout nahi hoga)
+            if(localStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('loginOverlay').style.display = 'none';
+            } else {
+                document.getElementById('loginOverlay').style.display = 'flex';
             }
         }
 
@@ -747,16 +837,13 @@
                 return;
             }
 
-            // 100% ERROR-FREE MASTER LOGIN - Hamesha Kaam Karega!
-            if (u === "9115335905" && p === "NEET2027") {
-                document.getElementById('loginOverlay').style.display = 'none';
-                localStorage.setItem('loginAttempts', '0');
-                document.getElementById('loginErrorMsg').innerText = "";
-                return;
-            }
-
             let btn = document.getElementById('loginSubmitBtn');
             btn.innerText = "Checking..."; btn.disabled = true;
+
+            if (u === "9115335905" && p === "NEET2027") {
+                loginSuccess();
+                return;
+            }
 
             try {
                 let res = await fetch(webAppUrl, {
@@ -767,16 +854,14 @@
                 let result = await res.json();
 
                 if (result.status === "success") {
-                    document.getElementById('loginOverlay').style.display = 'none';
-                    localStorage.setItem('loginAttempts', '0');
-                    document.getElementById('loginErrorMsg').innerText = "";
+                    loginSuccess();
                 } else {
                     handleFailedLogin();
                 }
             } catch(e) {
                 document.getElementById('loginErrorMsg').innerText = "Network Error. Please check internet connection.";
+                btn.innerText = "Login"; btn.disabled = false;
             }
-            btn.innerText = "Login"; btn.disabled = false;
         }
 
         function handleFailedLogin() {
@@ -785,9 +870,10 @@
                 let blockTime = Date.now() + 30 * 60 * 1000;
                 localStorage.setItem('loginBlockUntil', blockTime);
                 showBlockTimer(blockTime);
+                loginFailure(true);
             } else {
                 localStorage.setItem('loginAttempts', attempts);
-                document.getElementById('loginErrorMsg').innerText = `Wrong User ID or Password. Attempts left: ${3 - attempts}`;
+                loginFailure(false);
             }
         }
 
@@ -816,6 +902,11 @@
                     document.getElementById('blockTimerMsg').innerText = `Try again in ${minutes}m ${seconds}s`;
                 }
             }, 1000);
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn');
+            document.getElementById('loginOverlay').style.display = 'flex';
         }
 
         window.onload = function() { initLoginSystem(); }
@@ -905,7 +996,7 @@
             btn.innerText = "Reset"; btn.disabled = false;
         }
 
-        // --- DASHBOARD UI LOGIC ---
+        // Dropdown Toggle
         function toggleMenu(e) {
             e.stopPropagation();
             document.getElementById("myDropdown").classList.toggle("show");
