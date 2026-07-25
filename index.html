@@ -640,8 +640,22 @@
         let editingTargetId = null;
         let currentViewingField = ''; 
 
-        // AAPKA FINAL GOOGLE APPS SCRIPT URL YAHAN HAI
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbyZjw77Sll9HbTsa8mbY9pUUlUDOb4L3JBZJZ0zC45bWYvP2uBFRE8o_6Byl_h69JPilg/exec"; 
+        // AAPKA NAYA GOOGLE APPS SCRIPT URL YAHAN HAI
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbxGyeOP89M6kJC2zuvGkKtWA5KYeCApvtYXK6TXdI4WAqRpOabZUNJhFHJ3alvSMZIS6Q/exec"; 
+
+        // Background me file delete karne ka Function
+        async function deleteFilesFromDrive(fileIdsArray) {
+            if (!fileIdsArray || fileIdsArray.length === 0) return;
+            try {
+                await fetch(webAppUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify({ action: "delete", fileIds: fileIdsArray })
+                });
+            } catch (e) {
+                console.error("Drive file delete error:", e);
+            }
+        }
 
         function getBase64(file) {
             return new Promise((resolve, reject) => {
@@ -715,7 +729,8 @@
                         cumulativeFiles[fieldKey].push({ 
                             name: file.name, 
                             size: (file.size / 1024 / 1024).toFixed(2) + ' MB',
-                            link: result.url 
+                            link: result.url,
+                            fileId: result.id // Delete karne ke liye File ID save kar rahe hain
                         });
                         renderCountBadges(fieldKey);
                     } else {
@@ -729,8 +744,16 @@
             input.value = ""; 
         }
 
+        // Single File Delete (From Pill)
         function removeFile(fieldKey, index) {
-            if (cumulativeFiles[fieldKey]) { cumulativeFiles[fieldKey].splice(index, 1); renderCountBadges(fieldKey); }
+            if (cumulativeFiles[fieldKey]) { 
+                const fileToDelete = cumulativeFiles[fieldKey][index];
+                if(fileToDelete && fileToDelete.fileId) {
+                    deleteFilesFromDrive([fileToDelete.fileId]); // Google Drive se delete kar rahe hain
+                }
+                cumulativeFiles[fieldKey].splice(index, 1); 
+                renderCountBadges(fieldKey); 
+            }
         }
 
         function renderCountBadges(fieldKey) {
@@ -791,8 +814,14 @@
             container.innerHTML = html;
         }
 
+        // Single File Delete (From Popup)
         function removeFileFromModal(index) {
             if(confirm("Kya aap sach me is file ko hatana chahte hain?")) {
+                const fileToDelete = cumulativeFiles[currentViewingField][index];
+                if(fileToDelete && fileToDelete.fileId) {
+                    deleteFilesFromDrive([fileToDelete.fileId]); // Google Drive se delete kar rahe hain
+                }
+                
                 cumulativeFiles[currentViewingField].splice(index, 1);
                 renderCountBadges(currentViewingField); 
                 renderCurrentUploadsList(); 
@@ -812,7 +841,7 @@
                     <input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
                     <div class="upload-status" data-field-key="${fieldKey}"></div>
                     <div class="file-actions">
-                        <span class="action-link" onclick="openCurrentUploadsModal('${fieldKey}')">👁️ View Uploaded File</span>
+                        <span class="action-link" onclick="openCurrentUploadsModal('${fieldKey}')">👁️ View Uploaded Files</span>
                     </div>
                 </div>`;
             });
@@ -1084,9 +1113,26 @@
         }
         function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; }
         
+        // POORA TARGET DELETE (Sath me Drive Files bhi Delete Hogi)
         function deleteSubmission(targetId) {
-            if (confirm(`Target ID ${targetId} ko delete karna chahte hain?`)) {
-                localStorage.setItem('neetSubmissions', JSON.stringify(JSON.parse(localStorage.getItem('neetSubmissions') || '[]').filter(item => item.targetId !== targetId)));
+            if (confirm(`Target ID ${targetId} ko delete karna chahte hain? (Isme upload ki hui saari files Google Drive se bhi permanently delete ho jayengi)`)) {
+                let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+                const record = savedList.find(item => item.targetId === targetId);
+                
+                // Saari files ka ID nikal kar deleteCommand bhej rahe hain
+                if (record && record.files) {
+                    let fileIdsToDelete = [];
+                    for (const fieldKey in record.files) {
+                        record.files[fieldKey].forEach(f => {
+                            if (f.fileId) fileIdsToDelete.push(f.fileId);
+                        });
+                    }
+                    deleteFilesFromDrive(fileIdsToDelete);
+                }
+
+                // Local List me se hatana
+                savedList = savedList.filter(item => item.targetId !== targetId);
+                localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
                 openManageModal(); 
             }
         }
