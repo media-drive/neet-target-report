@@ -488,7 +488,7 @@
 </head>
 <body>
 
-    <!-- Professional Alert Modal (Replaces standard browser alert) -->
+    <!-- Professional Alert Modal -->
     <div class="modal-overlay" id="customAlertModal" style="z-index: 10001;">
         <div class="modal-box" style="max-width: 400px; padding: 35px 25px;">
             <div id="customAlertIcon"></div>
@@ -498,7 +498,7 @@
         </div>
     </div>
 
-    <!-- NAYA: Full Screen Login Overlay -->
+    <!-- Full Screen Login Overlay -->
     <div id="loginOverlay">
         <div class="login-box">
             <h2>Portal Login</h2>
@@ -528,7 +528,7 @@
         </div>
     </div>
 
-    <!-- Sliding Banner with Quotes -->
+    <!-- Sliding Banner -->
     <div class="slider-banner">
         <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80')">
             <div class="quote-text">"Strive for progress,<br>not perfection."</div>
@@ -597,7 +597,7 @@
         </div>
     </form>
 
-    <!-- NAYA MODAL: Create New User ID -->
+    <!-- Modal: Create New User ID -->
     <div class="modal-overlay" id="createUserModal">
         <div class="modal-box" style="max-width: 400px;">
             <h2>➕ Create New User ID</h2>
@@ -610,7 +610,7 @@
         </div>
     </div>
 
-    <!-- NAYA MODAL: Set/Reset User ID & Password -->
+    <!-- Modal: Set/Reset User ID & Password -->
     <div class="modal-overlay" id="resetUserModal">
         <div class="modal-box" style="max-width: 400px;">
             <h2>⚙️ Set/Reset User ID & Password</h2>
@@ -627,7 +627,7 @@
         </div>
     </div>
 
-    <!-- Modal: Ek Subject ki Upload hui File Dekhne ke liye -->
+    <!-- Modal: Current Uploads -->
     <div class="modal-overlay" id="currentUploadsModal">
         <div class="modal-box" style="max-width: 550px;">
             <h2 id="currentUploadsTitle" style="color: var(--primary-color);">Uploaded Files</h2>
@@ -637,24 +637,43 @@
         </div>
     </div>
 
-    <!-- Success Modal -->
-    <div class="modal-overlay" id="successModal">
+    <!-- Modal: Search By Target ID -->
+    <div class="modal-overlay" id="searchModal">
         <div class="modal-box">
-            <!-- Normal Target Submit ke liye pehle wala success animation -->
-            <div class="success-animation"></div>
-            <h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2>
-            <p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p>
-            <div class="target-id-badge" id="generatedTargetId"></div>
-            <button class="btn-primary" onclick="closeSuccessModal()">OK</button>
+            <h2>Search By Target ID</h2>
+            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
+            <div class="modal-btn-group">
+                <button class="btn-primary" onclick="executeSearch()">Search</button>
+                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
+            </div>
+            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
         </div>
     </div>
 
-    <!-- List Modal (Normal Submit List) -->
-    <div class="modal-overlay" id="listModal">
-        <div class="modal-box" style="max-width: 600px;">
-            <h2>Target Submit List</h2>
-            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
-            <button class="btn-secondary" onclick="closeListModal()">Close</button>
+    <!-- Modal: Search By Date -->
+    <div class="modal-overlay" id="dateSearchModal">
+        <div class="modal-box">
+            <h2>Search By Date</h2>
+            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
+            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            <div class="modal-btn-group">
+                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
+            </div>
+            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- Manage Modal -->
+    <div class="modal-overlay" id="manageModal">
+        <div class="modal-box" style="max-width: 650px;">
+            <h2>🗑️ Manage & Delete Targets</h2>
+            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
+                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            </div>
+            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
+            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
         </div>
     </div>
 
@@ -672,45 +691,12 @@
         </div>
     </div>
 
-    <!-- Search By Target ID Modal -->
-    <div class="modal-overlay" id="searchModal">
-        <div class="modal-box">
-            <h2>Search By Target ID</h2>
-            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
-            <div class="modal-btn-group">
-                <button class="btn-primary" onclick="executeSearch()">Search</button>
-                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
-            </div>
-            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
-        </div>
-    </div>
-
-    <!-- Date Search Modal -->
-    <div class="modal-overlay" id="dateSearchModal">
-        <div class="modal-box">
-            <h2>Search By Date</h2>
-            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
-            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            <div class="modal-btn-group">
-                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
-            </div>
-            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
-        </div>
-    </div>
-
-    <!-- Manage Modal with Search Functionality -->
-    <div class="modal-overlay" id="manageModal">
-        <div class="modal-box" style="max-width: 650px;">
-            <h2>🗑️ Manage & Delete Targets</h2>
-            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
-            
-            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
-                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            </div>
-
-            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
-            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
+    <!-- List Modal (Normal Submit List) -->
+    <div class="modal-overlay" id="listModal">
+        <div class="modal-box" style="max-width: 600px;">
+            <h2>Target Submit List</h2>
+            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
+            <button class="btn-secondary" onclick="closeListModal()">Close</button>
         </div>
     </div>
 
@@ -724,12 +710,12 @@
     </div>
 
     <script>
-        // NAYA GOOGLE APPS SCRIPT URL YAHAN HAI
+        // GOOGLE APPS SCRIPT URL
         const webAppUrl = "https://script.google.com/macros/s/AKfycbwI2PbcfW5g_UNcCWWsIHL24EYLdiCP1l8mMMAtEH9PjTD6jJImli1VR2_6Mf8NwyY_3Q/exec"; 
         
         let loginTimerInterval;
 
-        // Custom Professional Alert Logic
+        // --- Custom Professional Alert Logic ---
         function showCustomAlert(title, message, isSuccess = true) {
             document.getElementById('customAlertTitle').innerText = title;
             document.getElementById('customAlertTitle').style.color = isSuccess ? "var(--accent-color)" : "#dc3545";
@@ -741,6 +727,7 @@
             document.getElementById('customAlertModal').style.display = 'none';
         }
         
+        // --- LOGIN SYSTEM LOGIC ---
         function initLoginSystem() {
             let blockUntil = localStorage.getItem('loginBlockUntil');
             if (blockUntil && Date.now() < parseInt(blockUntil)) {
@@ -757,6 +744,14 @@
             
             if(!u || !p) {
                 document.getElementById('loginErrorMsg').innerText = "Please enter User ID and Password.";
+                return;
+            }
+
+            // 100% ERROR-FREE MASTER LOGIN - Hamesha Kaam Karega!
+            if (u === "9115335905" && p === "NEET2027") {
+                document.getElementById('loginOverlay').style.display = 'none';
+                localStorage.setItem('loginAttempts', '0');
+                document.getElementById('loginErrorMsg').innerText = "";
                 return;
             }
 
@@ -779,7 +774,7 @@
                     handleFailedLogin();
                 }
             } catch(e) {
-                document.getElementById('loginErrorMsg').innerText = "Network Error. Pura URL aur Internet check karein.";
+                document.getElementById('loginErrorMsg').innerText = "Network Error. Please check internet connection.";
             }
             btn.innerText = "Login"; btn.disabled = false;
         }
@@ -837,6 +832,11 @@
             let p = document.getElementById('newPass').value.trim();
             if(!u || !p) { showCustomAlert("Required", "User ID aur Password dono daalna zaroori hai.", false); return; }
             
+            if(u === "9115335905") {
+                showCustomAlert("Action Denied", "Ye Default Master ID hai, isko use nahi kar sakte.", false);
+                return;
+            }
+
             let btn = document.getElementById('createUserBtn');
             btn.innerText = "Creating..."; btn.disabled = true;
 
@@ -875,6 +875,11 @@
 
             if(!ou || !op || !nu || !np) { showCustomAlert("Required", "Sabhi fields bharna zaroori hai!", false); return; }
 
+            if(ou === "9115335905" || nu === "9115335905") {
+                showCustomAlert("Action Denied", "Default Master ID ko badla ya reset nahi kiya ja sakta.", false);
+                return;
+            }
+
             let btn = document.getElementById('resetUserBtn');
             btn.innerText = "Processing..."; btn.disabled = true;
 
@@ -900,7 +905,7 @@
             btn.innerText = "Reset"; btn.disabled = false;
         }
 
-        // Dropdown Toggle
+        // --- DASHBOARD UI LOGIC ---
         function toggleMenu(e) {
             e.stopPropagation();
             document.getElementById("myDropdown").classList.toggle("show");
