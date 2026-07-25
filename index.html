@@ -24,6 +24,47 @@
             color: var(--text-color);
         }
 
+        /* --- LOGIN OVERLAY --- */
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #001f3f, var(--primary-color));
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            width: 100%; max-width: 380px;
+            text-align: center;
+            border: 2px solid #edf2f7;
+        }
+        .login-box h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .login-input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border: 1px solid #cbd5e1; border-radius: 8px;
+            font-size: 1.05em; outline: none; box-sizing: border-box;
+        }
+        .login-input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0,86,179,0.15); }
+        .login-btn {
+            background: var(--primary-color); color: white; border: none;
+            padding: 12px; width: 100%; border-radius: 8px; font-size: 1.1em;
+            font-weight: bold; cursor: pointer; transition: background 0.3s;
+        }
+        .login-btn:hover { background: #004080; }
+        .login-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        .error-text { color: #dc3545; font-size: 0.9em; font-weight: bold; margin-bottom: 15px; min-height: 20px;}
+
         /* Header */
         .header {
             background: linear-gradient(135deg, #004080, var(--primary-color));
@@ -43,23 +84,27 @@
             letter-spacing: 0.5px;
         }
 
-        /* Touch-Friendly Dropdown Menu */
+        /* Touch-Friendly Dropdown Menu & 3D Dashboard Button */
         .menu-dropdown {
             position: relative;
             display: inline-block;
         }
 
         .menu-btn {
-            background: #ffffff;
-            color: var(--primary-color);
-            border: none;
+            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border: 2px solid #004080;
             padding: 10px 22px;
-            border-radius: 25px;
+            border-radius: 8px; 
             font-weight: bold;
-            font-size: 1em;
+            font-size: 1.05em;
             cursor: pointer;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-            transition: all 0.2s;
+            box-shadow: 0 5px 0 #003366, 0 6px 10px rgba(0,0,0,0.2);
+            transition: all 0.15s ease;
+        }
+        .menu-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #003366, 0 3px 5px rgba(0,0,0,0.2);
         }
 
         .dropdown-content {
@@ -67,7 +112,7 @@
             position: absolute;
             right: 0;
             background: white;
-            min-width: 250px;
+            min-width: 280px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             border-radius: 10px;
             overflow: hidden;
@@ -84,7 +129,7 @@
             text-decoration: none;
             display: block;
             font-size: 0.95em;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
             border-bottom: 1px solid #f1f5f9;
             transition: background 0.2s;
@@ -95,7 +140,7 @@
             color: var(--primary-color);
         }
 
-        /* Sliding MBBS Background Banner with Quotes */
+        /* Sliding MBBS Background Banner */
         .slider-banner {
             position: relative;
             height: 360px;
@@ -217,7 +262,6 @@
 
         .tab-content.active { display: block; }
 
-        /* Profile Name Heading */
         .profile-name {
             background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
             border: 2px solid #004080;
@@ -384,30 +428,6 @@
             font-weight: bold;
         }
 
-        /* Animated Success Checkmark */
-        .success-animation {
-            margin: 10px auto 25px auto;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 4px solid #28a745;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            background: #e8f5e9;
-        }
-        .success-animation::after {
-            content: '✔';
-            font-size: 40px;
-            color: #28a745;
-            animation: scaleUp 0.5s ease 0.3s forwards;
-            opacity: 0;
-            transform: scale(0);
-        }
-        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-        @keyframes scaleUp { to { opacity: 1; transform: scale(1); } }
-
         /* Modal Popups */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); justify-content: center; align-items: center; z-index: 1000; padding: 15px; box-sizing: border-box; backdrop-filter: blur(4px); }
         .modal-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; }
@@ -437,6 +457,24 @@
         }
         .mini-btn:hover { background: var(--primary-color); }
 
+        /* Professional Alert Modal Styles */
+        #customAlertIcon {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+        #customAlertTitle {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        #customAlertMessage {
+            font-size: 1.1em;
+            color: #475569;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
         @media (max-width: 768px) {
             .dashboard-title-container { margin-top: -70px; }
             .chem-columns { flex-direction: column; }
@@ -444,22 +482,48 @@
             .tab-btn { padding: 12px 20px; font-size: 1em; }
             .profile-name { font-size: 1.4em; padding: 12px 20px; }
             .quote-text { font-size: 2em; margin-left: 20px; max-width: 80%; }
+            .login-box { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Professional Alert Modal (Replaces standard browser alert) -->
+    <div class="modal-overlay" id="customAlertModal" style="z-index: 10001;">
+        <div class="modal-box" style="max-width: 400px; padding: 35px 25px;">
+            <div id="customAlertIcon"></div>
+            <h3 id="customAlertTitle">Notification</h3>
+            <p id="customAlertMessage"></p>
+            <button class="btn-primary" onclick="closeCustomAlert()" style="width: 100%; padding: 12px; font-size: 1.1em;">OK</button>
+        </div>
+    </div>
+
+    <!-- NAYA: Full Screen Login Overlay -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h2>Portal Login</h2>
+            <div id="loginErrorMsg" class="error-text"></div>
+            <input type="text" id="loginUser" class="login-input" placeholder="Enter User ID">
+            <input type="password" id="loginPass" class="login-input" placeholder="Enter Password">
+            <button id="loginSubmitBtn" class="login-btn" onclick="attemptLogin()">Login</button>
+            <div id="blockTimerMsg" style="display: none; color:#dc3545; font-weight:bold; margin-top:15px;"></div>
+        </div>
+    </div>
+
     <!-- Header -->
     <div class="header">
         <div class="datetime" id="clock">Loading Time...</div>
         <div class="menu-dropdown">
-            <button class="menu-btn" onclick="toggleMenu(event)">Menu ▾</button>
+            <button class="menu-btn" onclick="toggleMenu(event)">Dashboard ▾</button>
             <div class="dropdown-content" id="myDropdown">
                 <a onclick="openTargetListModal()">📋 Target Submit List</a>
                 <a onclick="openSearchModal()">🔍 Search By Target ID</a>
                 <a onclick="openDateSearchModal()">📅 Search By Date</a>
                 <a onclick="openEditTargetListModal()">✏️ Edit Target List</a>
                 <a onclick="openManageModal()" style="color: #dc3545;">🗑️ Manage & Delete Targets</a>
+                <div style="border-top: 1px solid #cbd5e1; margin: 5px 0;"></div>
+                <a onclick="openCreateUserModal()">➕ Create New User ID</a>
+                <a onclick="openResetUserModal()">⚙️ Set/Reset User ID & Password</a>
             </div>
         </div>
     </div>
@@ -533,11 +597,41 @@
         </div>
     </form>
 
-    <!-- NAYA MODAL: Ek Subject ki Upload hui File Dekhne ke liye -->
+    <!-- NAYA MODAL: Create New User ID -->
+    <div class="modal-overlay" id="createUserModal">
+        <div class="modal-box" style="max-width: 400px;">
+            <h2>➕ Create New User ID</h2>
+            <input type="text" id="newUser" class="login-input" placeholder="Enter New User ID">
+            <input type="password" id="newPass" class="login-input" placeholder="Enter New Password">
+            <div class="modal-btn-group">
+                <button class="btn-primary" id="createUserBtn" onclick="createNewUser()">Create</button>
+                <button class="btn-secondary" onclick="closeCreateUserModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAYA MODAL: Set/Reset User ID & Password -->
+    <div class="modal-overlay" id="resetUserModal">
+        <div class="modal-box" style="max-width: 400px;">
+            <h2>⚙️ Set/Reset User ID & Password</h2>
+            <p style="font-size: 0.85em; color: #64748b; margin-top: -10px;">Purana User ID Password daalein aur naya set karein.</p>
+            <input type="text" id="oldUser" class="login-input" placeholder="Old User ID">
+            <input type="password" id="oldPass" class="login-input" placeholder="Old Password">
+            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
+            <input type="text" id="resetNewUser" class="login-input" placeholder="New User ID">
+            <input type="password" id="resetNewPass" class="login-input" placeholder="New Password">
+            <div class="modal-btn-group">
+                <button class="btn-primary" id="resetUserBtn" onclick="resetUserPassword()">Reset</button>
+                <button class="btn-secondary" onclick="closeResetUserModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ek Subject ki Upload hui File Dekhne ke liye -->
     <div class="modal-overlay" id="currentUploadsModal">
         <div class="modal-box" style="max-width: 550px;">
             <h2 id="currentUploadsTitle" style="color: var(--primary-color);">Uploaded Files</h2>
-            <p style="font-size: 0.9em; color: #64748b; margin-top: -10px;">Agar koi file galat hai to aap yahan se view ya delete kar sakte hain.</p>
+            <p style="font-size: 0.9em; color: #64748b; margin-top: -10px;">Agar koi file galat hai to aap yahan se view, download ya delete kar sakte hain.</p>
             <div id="currentUploadsContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
             <button class="btn-primary" onclick="closeCurrentUploadsModal()">Done</button>
         </div>
@@ -546,6 +640,7 @@
     <!-- Success Modal -->
     <div class="modal-overlay" id="successModal">
         <div class="modal-box">
+            <!-- Normal Target Submit ke liye pehle wala success animation -->
             <div class="success-animation"></div>
             <h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2>
             <p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p>
@@ -603,10 +698,17 @@
         </div>
     </div>
 
-    <!-- Manage Modal -->
+    <!-- Manage Modal with Search Functionality -->
     <div class="modal-overlay" id="manageModal">
-        <div class="modal-box" style="max-width: 600px;">
-            <h2>Manage & Delete Targets</h2>
+        <div class="modal-box" style="max-width: 650px;">
+            <h2>🗑️ Manage & Delete Targets</h2>
+            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
+                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            </div>
+
             <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
             <button class="btn-secondary" onclick="closeManageModal()">Close</button>
         </div>
@@ -622,6 +724,182 @@
     </div>
 
     <script>
+        // NAYA GOOGLE APPS SCRIPT URL YAHAN HAI
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbwI2PbcfW5g_UNcCWWsIHL24EYLdiCP1l8mMMAtEH9PjTD6jJImli1VR2_6Mf8NwyY_3Q/exec"; 
+        
+        let loginTimerInterval;
+
+        // Custom Professional Alert Logic
+        function showCustomAlert(title, message, isSuccess = true) {
+            document.getElementById('customAlertTitle').innerText = title;
+            document.getElementById('customAlertTitle').style.color = isSuccess ? "var(--accent-color)" : "#dc3545";
+            document.getElementById('customAlertMessage').innerText = message;
+            document.getElementById('customAlertIcon').innerHTML = isSuccess ? "✅" : "⚠️";
+            document.getElementById('customAlertModal').style.display = 'flex';
+        }
+        function closeCustomAlert() {
+            document.getElementById('customAlertModal').style.display = 'none';
+        }
+        
+        function initLoginSystem() {
+            let blockUntil = localStorage.getItem('loginBlockUntil');
+            if (blockUntil && Date.now() < parseInt(blockUntil)) {
+                showBlockTimer(parseInt(blockUntil));
+            } else {
+                localStorage.removeItem('loginBlockUntil');
+                localStorage.setItem('loginAttempts', '0');
+            }
+        }
+
+        async function attemptLogin() {
+            let u = document.getElementById('loginUser').value.trim();
+            let p = document.getElementById('loginPass').value.trim();
+            
+            if(!u || !p) {
+                document.getElementById('loginErrorMsg').innerText = "Please enter User ID and Password.";
+                return;
+            }
+
+            let btn = document.getElementById('loginSubmitBtn');
+            btn.innerText = "Checking..."; btn.disabled = true;
+
+            try {
+                let res = await fetch(webAppUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify({ action: "login", user: u, pass: p })
+                });
+                let result = await res.json();
+
+                if (result.status === "success") {
+                    document.getElementById('loginOverlay').style.display = 'none';
+                    localStorage.setItem('loginAttempts', '0');
+                    document.getElementById('loginErrorMsg').innerText = "";
+                } else {
+                    handleFailedLogin();
+                }
+            } catch(e) {
+                document.getElementById('loginErrorMsg').innerText = "Network Error. Pura URL aur Internet check karein.";
+            }
+            btn.innerText = "Login"; btn.disabled = false;
+        }
+
+        function handleFailedLogin() {
+            let attempts = parseInt(localStorage.getItem('loginAttempts') || '0') + 1;
+            if (attempts >= 3) {
+                let blockTime = Date.now() + 30 * 60 * 1000;
+                localStorage.setItem('loginBlockUntil', blockTime);
+                showBlockTimer(blockTime);
+            } else {
+                localStorage.setItem('loginAttempts', attempts);
+                document.getElementById('loginErrorMsg').innerText = `Wrong User ID or Password. Attempts left: ${3 - attempts}`;
+            }
+        }
+
+        function showBlockTimer(blockTime) {
+            document.getElementById('loginUser').disabled = true;
+            document.getElementById('loginPass').disabled = true;
+            document.getElementById('loginSubmitBtn').disabled = true;
+            document.getElementById('blockTimerMsg').style.display = 'block';
+            document.getElementById('loginErrorMsg').innerText = "You are temporarily blocked.";
+
+            loginTimerInterval = setInterval(() => {
+                let now = Date.now();
+                let diff = blockTime - now;
+                if (diff <= 0) {
+                    clearInterval(loginTimerInterval);
+                    localStorage.removeItem('loginBlockUntil');
+                    localStorage.setItem('loginAttempts', '0');
+                    document.getElementById('loginUser').disabled = false;
+                    document.getElementById('loginPass').disabled = false;
+                    document.getElementById('loginSubmitBtn').disabled = false;
+                    document.getElementById('blockTimerMsg').style.display = 'none';
+                    document.getElementById('loginErrorMsg').innerText = "";
+                } else {
+                    let minutes = Math.floor(diff / 1000 / 60);
+                    let seconds = Math.floor((diff / 1000) % 60);
+                    document.getElementById('blockTimerMsg').innerText = `Try again in ${minutes}m ${seconds}s`;
+                }
+            }, 1000);
+        }
+
+        window.onload = function() { initLoginSystem(); }
+
+        // --- NEW USER CREATION ---
+        function openCreateUserModal() { document.getElementById('createUserModal').style.display = 'flex'; }
+        function closeCreateUserModal() { 
+            document.getElementById('createUserModal').style.display = 'none'; 
+            document.getElementById('newUser').value = '';
+            document.getElementById('newPass').value = '';
+        }
+        async function createNewUser() {
+            let u = document.getElementById('newUser').value.trim();
+            let p = document.getElementById('newPass').value.trim();
+            if(!u || !p) { showCustomAlert("Required", "User ID aur Password dono daalna zaroori hai.", false); return; }
+            
+            let btn = document.getElementById('createUserBtn');
+            btn.innerText = "Creating..."; btn.disabled = true;
+
+            try {
+                let res = await fetch(webAppUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify({ action: "createUser", user: u, pass: p })
+                });
+                let result = await res.json();
+                
+                if (result.status === "success") {
+                    showCustomAlert("Success!", "Naya User ID aur Password successfully ban gaya hai.", true);
+                    closeCreateUserModal();
+                } else if (result.status === "exists") {
+                    showCustomAlert("Warning!", "Ye User ID pehle se mojud hai. Kripya koi dusra ID chunein.", false);
+                } else {
+                    showCustomAlert("Error", "Error creating User ID.", false);
+                }
+            } catch(e) { showCustomAlert("Network Error", "Internet connection check karein.", false); }
+            btn.innerText = "Create"; btn.disabled = false;
+        }
+
+        // --- RESET USER & PASSWORD ---
+        function openResetUserModal() { document.getElementById('resetUserModal').style.display = 'flex'; }
+        function closeResetUserModal() {
+            document.getElementById('resetUserModal').style.display = 'none';
+            document.getElementById('oldUser').value = ''; document.getElementById('oldPass').value = '';
+            document.getElementById('resetNewUser').value = ''; document.getElementById('resetNewPass').value = '';
+        }
+        async function resetUserPassword() {
+            let ou = document.getElementById('oldUser').value.trim();
+            let op = document.getElementById('oldPass').value.trim();
+            let nu = document.getElementById('resetNewUser').value.trim();
+            let np = document.getElementById('resetNewPass').value.trim();
+
+            if(!ou || !op || !nu || !np) { showCustomAlert("Required", "Sabhi fields bharna zaroori hai!", false); return; }
+
+            let btn = document.getElementById('resetUserBtn');
+            btn.innerText = "Processing..."; btn.disabled = true;
+
+            try {
+                let res = await fetch(webAppUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify({ action: "resetUser", oldUser: ou, oldPass: op, newUser: nu, newPass: np })
+                });
+                let result = await res.json();
+                
+                if (result.status === "success") {
+                    showCustomAlert("Success!", "User ID aur Password successfully update ho gaya hai.", true);
+                    closeResetUserModal();
+                } else if (result.status === "wrong_old") {
+                    showCustomAlert("Error", "Purana User ID ya Password galat hai!", false);
+                } else if (result.status === "exists") {
+                    showCustomAlert("Warning", "Naya User ID pehle se kisi aur ka hai!", false);
+                } else {
+                    showCustomAlert("Error", "Password update karne me error aaya.", false);
+                }
+            } catch(e) { showCustomAlert("Network Error", "Internet connection check karein.", false); }
+            btn.innerText = "Reset"; btn.disabled = false;
+        }
+
         // Dropdown Toggle
         function toggleMenu(e) {
             e.stopPropagation();
@@ -640,10 +918,6 @@
         let editingTargetId = null;
         let currentViewingField = ''; 
 
-        // AAPKA NAYA GOOGLE APPS SCRIPT URL YAHAN HAI
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbxGyeOP89M6kJC2zuvGkKtWA5KYeCApvtYXK6TXdI4WAqRpOabZUNJhFHJ3alvSMZIS6Q/exec"; 
-
-        // Background me file delete karne ka Function
         async function deleteFilesFromDrive(fileIdsArray) {
             if (!fileIdsArray || fileIdsArray.length === 0) return;
             try {
@@ -652,9 +926,7 @@
                     headers: { "Content-Type": "text/plain;charset=utf-8" },
                     body: JSON.stringify({ action: "delete", fileIds: fileIdsArray })
                 });
-            } catch (e) {
-                console.error("Drive file delete error:", e);
-            }
+            } catch (e) { console.error("Drive file delete error:", e); }
         }
 
         function getBase64(file) {
@@ -695,10 +967,8 @@
 
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
-                
-                // 10MB Limit Check
                 if (file.size / 1024 / 1024 > 10) { 
-                    alert(`File "${file.name}" 10MB se badi hai! Kripya choti file chunein.`); 
+                    showCustomAlert("File Too Large", `File "${file.name}" 10MB se badi hai! Kripya choti file chunein.`, false); 
                     continue; 
                 }
 
@@ -707,50 +977,30 @@
 
                 try {
                     let base64Data = await getBase64(file);
-                    
                     let response = await fetch(webAppUrl, {
-                        redirect: "follow",
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "text/plain;charset=utf-8",
-                        },
-                        body: JSON.stringify({
-                            fileName: file.name,
-                            mimeType: file.type,
-                            fileBase64: base64Data
-                        })
+                        redirect: "follow", method: "POST",
+                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        body: JSON.stringify({ fileName: file.name, mimeType: file.type, fileBase64: base64Data })
                     });
                     
                     let result = await response.json();
                     
                     if(result.status === "success") {
                         document.getElementById(tempId).remove(); 
-                        
-                        cumulativeFiles[fieldKey].push({ 
-                            name: file.name, 
-                            size: (file.size / 1024 / 1024).toFixed(2) + ' MB',
-                            link: result.url,
-                            fileId: result.id // Delete karne ke liye File ID save kar rahe hain
-                        });
+                        cumulativeFiles[fieldKey].push({ name: file.name, size: (file.size / 1024 / 1024).toFixed(2) + ' MB', link: result.url, fileId: result.id });
                         renderCountBadges(fieldKey);
                     } else {
                         document.getElementById(tempId).innerHTML = "❌ Upload Failed";
                     }
-                } catch (error) {
-                    console.error("Upload error:", error);
-                    document.getElementById(tempId).innerHTML = "❌ Error";
-                }
+                } catch (error) { document.getElementById(tempId).innerHTML = "❌ Error"; }
             }
             input.value = ""; 
         }
 
-        // Single File Delete (From Pill)
         function removeFile(fieldKey, index) {
             if (cumulativeFiles[fieldKey]) { 
                 const fileToDelete = cumulativeFiles[fieldKey][index];
-                if(fileToDelete && fileToDelete.fileId) {
-                    deleteFilesFromDrive([fileToDelete.fileId]); // Google Drive se delete kar rahe hain
-                }
+                if(fileToDelete && fileToDelete.fileId) { deleteFilesFromDrive([fileToDelete.fileId]); }
                 cumulativeFiles[fieldKey].splice(index, 1); 
                 renderCountBadges(fieldKey); 
             }
@@ -775,17 +1025,13 @@
         function openCurrentUploadsModal(fieldKey) {
             currentViewingField = fieldKey;
             const title = document.getElementById('currentUploadsTitle');
-            
             let displayTitle = fieldKey.replace(/^[a-zA-Z]+_/, '').replace('_', ' - ');
             title.innerText = "📁 " + displayTitle;
-
             renderCurrentUploadsList();
             document.getElementById('currentUploadsModal').style.display = 'flex';
         }
 
-        function closeCurrentUploadsModal() {
-            document.getElementById('currentUploadsModal').style.display = 'none';
-        }
+        function closeCurrentUploadsModal() { document.getElementById('currentUploadsModal').style.display = 'none'; }
 
         function renderCurrentUploadsList() {
             const container = document.getElementById('currentUploadsContainer');
@@ -798,14 +1044,20 @@
 
             let html = "<ul style='padding:0; list-style:none; margin:0;'>";
             files.forEach((f, index) => {
-                html += `<li style="background:#f8fafc; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
-                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:60%;" title="${f.name}">
+                let downloadBtnHTML = f.fileId ? 
+                    `<a href="https://drive.google.com/uc?export=download&id=${f.fileId}" target="_blank" download style="text-decoration: none;">
+                        <button class="mini-btn" style="background:#10b981; padding: 6px 12px !important; font-size: 0.9em !important;">⬇️ Download</button>
+                    </a>` : '';
+
+                html += `<li style="background:#f8fafc; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%;" title="${f.name}">
                         <b>📄 ${f.name}</b> <br><small style="color:#64748b;">(${f.size})</small>
                     </div>
-                    <div style="display:flex; gap:8px;">
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
                         <a href="${f.link}" target="_blank" style="text-decoration: none;">
                             <button class="mini-btn" style="background:#0ea5e9; padding: 6px 12px !important; font-size: 0.9em !important;">👁️ View</button>
                         </a>
+                        ${downloadBtnHTML}
                         <button class="mini-btn" style="background:#dc3545; padding: 6px 12px !important; font-size: 0.9em !important;" onclick="removeFileFromModal(${index})">🗑️ Delete</button>
                     </div>
                 </li>`;
@@ -814,14 +1066,10 @@
             container.innerHTML = html;
         }
 
-        // Single File Delete (From Popup)
         function removeFileFromModal(index) {
             if(confirm("Kya aap sach me is file ko hatana chahte hain?")) {
                 const fileToDelete = cumulativeFiles[currentViewingField][index];
-                if(fileToDelete && fileToDelete.fileId) {
-                    deleteFilesFromDrive([fileToDelete.fileId]); // Google Drive se delete kar rahe hain
-                }
-                
+                if(fileToDelete && fileToDelete.fileId) { deleteFilesFromDrive([fileToDelete.fileId]); }
                 cumulativeFiles[currentViewingField].splice(index, 1);
                 renderCountBadges(currentViewingField); 
                 renderCurrentUploadsList(); 
@@ -883,7 +1131,7 @@
             document.getElementById('otpSection').style.display = 'block';
         }
         function copyOTP() {
-            navigator.clipboard.writeText(generatedOtp).then(() => { alert("OTP Copied: " + generatedOtp); });
+            navigator.clipboard.writeText(generatedOtp).then(() => { showCustomAlert("Copied", "OTP Copied: " + generatedOtp, true); });
         }
         function verifyOtp() {
             if (document.getElementById('otpInput').value === generatedOtp) {
@@ -891,13 +1139,13 @@
                 document.getElementById('mobileInput').classList.add('verified-box');
                 document.getElementById('submitBtn').disabled = false;
                 document.getElementById('otpSection').style.display = 'none';
-                alert("Authentication Successful! ✅");
-            } else alert("Invalid OTP!");
+                showCustomAlert("Verified", "Authentication Successful! ✅", true);
+            } else { showCustomAlert("Error", "Invalid OTP!", false); }
         }
 
         function handleFormSubmit(e) {
             e.preventDefault();
-            if (!isVerified) { alert("Pehle Mobile Number verify karein!"); return; }
+            if (!isVerified) { showCustomAlert("Warning", "Pehle Mobile Number verify karein!", false); return; }
 
             let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
             const now = new Date();
@@ -910,7 +1158,6 @@
                     savedList[targetIndex].profile = document.querySelector('.tab-content.active').id;
                     savedList[targetIndex].files = JSON.parse(JSON.stringify(cumulativeFiles));
                     savedList[targetIndex].edited = editTimeFormatted; 
-                    
                     localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
                 }
 
@@ -930,12 +1177,10 @@
 
                 const targetId = 'NEET-TRG-' + Math.floor(100000 + Math.random() * 900000);
                 const record = {
-                    targetId,
-                    profile: document.querySelector('.tab-content.active').id,
+                    targetId, profile: document.querySelector('.tab-content.active').id,
                     mobile: document.getElementById('mobileInput').value,
                     date: now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-                    rawDate: rawDate,
-                    time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+                    rawDate: rawDate, time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
                     files: JSON.parse(JSON.stringify(cumulativeFiles))
                 };
 
@@ -969,7 +1214,7 @@
                 let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
                 savedList.forEach(item => { 
                     let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;" title="Edited on ${item.edited}">Edited on: ${item.edited}</span>` : '';
-                    html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-left: 10px; background: var(--secondary-color); color: white; border: none; border-radius:4px; cursor: pointer;">👁️ View Uploads</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; 
+                    html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-left: 10px; background: var(--secondary-color); color: white; border: none; border-radius:4px; cursor: pointer;">👁️ View Uploaded Files</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; 
                 });
                 container.innerHTML = html + "</ul>";
             }
@@ -999,25 +1244,13 @@
             }
         }
 
-        function filterEditListById() {
-            document.getElementById('editSearchDateInput').value = ''; 
-            document.getElementById('editSearchDateInput').type = 'text'; 
-            renderEditList('id', document.getElementById('editSearchIdInput').value);
-        }
-
-        function filterEditListByDate() {
-            document.getElementById('editSearchIdInput').value = ''; 
-            renderEditList('date', document.getElementById('editSearchDateInput').value);
-        }
+        function filterEditListById() { document.getElementById('editSearchDateInput').value = ''; document.getElementById('editSearchDateInput').type = 'text'; renderEditList('id', document.getElementById('editSearchIdInput').value); }
+        function filterEditListByDate() { document.getElementById('editSearchIdInput').value = ''; renderEditList('date', document.getElementById('editSearchDateInput').value); }
         
         function openEditTargetListModal() {
-            document.getElementById('editSearchIdInput').value = '';
-            document.getElementById('editSearchDateInput').value = '';
-            document.getElementById('editSearchDateInput').type = 'text'; 
-            renderEditList(null, null);
-            document.getElementById('editListModal').style.display = 'flex';
+            document.getElementById('editSearchIdInput').value = ''; document.getElementById('editSearchDateInput').value = ''; document.getElementById('editSearchDateInput').type = 'text'; 
+            renderEditList(null, null); document.getElementById('editListModal').style.display = 'flex';
         }
-        
         function closeEditListModal() { document.getElementById('editListModal').style.display = 'none'; }
 
         function startEditingTarget(targetId) {
@@ -1027,25 +1260,20 @@
 
             editingTargetId = targetId;
             closeEditListModal();
-
             if (record.profile === 'shivani') { switchTab('shivani'); } else { switchTab('atul'); }
 
             document.getElementById('mobileInput').value = record.mobile;
-            checkMobileLength();
-            
-            isVerified = true;
+            checkMobileLength(); isVerified = true;
             document.getElementById('mobileInput').classList.add('verified-box');
             document.getElementById('submitBtn').disabled = false;
 
             cumulativeFiles = JSON.parse(JSON.stringify(record.files || {}));
-
             for (const fieldKey in cumulativeFiles) { renderCountBadges(fieldKey); }
 
             const banner = document.getElementById('editingBanner');
             banner.style.display = 'block';
             banner.innerHTML = `✏️ Editing Target ID: ${targetId} (Original submission date preserved)`;
             document.getElementById('submitBtn').innerText = "Update Target";
-
             document.getElementById('neetForm').scrollIntoView({ behavior: 'smooth' });
         }
         
@@ -1058,28 +1286,11 @@
             const resultDiv = document.getElementById('searchResultContainer');
             if (found) {
                 let editedInfo = found.edited ? `<br><span style="color: #dc3545; font-weight: bold; font-size: 0.85em;">⚠️ Edited on: ${found.edited}</span>` : '';
-                resultDiv.innerHTML = `
-                <div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">
-                    ${compactRecordFoundHTML}
-                    <div style="font-size: 0.95em; line-height: 1.4; color: #333;">
-                        <b>ID:</b> ${found.targetId}<br>
-                        <b>Profile:</b> ${found.profile.toUpperCase()}<br>
-                        <b>Mobile:</b> ${found.mobile}<br>
-                        <span style="color: #555; font-size: 0.9em;">Submitted on: ${found.date} at ${found.time}</span>
-                        ${editedInfo}
-                    </div>
-                    <button class="btn-primary" onclick="viewSubmissionFiles('${found.targetId}')" style="margin-top: 12px; padding: 6px 15px; font-size: 0.85em;">👁️ View Files</button>
-                </div>`;
-            } else {
-                resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found with ID: ${queryId}</p>`;
-            }
+                resultDiv.innerHTML = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<div style="font-size: 0.95em; line-height: 1.4; color: #333;"><b>ID:</b> ${found.targetId}<br><b>Profile:</b> ${found.profile.toUpperCase()}<br><b>Mobile:</b> ${found.mobile}<br><span style="color: #555; font-size: 0.9em;">Submitted on: ${found.date} at ${found.time}</span>${editedInfo}</div><button class="btn-primary" onclick="viewSubmissionFiles('${found.targetId}')" style="margin-top: 12px; padding: 6px 15px; font-size: 0.85em;">👁️ View Uploaded Files</button></div>`;
+            } else { resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found with ID: ${queryId}</p>`; }
         }
 
-        function openDateSearchModal() { 
-            document.getElementById('dateSearchModal').style.display = 'flex'; 
-            document.getElementById('dateSearchResultContainer').innerHTML = ''; 
-            document.getElementById('dateSearchInput').value = ''; 
-        }
+        function openDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'flex'; document.getElementById('dateSearchResultContainer').innerHTML = ''; document.getElementById('dateSearchInput').value = ''; }
         function closeDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'none'; }
         
         function executeDateSearch() {
@@ -1088,49 +1299,50 @@
             const matches = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').filter(item => item.rawDate === queryDate);
             const resultDiv = document.getElementById('dateSearchResultContainer');
             if (matches.length > 0) {
-                let html = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">
-                ${compactRecordFoundHTML}
-                <p style="color: #155724; font-weight: bold; font-size: 0.95em; margin-bottom: 8px; margin-top: 5px;">Found ${matches.length} record(s):</p>
-                <ul style='padding-left: 20px; font-size: 0.95em; margin-top: 0;'>`;
+                let html = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<p style="color: #155724; font-weight: bold; font-size: 0.95em; margin-bottom: 8px; margin-top: 5px;">Found ${matches.length} record(s):</p><ul style='padding-left: 20px; font-size: 0.95em; margin-top: 0;'>`;
                 matches.forEach(item => { 
                     let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 1px 4px; border-radius: 3px; font-size: 0.7em;" title="Edited on ${item.edited}">Edited</span>` : '';
-                    html += `<li style="margin-bottom: 8px;"><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) ${editedBadge} <br><button class="btn-primary" onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-top: 4px;">👁️ View Files</button></li>`; 
+                    html += `<li style="margin-bottom: 8px;"><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) ${editedBadge} <br><button class="btn-primary" onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-top: 4px;">👁️ View Uploaded Files</button></li>`; 
                 });
                 resultDiv.innerHTML = html + "</ul></div>";
             } else resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No records found for selected date.</p>`;
         }
 
-        function openManageModal() {
+        function renderManageList(filterType = null, filterValue = null) {
             const container = document.getElementById('manageListContainer');
             let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
-            if (savedList.length === 0) container.innerHTML = "<p>No submissions available.</p>";
+
+            if (filterType === 'id' && filterValue) { savedList = savedList.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
+            else if (filterType === 'date' && filterValue) { savedList = savedList.filter(item => item.rawDate === filterValue); }
+
+            if (savedList.length === 0) { container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found.</p>"; } 
             else {
-                let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
-                savedList.forEach(item => { html += `<li><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) | <b>Mobile:</b> ${item.mobile} <button onclick="deleteSubmission('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">🗑️ Delete</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; });
+                let html = "<ul style='padding-left: 20px; line-height: 1.8; margin-top:0;'>";
+                savedList.forEach(item => { html += `<li><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) | <b>Mobile:</b> ${item.mobile} <button onclick="deleteSubmission('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">🗑️ Delete</button><br><small style="color: #64748b;">🕒 ${item.date} at ${item.time}</small></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; });
                 container.innerHTML = html + "</ul>";
             }
-            document.getElementById('manageModal').style.display = 'flex';
+        }
+
+        function filterManageListById() { document.getElementById('manageSearchDateInput').value = ''; document.getElementById('manageSearchDateInput').type = 'text'; renderManageList('id', document.getElementById('manageSearchIdInput').value); }
+        function filterManageListByDate() { document.getElementById('manageSearchIdInput').value = ''; renderManageList('date', document.getElementById('manageSearchDateInput').value); }
+
+        function openManageModal() {
+            document.getElementById('manageSearchIdInput').value = ''; document.getElementById('manageSearchDateInput').value = ''; document.getElementById('manageSearchDateInput').type = 'text'; 
+            renderManageList(); document.getElementById('manageModal').style.display = 'flex';
         }
         function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; }
         
-        // POORA TARGET DELETE (Sath me Drive Files bhi Delete Hogi)
         function deleteSubmission(targetId) {
             if (confirm(`Target ID ${targetId} ko delete karna chahte hain? (Isme upload ki hui saari files Google Drive se bhi permanently delete ho jayengi)`)) {
                 let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
                 const record = savedList.find(item => item.targetId === targetId);
                 
-                // Saari files ka ID nikal kar deleteCommand bhej rahe hain
                 if (record && record.files) {
                     let fileIdsToDelete = [];
-                    for (const fieldKey in record.files) {
-                        record.files[fieldKey].forEach(f => {
-                            if (f.fileId) fileIdsToDelete.push(f.fileId);
-                        });
-                    }
+                    for (const fieldKey in record.files) { record.files[fieldKey].forEach(f => { if (f.fileId) fileIdsToDelete.push(f.fileId); }); }
                     deleteFilesFromDrive(fileIdsToDelete);
                 }
 
-                // Local List me se hatana
                 savedList = savedList.filter(item => item.targetId !== targetId);
                 localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
                 openManageModal(); 
@@ -1151,10 +1363,19 @@
                         <ul style="margin: 0 0 0 20px; padding: 0; line-height: 2;">`;
                         
                         files.forEach(f => { 
-                            html += `<li>📄 <span style="color:#334155;">${f.name}</span> <small style="color: #64748b;">(${f.size})</small> 
-                            <a href="${f.link}" target="_blank" style="text-decoration: none;">
-                                <button class="mini-btn">👁️ View / ⬇️ Download</button>
-                            </a>
+                            let downloadBtnHTML = f.fileId ? 
+                                `<a href="https://drive.google.com/uc?export=download&id=${f.fileId}" target="_blank" download style="text-decoration: none;">
+                                    <button class="mini-btn" style="background:#10b981; padding: 4px 10px !important;">⬇️ Download</button>
+                                </a>` : '';
+
+                            html += `<li style="margin-bottom: 10px; display: flex; flex-direction: column;">
+                                <div>📄 <span style="color:#334155;">${f.name}</span> <small style="color: #64748b;">(${f.size})</small></div>
+                                <div style="margin-top: 5px; margin-left: 20px;">
+                                    <a href="${f.link}" target="_blank" style="text-decoration: none;">
+                                        <button class="mini-btn" style="background:#0ea5e9; padding: 4px 10px !important;">👁️ View</button>
+                                    </a>
+                                    ${downloadBtnHTML}
+                                </div>
                             </li>`; 
                         });
                         
