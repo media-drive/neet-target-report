@@ -802,7 +802,7 @@
         function showCustomAlert(title, message, isSuccess = true) {
             document.getElementById('customAlertTitle').innerText = title;
             document.getElementById('customAlertTitle').style.color = isSuccess ? "var(--accent-color)" : "#dc3545";
-            document.getElementById('customAlertMessage').innerText = message;
+            document.getElementById('customAlertMessage').innerHTML = message;
             document.getElementById('customAlertIcon').innerHTML = isSuccess ? "✅" : "⚠️";
             document.getElementById('customAlertModal').style.display = 'flex';
         }
@@ -990,10 +990,10 @@
         async function createNewUser() {
             let u = document.getElementById('newUser').value.trim();
             let p = document.getElementById('newPass').value.trim();
-            if(!u || !p) { showCustomAlert("Required", "User ID aur Password dono daalna zaroori hai.", false); return; }
+            if(!u || !p) { showCustomAlert("Required", "Both User ID and Password are required.", false); return; }
             
             if(u === "9115335905") {
-                showCustomAlert("Action Denied", "Ye Default Master ID hai, isko use nahi kar sakte.", false);
+                showCustomAlert("Action Denied", "Cannot use the default Master ID.", false);
                 return;
             }
 
@@ -1009,14 +1009,14 @@
                 let result = await res.json();
                 
                 if (result.status === "success") {
-                    showCustomAlert("Success!", "Naya User ID aur Password successfully ban gaya hai.", true);
+                    showCustomAlert("Success!", `New User ID created successfully.<br><br><b>User ID:</b> ${u}<br><b>Password:</b> ${p}`, true);
                     closeCreateUserModal();
                 } else if (result.status === "exists") {
-                    showCustomAlert("Warning!", "Ye User ID pehle se mojud hai. Kripya koi dusra ID chunein.", false);
+                    showCustomAlert("Warning!", "This User ID already exists. Please choose another.", false);
                 } else {
                     showCustomAlert("Error", "Error creating User ID.", false);
                 }
-            } catch(e) { showCustomAlert("Network Error", "Internet connection check karein.", false); }
+            } catch(e) { showCustomAlert("Network Error", "Please check your internet connection.", false); }
             btn.innerText = "Create"; btn.disabled = false;
         }
 
@@ -1033,10 +1033,10 @@
             let nu = document.getElementById('resetNewUser').value.trim();
             let np = document.getElementById('resetNewPass').value.trim();
 
-            if(!ou || !op || !nu || !np) { showCustomAlert("Required", "Sabhi fields bharna zaroori hai!", false); return; }
+            if(!ou || !op || !nu || !np) { showCustomAlert("Required", "All fields are required!", false); return; }
 
             if(ou === "9115335905" || nu === "9115335905") {
-                showCustomAlert("Action Denied", "Default Master ID ko badla ya reset nahi kiya ja sakta.", false);
+                showCustomAlert("Action Denied", "Default Master ID cannot be changed or reset.", false);
                 return;
             }
 
@@ -1052,16 +1052,16 @@
                 let result = await res.json();
                 
                 if (result.status === "success") {
-                    showCustomAlert("Success!", "User ID aur Password successfully update ho gaya hai.", true);
+                    showCustomAlert("Success!", `User ID and Password updated successfully.<br><br><b>New User ID:</b> ${nu}<br><b>New Password:</b> ${np}`, true);
                     closeResetUserModal();
                 } else if (result.status === "wrong_old") {
-                    showCustomAlert("Error", "Purana User ID ya Password galat hai!", false);
+                    showCustomAlert("Error", "Incorrect Old User ID or Password!", false);
                 } else if (result.status === "exists") {
-                    showCustomAlert("Warning", "Naya User ID pehle se kisi aur ka hai!", false);
+                    showCustomAlert("Warning", "The New User ID already exists!", false);
                 } else {
-                    showCustomAlert("Error", "Password update karne me error aaya.", false);
+                    showCustomAlert("Error", "Error updating password.", false);
                 }
-            } catch(e) { showCustomAlert("Network Error", "Internet connection check karein.", false); }
+            } catch(e) { showCustomAlert("Network Error", "Please check your internet connection.", false); }
             btn.innerText = "Reset"; btn.disabled = false;
         }
 
@@ -1145,7 +1145,7 @@
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
                 if (file.size / 1024 / 1024 > 10) { 
-                    showCustomAlert("File Too Large", `File "${file.name}" 10MB se badi hai! Kripya choti file chunein.`, false); 
+                    showCustomAlert("File Too Large", `File "${file.name}" exceeds 10MB! Please choose a smaller file.`, false); 
                     continue; 
                 }
 
@@ -1245,7 +1245,7 @@
         }
 
         function removeFileFromModal(index) {
-            if(confirm("Kya aap sach me is file ko hatana chahte hain?")) {
+            if(confirm("Are you sure you want to remove this file?")) {
                 const fileToDelete = cumulativeFiles[currentViewingField][index];
                 if(fileToDelete && fileToDelete.fileId) { deleteFilesFromDrive([fileToDelete.fileId]); }
                 cumulativeFiles[currentViewingField].splice(index, 1);
@@ -1324,7 +1324,7 @@
 
         function handleFormSubmit(e) {
             e.preventDefault();
-            if (!isVerified) { showCustomAlert("Warning", "Pehle Mobile Number verify karein!", false); return; }
+            if (!isVerified) { showCustomAlert("Warning", "Please verify Mobile Number first!", false); return; }
 
             let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
             const now = new Date();
