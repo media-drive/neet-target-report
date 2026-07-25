@@ -638,12 +638,11 @@
 
         let cumulativeFiles = {};
         let editingTargetId = null;
-        let currentViewingField = ''; // Naya variable view Modal ke liye
+        let currentViewingField = ''; 
 
-        // AAPKA NAYA GOOGLE APPS SCRIPT URL YAHAN HAI
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbxBwN4DDhvnYxPlOaUNh7YRasTDOvsvyk8Kkk2mwXnA4QE3pMG7_cz5eNCb8N_WNgstyA/exec"; 
+        // AAPKA FINAL GOOGLE APPS SCRIPT URL YAHAN HAI
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbyZjw77Sll9HbTsa8mbY9pUUlUDOb4L3JBZJZ0zC45bWYvP2uBFRE8o_6Byl_h69JPilg/exec"; 
 
-        // File ko Base64 format me badalne ke liye function
         function getBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -653,7 +652,6 @@
             });
         }
 
-        // Slide Banner
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         setInterval(() => {
@@ -662,7 +660,6 @@
             slides[currentSlide].classList.add('active');
         }, 4000);
 
-        // Clock
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').innerText = now.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) + " | " + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -685,8 +682,9 @@
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
                 
+                // 10MB Limit Check
                 if (file.size / 1024 / 1024 > 10) { 
-                    alert(`File "${file.name}" 10MB se badi hai!`); 
+                    alert(`File "${file.name}" 10MB se badi hai! Kripya choti file chunein.`); 
                     continue; 
                 }
 
@@ -751,12 +749,10 @@
             });
         }
 
-        // NAYA SYSTEM: Ab "View Uploaded File" click karne par ek box (Modal) khulega
         function openCurrentUploadsModal(fieldKey) {
             currentViewingField = fieldKey;
             const title = document.getElementById('currentUploadsTitle');
             
-            // Box ka title sundar banana (Jaise: Atul_Physics_Upload Notes -> Physics - Upload Notes)
             let displayTitle = fieldKey.replace(/^[a-zA-Z]+_/, '').replace('_', ' - ');
             title.innerText = "📁 " + displayTitle;
 
@@ -798,8 +794,8 @@
         function removeFileFromModal(index) {
             if(confirm("Kya aap sach me is file ko hatana chahte hain?")) {
                 cumulativeFiles[currentViewingField].splice(index, 1);
-                renderCountBadges(currentViewingField); // Background ki list bhi update hogi
-                renderCurrentUploadsList(); // Samne wali list bhi update hogi
+                renderCountBadges(currentViewingField); 
+                renderCurrentUploadsList(); 
             }
         }
 
@@ -816,7 +812,6 @@
                     <input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
                     <div class="upload-status" data-field-key="${fieldKey}"></div>
                     <div class="file-actions">
-                        <!-- Yahan par naya popup function lagaya gaya hai -->
                         <span class="action-link" onclick="openCurrentUploadsModal('${fieldKey}')">👁️ View Uploaded File</span>
                     </div>
                 </div>`;
@@ -871,7 +866,6 @@
             } else alert("Invalid OTP!");
         }
 
-        // --- FORM SUBMIT & UPDATE LOGIC ---
         function handleFormSubmit(e) {
             e.preventDefault();
             if (!isVerified) { alert("Pehle Mobile Number verify karein!"); return; }
@@ -936,7 +930,6 @@
             isVerified = false;
         }
 
-        // --- COMPACT RECORD FOUND UI ---
         const compactRecordFoundHTML = `<div style="font-size: 1.25em; color: #2ea043; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">Record Found! <span style="background: #2ea043; color: white; border-radius: 4px; padding: 1px 6px; font-size: 0.7em; line-height: 1.3;">✔</span></div>`;
 
         function openTargetListModal() {
@@ -1098,7 +1091,6 @@
             }
         }
 
-        // --- SUBMITTED FILES LIST VIEW ---
         function viewSubmissionFiles(targetId) {
             const record = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === targetId);
             const container = document.getElementById('viewFilesContainer');
