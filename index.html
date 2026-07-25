@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEET Target Tracking Portal</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #007bff;
+            --accent-color: #28a745;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #004080, var(--primary-color));
+            color: white;
+            padding: 15px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 10;
+        }
+
+        .datetime {
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Touch-Friendly Dropdown Menu */
+        .menu-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-btn {
+            background: #ffffff;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 250px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 100;
+            border: 1px solid #e2e8f0;
+            margin-top: 10px;
+        }
+
+        .dropdown-content.show { display: block; }
+
+        .dropdown-content a {
+            color: #2d3748;
+            padding: 14px 18px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95em;
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background 0.2s;
+        }
+
+        .dropdown-content a:hover {
+            background: #edf2f7;
+            color: var(--primary-color);
+        }
+
+        /* Sliding MBBS Background Banner with Quotes */
+        .slider-banner {
+            position: relative;
+            height: 360px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .slide::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1;
+        }
+
+        .quote-text {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8em;
+            max-width: 50%;
+            margin-left: 60px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            line-height: 1.3;
+        }
+
+        .slide.active { opacity: 1; }
+
+        /* Static Dashboard Title & Photo */
+        .dashboard-title-container {
+            max-width: 650px;
+            margin: -110px auto 25px auto;
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            padding: 0 15px;
+        }
+
+        .dashboard-box {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .dashboard-box img {
+            width: 130px;
+            height: 130px;
+            border-radius: 16px;
+            object-fit: cover;
+            object-position: center top; 
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 6px 15px rgba(0,86,179,0.25);
+        }
+
+        .dashboard-box h1 {
+            color: var(--primary-color);
+            margin-top: 15px;
+            font-size: 2.1em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 14px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border: 2px solid #cbd5e1;
+            border-radius: 14px; 
+            cursor: pointer;
+            background: linear-gradient(145deg, #ffffff, #e2e8f0);
+            color: #475569;
+            box-shadow: 0 6px 0 #cbd5e1, 0 8px 15px rgba(0,0,0,0.1);
+            transition: all 0.15s ease;
+        }
+
+        .tab-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #cbd5e1, 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            border-color: #004080;
+            box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px 20px 40px 20px;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        .tab-content.active { display: block; }
+
+        /* Profile Name Heading */
+        .profile-name {
+            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            border: 2px solid #004080;
+            border-radius: 16px;
+            box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35);
+            padding: 15px 30px;
+            text-align: center;
+            color: white;
+            font-size: 1.7em;
+            margin: 0 auto 40px auto;
+            font-weight: 700;
+            max-width: 550px;
+        }
+
+        /* Subjects Grid */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 1px solid #edf2f7;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
+            border: 2px solid #004080;
+            border-radius: 12px;
+            box-shadow: 0 5px 0 #003366, 0 6px 10px rgba(0,0,0,0.2);
+            padding: 12px 20px;
+            color: white;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 25px;
+            font-size: 1.4em;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .chemistry-card { grid-column: 1 / -1; }
+        .chem-columns { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px; }
+        .chem-col { flex: 1; min-width: 290px; background: #f8fafc; padding: 18px; border-radius: 12px; border: 1px solid #e2e8f0; }
+        
+        .sub-heading {
+            background: linear-gradient(145deg, #fff7ed, #ffedd5);
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            box-shadow: 0 4px 0 #fdba74, 0 4px 6px rgba(0,0,0,0.05);
+            color: #c2410c;
+            font-size: 1.1em;
+            margin: 5px 0 20px 0;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* File Upload UI */
+        .upload-group { margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
+        .upload-group label { font-weight: 600; font-size: 0.95em; color: #1e293b; }
+        
+        input[type="file"] {
+            border: 2px dashed #cbd5e1;
+            padding: 10px;
+            border-radius: 8px;
+            background: #ffffff;
+            width: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        input[type="file"]:hover { border-color: var(--primary-color); }
+
+        .upload-status { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+        .file-pill {
+            display: inline-flex;
+            align-items: center;
+            background: #e8f5e9;
+            border: 1px solid #28a745;
+            color: #155724;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(40,167,69,0.1);
+        }
+
+        .delete-file-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 8px;
+            transition: background 0.2s;
+        }
+        .delete-file-btn:hover { background: #c82333; }
+
+        .file-actions { display: flex; gap: 15px; margin-top: 4px; }
+        .action-link {
+            font-size: 0.75em; 
+            color: var(--secondary-color);
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        .action-link:hover { text-decoration: underline; }
+
+        /* Authentication & Submit Section */
+        .auth-submit-container { max-width: 550px; margin: 45px auto; background: white; padding: 30px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); text-align: center; border: 1px solid #e2e8f0; }
+        .auth-group { margin-bottom: 20px; text-align: left; }
+        .auth-group label { font-weight: 600; display: block; margin-bottom: 8px; color: #1e293b; }
+        .mobile-input-row { display: flex; gap: 12px; }
+        
+        .auth-group input { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1em; outline: none; transition: all 0.3s; }
+        .auth-group input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0,86,179,0.15); }
+        .success-input { border-color: #28a745 !important; background-color: #f0fdf4 !important; box-shadow: 0 0 0 3px rgba(40,167,69,0.15) !important; }
+        .error-input { border-color: #dc3545 !important; background-color: #fff5f5 !important; }
+        
+        .auth-btn { background-color: var(--primary-color); color: white; border: none; padding: 0 20px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .submit-btn {
+            background: linear-gradient(135deg, #22c55e, var(--accent-color));
+            color: white; font-size: 1.25em; font-weight: bold; padding: 14px 40px; border: none; border-radius: 30px; cursor: pointer; box-shadow: 0 6px 20px rgba(40, 167, 69, 0.35); width: 100%; transition: all 0.3s;
+        }
+        .submit-btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
+
+        /* Simulated SMS Box styling */
+        .sms-box {
+            background: #e2e8f0;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px dashed #94a3b8;
+        }
+        .copy-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        /* Animated Success Checkmark */
+        .success-animation {
+            margin: 10px auto 25px auto;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 4px solid #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background: #e8f5e9;
+        }
+        .success-animation::after {
+            content: '✔';
+            font-size: 40px;
+            color: #28a745;
+            animation: scaleUp 0.5s ease 0.3s forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes scaleUp { to { opacity: 1; transform: scale(1); } }
+
+        /* Modal Popups */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); justify-content: center; align-items: center; z-index: 1000; padding: 15px; box-sizing: border-box; backdrop-filter: blur(4px); }
+        .modal-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; }
+        .modal-box h2 { color: var(--primary-color); margin-top: 0; font-size: 1.6em; margin-bottom: 20px;}
+        .target-id-badge { background: #f8fafc; padding: 14px; border-radius: 10px; font-size: 1.35em; font-weight: bold; color: var(--primary-color); margin: 18px 0; border: 2px dashed var(--primary-color); word-break: break-all; }
+        
+        .modal-btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .modal-box .btn-primary { padding: 10px 25px; font-size: 1em; background: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .modal-box .btn-secondary { padding: 10px 25px; font-size: 1em; background: #64748b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        
+        .mini-btn {
+            background: var(--secondary-color);
+            border: none;
+            padding: 5px 12px !important;
+            font-size: 0.8em !important;
+            border-radius: 4px !important;
+            color: #ffffff !important;
+            margin-left: 8px !important;
+            margin-top: 0 !important;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .mini-btn:hover { background: var(--primary-color); }
+
+        @media (max-width: 768px) {
+            .dashboard-title-container { margin-top: -70px; }
+            .chem-columns { flex-direction: column; }
+            .tabs { gap: 10px; }
+            .tab-btn { padding: 12px 20px; font-size: 1em; }
+            .profile-name { font-size: 1.4em; padding: 12px 20px; }
+            .quote-text { font-size: 2em; margin-left: 20px; max-width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="datetime" id="clock">Loading Time...</div>
+        <div class="menu-dropdown">
+            <button class="menu-btn" onclick="toggleMenu(event)">Menu ▾</button>
+            <div class="dropdown-content" id="myDropdown">
+                <a onclick="openTargetListModal()">📋 Target Submit List</a>
+                <a onclick="openSearchModal()">🔍 Search By Target ID</a>
+                <a onclick="openDateSearchModal()">📅 Search By Date</a>
+                <a onclick="openEditTargetListModal()">✏️ Edit Target List</a>
+                <a onclick="openManageModal()" style="color: #dc3545;">🗑️ Manage & Delete Targets</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sliding Banner with Quotes -->
+    <div class="slider-banner">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80')">
+            <div class="quote-text">"Strive for progress,<br>not perfection."</div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=1200&q=80')">
+            <div class="quote-text">"The best way to predict<br>your future is to create it."</div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80')">
+            <div class="quote-text">"Work hard in silence,<br>let your success be your noise."</div>
+        </div>
+    </div>
+
+    <!-- Dashboard Title -->
+    <div class="dashboard-title-container">
+        <div class="dashboard-box">
+            <img src="Atulkumar.jpg" alt="Atul Kumar" onerror="this.src='https://via.placeholder.com/130?text=Atul+Photo'">
+            <h1>REPORT FOR NEET TARGET</h1>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('atul')">Dr. Atul Target</button>
+        <button class="tab-btn" onclick="switchTab('shivani')">Dr. Shivani Target</button>
+    </div>
+
+    <!-- MAIN FORM -->
+    <form id="neetForm" onsubmit="handleFormSubmit(event)">
+        <!-- DR. ATUL -->
+        <div id="atul" class="tab-content active">
+            <div class="profile-name">Tracking Project: Dr. Atul Target</div>
+            <div id="atul-subjects" class="subject-grid"></div>
+        </div>
+        <!-- DR. SHIVANI -->
+        <div id="shivani" class="tab-content">
+            <div class="profile-name">Tracking Project: Dr. Shivani Target</div>
+            <div id="shivani-subjects" class="subject-grid"></div>
+        </div>
+
+        <!-- Authentication -->
+        <div class="auth-submit-container">
+            <div id="editingBanner" style="display:none; background:#fff3cd; color:#856404; padding:8px; border-radius:6px; margin-bottom:15px; font-weight:bold; font-size:0.9em;"></div>
+            <div class="auth-group">
+                <label>Mobile Number (Compulsory - 10 Digits):</label>
+                <div class="mobile-input-row">
+                    <input type="tel" id="mobileInput" maxlength="10" placeholder="Enter 10-digit number" oninput="checkMobileLength()">
+                    <button type="button" class="auth-btn" id="sendOtpBtn" onclick="sendOtp()" disabled>Send OTP</button>
+                </div>
+            </div>
+            
+            <div class="auth-group" id="otpSection" style="display: none;">
+                <div class="sms-box" id="smsBox">
+                    <span>[SMS]: Your OTP is <b id="displayOtp"></b></span>
+                    <button type="button" class="copy-btn" onclick="copyOTP()">Copy</button>
+                </div>
+                <label>Enter 4-Digit OTP:</label>
+                <div class="mobile-input-row">
+                    <input type="text" id="otpInput" maxlength="4" placeholder="Paste OTP here">
+                    <button type="button" class="auth-btn" onclick="verifyOtp()">Verify</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 25px;">
+                <button type="submit" id="submitBtn" class="submit-btn" disabled>Submit</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-box">
+            <div class="success-animation"></div>
+            <h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2>
+            <p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p>
+            <div class="target-id-badge" id="generatedTargetId"></div>
+            <button class="btn-primary" onclick="closeSuccessModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- List Modal (Normal Submit List) -->
+    <div class="modal-overlay" id="listModal">
+        <div class="modal-box" style="max-width: 600px;">
+            <h2>Target Submit List</h2>
+            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
+            <button class="btn-secondary" onclick="closeListModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Edit Target List Modal (With 2 Different Search Boxes) -->
+    <div class="modal-overlay" id="editListModal">
+        <div class="modal-box" style="max-width: 650px;">
+            <h2>✏️ Edit Target List</h2>
+            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to edit files or update details.</p>
+            
+            <!-- Separate Search Boxes for ID and Date -->
+            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                <!-- Search by ID Box -->
+                <input type="text" id="editSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
+                
+                <!-- Search by Date Box -->
+                <input type="text" id="editSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            </div>
+            
+            <div id="editListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
+            <button class="btn-secondary" onclick="closeEditListModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Search By Target ID Modal -->
+    <div class="modal-overlay" id="searchModal">
+        <div class="modal-box">
+            <h2>Search By Target ID</h2>
+            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
+            <div class="modal-btn-group">
+                <button class="btn-primary" onclick="executeSearch()">Search</button>
+                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
+            </div>
+            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- Date Search Modal -->
+    <div class="modal-overlay" id="dateSearchModal">
+        <div class="modal-box">
+            <h2>Search By Date</h2>
+            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
+            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
+            <div class="modal-btn-group">
+                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
+            </div>
+            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
+        </div>
+    </div>
+
+    <!-- Manage Modal -->
+    <div class="modal-overlay" id="manageModal">
+        <div class="modal-box" style="max-width: 600px;">
+            <h2>Manage & Delete Targets</h2>
+            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
+            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- View Files Modal -->
+    <div class="modal-overlay" id="viewFilesModal">
+        <div class="modal-box" style="max-width: 650px;">
+            <h2>Uploaded Files Breakdown 📂</h2>
+            <div id="viewFilesContainer" style="text-align: left; margin: 15px 0; max-height: 55vh; overflow-y: auto;"></div>
+            <button class="btn-primary" onclick="closeViewFilesModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Dropdown Toggle
+        function toggleMenu(e) {
+            e.stopPropagation();
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                let dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
+                }
+            }
+        }
+
+        let cumulativeFiles = {};
+        let editingTargetId = null;
+
+        // YAHAN APNA COPY KIYA HUA WEB APP URL HAIN
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbw6HmGiBcS-PgpU1IYVXqyBmnDSt2My-9iTbOq4RXLHU2zqCgwDKQ8zRtHYL5mwze2W/exec"; 
+
+        // File ko Base64 format me badalne ke liye naya function
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Slide Banner
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 4000);
+
+        // Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }) + " | " + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateClock, 1000); updateClock();
+
+        function switchTab(person) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(person).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- NAYA FILE UPLOAD FUNCTION ---
+        async function handleFileUpload(fieldKey, input) {
+            if (!cumulativeFiles[fieldKey]) cumulativeFiles[fieldKey] = [];
+            if (input.files.length === 0) return;
+
+            const statusDiv = document.querySelector(`[data-field-key="${fieldKey}"]`);
+
+            for (let i = 0; i < input.files.length; i++) {
+                let file = input.files[i];
+                
+                if (file.size / 1024 / 1024 > 10) { 
+                    alert(`File "${file.name}" 10MB se badi hai!`); 
+                    continue; 
+                }
+
+                // Screen par loading dikhana
+                let tempId = "temp-" + Date.now() + i;
+                statusDiv.innerHTML += `<span id="${tempId}" class="file-pill" style="background:#fff3cd; border-color:#ffeeba; color:#856404;">⏳ Uploading ${file.name.substring(0,10)}...</span>`;
+
+                try {
+                    // File ko read karke Drive par bhejna
+                    let base64Data = await getBase64(file);
+                    let response = await fetch(webAppUrl, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            fileName: file.name,
+                            mimeType: file.type,
+                            fileBase64: base64Data
+                        })
+                    });
+                    
+                    let result = await response.json();
+                    
+                    if(result.status === "success") {
+                        document.getElementById(tempId).remove(); // Loading hatana
+                        
+                        // File ka naam, size aur Google Drive ka live link save karna
+                        cumulativeFiles[fieldKey].push({ 
+                            name: file.name, 
+                            size: (file.size / 1024 / 1024).toFixed(2) + ' MB',
+                            link: result.url 
+                        });
+                        renderCountBadges(fieldKey);
+                    } else {
+                        document.getElementById(tempId).innerHTML = "❌ Upload Failed";
+                    }
+                } catch (error) {
+                    console.error("Upload error:", error);
+                    document.getElementById(tempId).innerHTML = "❌ Error";
+                }
+            }
+            input.value = ""; 
+        }
+
+        function removeFile(fieldKey, index) {
+            if (cumulativeFiles[fieldKey]) { cumulativeFiles[fieldKey].splice(index, 1); renderCountBadges(fieldKey); }
+        }
+
+        function renderCountBadges(fieldKey) {
+            const statusDivs = document.querySelectorAll(`[data-field-key="${fieldKey}"]`);
+            statusDivs.forEach(div => {
+                div.innerHTML = '';
+                const files = cumulativeFiles[fieldKey] || [];
+                for (let i = 0; i < files.length; i++) {
+                    const pill = document.createElement('span');
+                    pill.className = 'file-pill';
+                    let shortName = files[i].name.length > 18 ? files[i].name.substring(0, 15) + '...' : files[i].name;
+                    pill.innerHTML = `<span>📄 ${shortName}</span> <button type="button" class="delete-file-btn" onclick="removeFile('${fieldKey}', ${i})" title="Remove">✖</button>`;
+                    pill.title = `${files[i].name} (${files[i].size})`;
+                    div.appendChild(pill);
+                }
+            });
+        }
+
+        const physicsOptions = ["Upload Notes", "Upload DPP", "Upload Self Practice", "Upload Home Work", "Upload Assignment", "Upload PYQ", "Upload Test"];
+        const standardOptions = ["Upload Notes", "Upload DPP", "Upload Self Practice", "Upload Home Work", "Upload NCERT HIghlighter", "Upload PYQ", "Upload Test"];
+
+        function createUploadHTML(prefix, options) {
+            let html = '';
+            options.forEach(opt => {
+                const fieldKey = `${prefix}_${opt}`;
+                html += `
+                <div class="upload-group">
+                    <label>${opt}:</label>
+                    <input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
+                    <div class="upload-status" data-field-key="${fieldKey}"></div>
+                    <div class="file-actions">
+                        <span class="action-link" onclick="alert('Files list update ho gai hai.')">👁️ View</span>
+                        <span class="action-link" onclick="alert('Upar choose file button daba kar aur files jodein.')"><span style="font-size: 0.8em; font-weight: bold;">➕</span> Add More</span>
+                    </div>
+                </div>`;
+            });
+            return html;
+        }
+
+        function renderSubjects(personPrefix, containerId) {
+            document.getElementById(containerId).innerHTML = `
+                <div class="card"><h2>PHYSICS</h2>${createUploadHTML(personPrefix + '_Physics', physicsOptions)}</div>
+                <div class="card"><h2>ZOOLOGY</h2>${createUploadHTML(personPrefix + '_Zoology', standardOptions)}</div>
+                <div class="card"><h2>BOTANY</h2>${createUploadHTML(personPrefix + '_Botany', standardOptions)}</div>
+                <div class="card chemistry-card"><h2>CHEMISTRY</h2><div class="chem-columns">
+                    <div class="chem-col"><div class="sub-heading">PHYSICAL CHEMISTRY</div>${createUploadHTML(personPrefix + '_PhysicalChem', standardOptions)}</div>
+                    <div class="chem-col"><div class="sub-heading">ORGANIC CHEMISTRY</div>${createUploadHTML(personPrefix + '_OrganicChem', standardOptions)}</div>
+                    <div class="chem-col"><div class="sub-heading">INORGANIC CHEMISTRY</div>${createUploadHTML(personPrefix + '_InorganicChem', standardOptions)}</div>
+                </div></div>`;
+        }
+        renderSubjects('Atul', 'atul-subjects');
+        renderSubjects('Shivani', 'shivani-subjects');
+
+        let generatedOtp = "", isVerified = false;
+        
+        function checkMobileLength() {
+            const mobileInput = document.getElementById('mobileInput');
+            const mobile = mobileInput.value;
+            if (mobile.length === 10 && /^\d+$/.test(mobile)) {
+                mobileInput.classList.add('success-input'); mobileInput.classList.remove('error-input');
+                document.getElementById('sendOtpBtn').disabled = false;
+            } else {
+                mobileInput.classList.remove('success-input');
+                if (mobile.length > 0) mobileInput.classList.add('error-input');
+                else mobileInput.classList.remove('error-input');
+                document.getElementById('sendOtpBtn').disabled = true;
+            }
+        }
+        function sendOtp() {
+            generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+            document.getElementById('displayOtp').innerText = generatedOtp;
+            document.getElementById('otpSection').style.display = 'block';
+        }
+        function copyOTP() {
+            navigator.clipboard.writeText(generatedOtp).then(() => { alert("OTP Copied: " + generatedOtp); });
+        }
+        function verifyOtp() {
+            if (document.getElementById('otpInput').value === generatedOtp) {
+                isVerified = true; 
+                document.getElementById('mobileInput').classList.add('verified-box');
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('otpSection').style.display = 'none';
+                alert("Authentication Successful! ✅");
+            } else alert("Invalid OTP!");
+        }
+
+        // --- FORM SUBMIT & UPDATE LOGIC ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            if (!isVerified) { alert("Pehle Mobile Number verify karein!"); return; }
+
+            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            const now = new Date();
+            const editTimeFormatted = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) + " at " + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+            if (editingTargetId) {
+                let targetIndex = savedList.findIndex(item => item.targetId === editingTargetId);
+                if (targetIndex !== -1) {
+                    savedList[targetIndex].mobile = document.getElementById('mobileInput').value;
+                    savedList[targetIndex].profile = document.querySelector('.tab-content.active').id;
+                    savedList[targetIndex].files = JSON.parse(JSON.stringify(cumulativeFiles));
+                    savedList[targetIndex].edited = editTimeFormatted; 
+                    
+                    localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
+                }
+
+                document.getElementById('successModalTitle').innerText = "Target Updated!";
+                document.getElementById('successModalText').innerText = `Target ID ${editingTargetId} has been successfully updated.`;
+                document.getElementById('generatedTargetId').innerText = editingTargetId;
+                document.getElementById('successModal').style.display = 'flex';
+
+                editingTargetId = null;
+                document.getElementById('editingBanner').style.display = 'none';
+                document.getElementById('submitBtn').innerText = "Submit";
+            } else {
+                const year = now.getFullYear();
+                const month = String(now.getMonth() + 1).padStart(2, '0');
+                const day = String(now.getDate()).padStart(2, '0');
+                const rawDate = `${year}-${month}-${day}`; 
+
+                const targetId = 'NEET-TRG-' + Math.floor(100000 + Math.random() * 900000);
+                const record = {
+                    targetId,
+                    profile: document.querySelector('.tab-content.active').id,
+                    mobile: document.getElementById('mobileInput').value,
+                    date: now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                    rawDate: rawDate,
+                    time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+                    files: JSON.parse(JSON.stringify(cumulativeFiles))
+                };
+
+                savedList.push(record);
+                localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
+
+                document.getElementById('successModalTitle').innerText = "Submission Successful!";
+                document.getElementById('successModalText').innerText = "Your report has been securely saved. Your unique Target ID is:";
+                document.getElementById('generatedTargetId').innerText = targetId;
+                document.getElementById('successModal').style.display = 'flex';
+            }
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('neetForm').reset();
+            cumulativeFiles = {};
+            document.querySelectorAll('.upload-status').forEach(div => div.innerHTML = '');
+            document.getElementById('mobileInput').classList.remove('success-input', 'error-input', 'verified-box');
+            document.getElementById('submitBtn').disabled = true;
+            isVerified = false;
+        }
+
+        // --- COMPACT RECORD FOUND UI ---
+        const compactRecordFoundHTML = `<div style="font-size: 1.25em; color: #2ea043; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">Record Found! <span style="background: #2ea043; color: white; border-radius: 4px; padding: 1px 6px; font-size: 0.7em; line-height: 1.3;">✔</span></div>`;
+
+        // 1. Target Submit List (Mobile Added Back)
+        function openTargetListModal() {
+            const container = document.getElementById('targetListContainer');
+            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            if (savedList.length === 0) container.innerHTML = "<p>No submissions found yet.</p>";
+            else {
+                let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
+                savedList.forEach(item => { 
+                    // Edit Date and Time shown directly in the badge
+                    let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;" title="Edited on ${item.edited}">Edited on: ${item.edited}</span>` : '';
+                    html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-left: 10px; background: var(--secondary-color); color: white; border: none; border-radius:4px; cursor: pointer;">👁️ View Uploads</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; 
+                });
+                container.innerHTML = html + "</ul>";
+            }
+            document.getElementById('listModal').style.display = 'flex';
+        }
+        function closeListModal() { document.getElementById('listModal').style.display = 'none'; }
+        
+        // 2. Edit Target List Modal Rendering Logic
+        function renderEditList(filterType = null, filterValue = null) {
+            const container = document.getElementById('editListContainer');
+            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            
+            if (filterType === 'id' && filterValue) {
+                savedList = savedList.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase()));
+            } else if (filterType === 'date' && filterValue) {
+                savedList = savedList.filter(item => item.rawDate === filterValue);
+            }
+
+            if (savedList.length === 0) {
+                container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found.</p>";
+            } else {
+                let html = "<ul style='padding-left: 20px; line-height: 1.8; margin-top: 0;'>";
+                savedList.forEach(item => {
+                    let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;">Edited on: ${item.edited}</span>` : '';
+                    html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="startEditingTarget('${item.targetId}')" style="padding: 4px 12px; font-size: 0.85em; background: var(--secondary-color); color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">✏️ Edit</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`;
+                });
+                container.innerHTML = html + "</ul>";
+            }
+        }
+
+        // Live filtering triggers for Edit box
+        function filterEditListById() {
+            document.getElementById('editSearchDateInput').value = ''; 
+            document.getElementById('editSearchDateInput').type = 'text'; 
+            renderEditList('id', document.getElementById('editSearchIdInput').value);
+        }
+
+        function filterEditListByDate() {
+            document.getElementById('editSearchIdInput').value = ''; 
+            renderEditList('date', document.getElementById('editSearchDateInput').value);
+        }
+        
+        function openEditTargetListModal() {
+            document.getElementById('editSearchIdInput').value = '';
+            document.getElementById('editSearchDateInput').value = '';
+            document.getElementById('editSearchDateInput').type = 'text'; 
+            renderEditList(null, null);
+            document.getElementById('editListModal').style.display = 'flex';
+        }
+        
+        function closeEditListModal() { document.getElementById('editListModal').style.display = 'none'; }
+
+        // Start editing the selected target
+        function startEditingTarget(targetId) {
+            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            const record = savedList.find(item => item.targetId === targetId);
+            if (!record) return;
+
+            editingTargetId = targetId;
+            closeEditListModal();
+
+            if (record.profile === 'shivani') { switchTab('shivani'); } else { switchTab('atul'); }
+
+            document.getElementById('mobileInput').value = record.mobile;
+            checkMobileLength();
+            
+            isVerified = true;
+            document.getElementById('mobileInput').classList.add('verified-box');
+            document.getElementById('submitBtn').disabled = false;
+
+            cumulativeFiles = JSON.parse(JSON.stringify(record.files || {}));
+
+            for (const fieldKey in cumulativeFiles) { renderCountBadges(fieldKey); }
+
+            const banner = document.getElementById('editingBanner');
+            banner.style.display = 'block';
+            banner.innerHTML = `✏️ Editing Target ID: ${targetId} (Original submission date preserved)`;
+            document.getElementById('submitBtn').innerText = "Update Target";
+
+            document.getElementById('neetForm').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function openSearchModal() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('searchResultContainer').innerHTML = ''; document.getElementById('searchInput').value = ''; }
+        function closeSearchModal() { document.getElementById('searchModal').style.display = 'none'; }
+        
+        function executeSearch() {
+            const queryId = document.getElementById('searchInput').value.trim();
+            const found = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === queryId);
+            const resultDiv = document.getElementById('searchResultContainer');
+            if (found) {
+                let editedInfo = found.edited ? `<br><span style="color: #dc3545; font-weight: bold; font-size: 0.85em;">⚠️ Edited on: ${found.edited}</span>` : '';
+                resultDiv.innerHTML = `
+                <div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">
+                    ${compactRecordFoundHTML}
+                    <div style="font-size: 0.95em; line-height: 1.4; color: #333;">
+                        <b>ID:</b> ${found.targetId}<br>
+                        <b>Profile:</b> ${found.profile.toUpperCase()}<br>
+                        <b>Mobile:</b> ${found.mobile}<br>
+                        <span style="color: #555; font-size: 0.9em;">Submitted on: ${found.date} at ${found.time}</span>
+                        ${editedInfo}
+                    </div>
+                    <button class="btn-primary" onclick="viewSubmissionFiles('${found.targetId}')" style="margin-top: 12px; padding: 6px 15px; font-size: 0.85em;">👁️ View Files</button>
+                </div>`;
+            } else {
+                resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found with ID: ${queryId}</p>`;
+            }
+        }
+
+        function openDateSearchModal() { 
+            document.getElementById('dateSearchModal').style.display = 'flex'; 
+            document.getElementById('dateSearchResultContainer').innerHTML = ''; 
+            document.getElementById('dateSearchInput').value = ''; 
+        }
+        function closeDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'none'; }
+        
+        function executeDateSearch() {
+            const queryDate = document.getElementById('dateSearchInput').value; 
+            if (!queryDate) return;
+            const matches = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').filter(item => item.rawDate === queryDate);
+            const resultDiv = document.getElementById('dateSearchResultContainer');
+            if (matches.length > 0) {
+                let html = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">
+                ${compactRecordFoundHTML}
+                <p style="color: #155724; font-weight: bold; font-size: 0.95em; margin-bottom: 8px; margin-top: 5px;">Found ${matches.length} record(s):</p>
+                <ul style='padding-left: 20px; font-size: 0.95em; margin-top: 0;'>`;
+                matches.forEach(item => { 
+                    let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 1px 4px; border-radius: 3px; font-size: 0.7em;" title="Edited on ${item.edited}">Edited</span>` : '';
+                    html += `<li style="margin-bottom: 8px;"><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) ${editedBadge} <br><button class="btn-primary" onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-top: 4px;">👁️ View Files</button></li>`; 
+                });
+                resultDiv.innerHTML = html + "</ul></div>";
+            } else resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No records found for selected date.</p>`;
+        }
+
+        function openManageModal() {
+            const container = document.getElementById('manageListContainer');
+            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            if (savedList.length === 0) container.innerHTML = "<p>No submissions available.</p>";
+            else {
+                let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
+                savedList.forEach(item => { html += `<li><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) | <b>Mobile:</b> ${item.mobile} <button onclick="deleteSubmission('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">🗑️ Delete</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; });
+                container.innerHTML = html + "</ul>";
+            }
+            document.getElementById('manageModal').style.display = 'flex';
+        }
+        function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; }
+        
+        function deleteSubmission(targetId) {
+            if (confirm(`Target ID ${targetId} ko delete karna chahte hain?`)) {
+                localStorage.setItem('neetSubmissions', JSON.stringify(JSON.parse(localStorage.getItem('neetSubmissions') || '[]').filter(item => item.targetId !== targetId)));
+                openManageModal(); 
+            }
+        }
+
+        // --- NAYA VIEW FILES FUNCTION ---
+        function viewSubmissionFiles(targetId) {
+            const record = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === targetId);
+            const container = document.getElementById('viewFilesContainer');
+            if (!record || !record.files || Object.keys(record.files).length === 0) container.innerHTML = "<p>No files were uploaded in this submission.</p>";
+            else {
+                let editedInfo = record.edited ? `<br><span style="color: #dc3545; font-size: 0.9em; font-weight: bold;">⚠️ Edited: ${record.edited}</span>` : '';
+                let html = `<p style="font-size: 1.1em;"><b>Target ID:</b> ${record.targetId} | <b>Profile:</b> ${record.profile.toUpperCase()} ${editedInfo}</p><hr style="border:0; border-top:1px solid #cbd5e1;">`;
+                for (const [fieldKey, files] of Object.entries(record.files)) {
+                    if (files && files.length > 0) {
+                        html += `<div style="margin: 15px 0; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                        <div style="font-size:1.05em; font-weight:bold; color: #1e293b; margin-bottom: 8px;">📌 ${fieldKey.replace(/^[a-zA-Z]+_/, '')}:</div>
+                        <ul style="margin: 0 0 0 20px; padding: 0; line-height: 2;">`;
+                        
+                        files.forEach(f => { 
+                            // Asli live link button par laga diya gaya hai
+                            html += `<li>📄 <span style="color:#334155;">${f.name}</span> <small style="color: #64748b;">(${f.size})</small> 
+                            <a href="${f.link}" target="_blank" style="text-decoration: none;">
+                                <button class="mini-btn">👁️ View / ⬇️ Download</button>
+                            </a>
+                            </li>`; 
+                        });
+                        
+                        html += `</ul></div>`;
+                    }
+                }
+                container.innerHTML = html;
+            }
+            document.getElementById('viewFilesModal').style.display = 'flex';
+        }
+        function closeViewFilesModal() { document.getElementById('viewFilesModal').style.display = 'none'; }
+    </script>
+</body>
+</html>
