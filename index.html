@@ -102,10 +102,22 @@
             cursor: pointer;
             box-shadow: 0 5px 0 #003366, 0 6px 10px rgba(0,0,0,0.2);
             transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .menu-btn:active {
             transform: translateY(4px);
             box-shadow: 0 2px 0 #003366, 0 3px 5px rgba(0,0,0,0.2);
+        }
+
+        /* NAYA: Hamburger Animation CSS */
+        .hamburger-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .menu-btn.open .hamburger-icon {
+            transform: rotate(180deg);
         }
 
         .dropdown-content {
@@ -158,14 +170,12 @@
         .btn-color-5 { background: linear-gradient(145deg, #0ea5e9, #0284c7); box-shadow: 0 5px 0 #0c4a6e, 0 6px 10px rgba(0,0,0,0.15); }
         .btn-color-5:active { transform: translateY(4px); box-shadow: 0 1px 0 #0c4a6e, 0 2px 4px rgba(0,0,0,0.15); }
         
-        .btn-color-6 { background: linear-gradient(145deg, #64748b, #475569); box-shadow: 0 5px 0 #1e293b, 0 6px 10px rgba(0,0,0,0.15); }
-        .btn-color-6:active { transform: translateY(4px); box-shadow: 0 1px 0 #1e293b, 0 2px 4px rgba(0,0,0,0.15); }
+        /* NAYA: Color 6 Update (Black/Gray se Magenta/Pink kar diya gaya hai) */
+        .btn-color-6 { background: linear-gradient(145deg, #d946ef, #c026d3); box-shadow: 0 5px 0 #86198f, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-6:active { transform: translateY(4px); box-shadow: 0 1px 0 #86198f, 0 2px 4px rgba(0,0,0,0.15); }
         
         .btn-color-7 { background: linear-gradient(145deg, #ef4444, #dc2626); box-shadow: 0 5px 0 #7f1d1d, 0 6px 10px rgba(0,0,0,0.15); }
         .btn-color-7:active { transform: translateY(4px); box-shadow: 0 1px 0 #7f1d1d, 0 2px 4px rgba(0,0,0,0.15); }
-        
-        .btn-color-8 { background: linear-gradient(145deg, #1f2937, #111827); box-shadow: 0 5px 0 #000000, 0 6px 10px rgba(0,0,0,0.2); }
-        .btn-color-8:active { transform: translateY(4px); box-shadow: 0 1px 0 #000000, 0 2px 4px rgba(0,0,0,0.2); }
 
         .dropdown-divider { height: 1px; background: #cbd5e1; margin: 8px 0; border: none; }
 
@@ -191,7 +201,8 @@
         .tab-content { display: none; padding: 10px 20px 40px 20px; max-width: 1250px; margin: auto; }
         .tab-content.active { display: block; }
 
-        .profile-name { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 16px; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); padding: 15px 30px; text-align: center; color: white; font-size: 1.7em; margin: 0 auto 40px auto; font-weight: 700; max-width: 600px; }
+        /* NAYA: Profile Name Font size reduced to prevent wrapping */
+        .profile-name { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 16px; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); padding: 15px 30px; text-align: center; color: white; font-size: 1.35em; margin: 0 auto 40px auto; font-weight: 700; max-width: 600px; }
 
         /* 3D Profile Filter Buttons css */
         .profile-btn-container { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
@@ -282,7 +293,8 @@
             .chem-columns { flex-direction: column; }
             .tabs { gap: 10px; }
             .tab-btn { padding: 12px 20px; font-size: 1em; }
-            .profile-name { font-size: 1.4em; padding: 12px 20px; }
+            /* NAYA: Mobile view me aur chota kiya gaya taaki wrap na ho */
+            .profile-name { font-size: 1.15em; padding: 12px 15px; }
             .quote-text { font-size: 2em; margin-left: 20px; max-width: 80%; }
             .login-box { padding: 30px 20px; }
             .upload-group { padding: 14px; margin-bottom: 14px;} 
@@ -328,7 +340,10 @@
     <div class="header">
         <div class="datetime" id="clock">Loading Time...</div>
         <div class="menu-dropdown">
-            <button class="menu-btn" onclick="toggleMenu(event)">☰ Dashboard</button>
+            <!-- NAYA: Span add kiya hamburger icon ko ghumane ke liye -->
+            <button class="menu-btn" id="mainMenuBtn" onclick="toggleMenu(event)">
+                <span class="hamburger-icon">☰</span> Dashboard
+            </button>
             
             <div class="dropdown-content" id="myDropdown">
                 <a onclick="openProfileSelectionModal('list')" class="btn-color-1">📋 Target Submit List</a>
@@ -338,11 +353,13 @@
                 
                 <div class="dropdown-divider"></div>
                 <a onclick="openCreateUserModal()" class="btn-color-5">➕ Create New User ID</a>
+                <!-- NAYA: Color 6 ko magenta fix kar diya gaya hai -->
                 <a onclick="openResetUserModal()" class="btn-color-6">⚙️ Set/Reset User & Password</a>
                 <div class="dropdown-divider"></div>
                 
                 <a onclick="openProfileSelectionModal('manage')" class="btn-color-7">🗑️ Manage & Delete Targets</a>
-                <a onclick="logoutUser()" class="btn-color-8">🚪 Logout</a>
+                <!-- NAYA: Logout ka class Color-7 kar diya gaya hai (Manage Delete jaisa Red) -->
+                <a onclick="logoutUser()" class="btn-color-7">🚪 Logout</a>
             </div>
         </div>
     </div>
@@ -377,11 +394,13 @@
     <!-- MAIN FORM -->
     <form id="neetForm" onsubmit="handleFormSubmit(event)">
         <div id="atul" class="tab-content active">
-            <div class="profile-name">Data Uploaded In: Dr. Atul Target</div>
+            <!-- NAYA: Text Update kiya gaya hai -->
+            <div class="profile-name">Data Saving In: Dr. Atul Targets</div>
             <div id="atul-subjects" class="subject-grid"></div>
         </div>
         <div id="shivani" class="tab-content">
-            <div class="profile-name">Data Uploaded In: Dr. Shivani Target</div>
+            <!-- NAYA: Text Update kiya gaya hai -->
+            <div class="profile-name">Data Saving In: Dr. Shivani Targets</div>
             <div id="shivani-subjects" class="subject-grid"></div>
         </div>
 
@@ -651,11 +670,26 @@
             btn.innerText = "Reset"; btn.disabled = false;
         }
 
-        function toggleMenu(e) { e.stopPropagation(); document.getElementById("myDropdown").classList.toggle("show"); }
+        // NAYA: Hamburger Animation logic
+        function toggleMenu(e) { 
+            e.stopPropagation(); 
+            document.getElementById("myDropdown").classList.toggle("show");
+            document.getElementById("mainMenuBtn").classList.toggle("open");
+        }
+        
         window.onclick = function(event) {
-            if (!event.target.matches('.menu-btn')) {
+            let isClickInsideBtn = event.target.matches('.menu-btn') || event.target.matches('.hamburger-icon');
+            if (!isClickInsideBtn) {
                 let dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) { if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show'); }
+                for (let i = 0; i < dropdowns.length; i++) { 
+                    if (dropdowns[i].classList.contains('show')) {
+                        dropdowns[i].classList.remove('show'); 
+                    }
+                }
+                let btn = document.getElementById("mainMenuBtn");
+                if (btn && btn.classList.contains("open")) {
+                    btn.classList.remove("open");
+                }
             }
         }
 
@@ -663,17 +697,11 @@
         let editingTargetId = null;
         let currentViewingField = ''; 
 
-        // NAYA & 100% SAFE: Direct browser download force karne ka smart tarika
         function forceDownloadFile(url, fileName) {
-            // Anchor tag mobile me Google Drive App khol deta tha.
-            // Isliye yahan hidden iframe ka use kiya gaya hai. Ye request ko browser ke andar
-            // hi rok kar forcefully file ko aapke browser storage me download karna shuru kar dega.
             const iframe = document.createElement('iframe');
             iframe.style.display = 'none';
             iframe.src = url;
             document.body.appendChild(iframe);
-            
-            // 15 seconds baad (jab file download shuru ho jaye) background se is invisible box ko hata do
             setTimeout(() => { document.body.removeChild(iframe); }, 15000);
         }
 
