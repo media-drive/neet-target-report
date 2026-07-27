@@ -125,24 +125,48 @@
 
         .dropdown-content.show { display: block; }
 
+        /* Colorful 3D Dropdown Menu Items Styling */
         .dropdown-content a {
-            background: linear-gradient(145deg, #ffffff, #f1f5f9);
-            color: #1e293b;
-            padding: 10px 12px; 
+            color: #ffffff;
+            padding: 12px 15px;
             text-decoration: none;
             display: block;
             font-size: 0.9em; 
             font-weight: 700;
             cursor: pointer;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            margin-bottom: 8px; 
-            box-shadow: 0 3px 0 #94a3b8, 0 4px 6px rgba(0,0,0,0.08); 
-            transition: all 0.15s ease;
+            border-radius: 8px;
+            margin-bottom: 10px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            border: none;
+            transition: all 0.1s ease;
         }
-
         .dropdown-content a:last-child { margin-bottom: 0; }
-        .dropdown-content a:active { transform: translateY(3px); box-shadow: 0 0 0 #94a3b8, 0 2px 4px rgba(0,0,0,0.08); }
+
+        /* Specific Colors & 3D effects for each Dropdown item */
+        .btn-color-1 { background: linear-gradient(145deg, #3b82f6, #2563eb); box-shadow: 0 5px 0 #1e3a8a, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-1:active { transform: translateY(4px); box-shadow: 0 1px 0 #1e3a8a, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-2 { background: linear-gradient(145deg, #8b5cf6, #7c3aed); box-shadow: 0 5px 0 #4c1d95, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-2:active { transform: translateY(4px); box-shadow: 0 1px 0 #4c1d95, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-3 { background: linear-gradient(145deg, #f59e0b, #d97706); box-shadow: 0 5px 0 #78350f, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-3:active { transform: translateY(4px); box-shadow: 0 1px 0 #78350f, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-4 { background: linear-gradient(145deg, #10b981, #059669); box-shadow: 0 5px 0 #064e3b, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-4:active { transform: translateY(4px); box-shadow: 0 1px 0 #064e3b, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-5 { background: linear-gradient(145deg, #0ea5e9, #0284c7); box-shadow: 0 5px 0 #0c4a6e, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-5:active { transform: translateY(4px); box-shadow: 0 1px 0 #0c4a6e, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-6 { background: linear-gradient(145deg, #64748b, #475569); box-shadow: 0 5px 0 #1e293b, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-6:active { transform: translateY(4px); box-shadow: 0 1px 0 #1e293b, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-7 { background: linear-gradient(145deg, #ef4444, #dc2626); box-shadow: 0 5px 0 #7f1d1d, 0 6px 10px rgba(0,0,0,0.15); }
+        .btn-color-7:active { transform: translateY(4px); box-shadow: 0 1px 0 #7f1d1d, 0 2px 4px rgba(0,0,0,0.15); }
+        
+        .btn-color-8 { background: linear-gradient(145deg, #1f2937, #111827); box-shadow: 0 5px 0 #000000, 0 6px 10px rgba(0,0,0,0.2); }
+        .btn-color-8:active { transform: translateY(4px); box-shadow: 0 1px 0 #000000, 0 2px 4px rgba(0,0,0,0.2); }
+
         .dropdown-divider { height: 1px; background: #cbd5e1; margin: 8px 0; border: none; }
 
         /* Sliding MBBS Background Banner */
@@ -167,7 +191,7 @@
         .tab-content { display: none; padding: 10px 20px 40px 20px; max-width: 1250px; margin: auto; }
         .tab-content.active { display: block; }
 
-        .profile-name { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 16px; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); padding: 15px 30px; text-align: center; color: white; font-size: 1.7em; margin: 0 auto 40px auto; font-weight: 700; max-width: 550px; }
+        .profile-name { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 16px; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); padding: 15px 30px; text-align: center; color: white; font-size: 1.7em; margin: 0 auto 40px auto; font-weight: 700; max-width: 600px; }
 
         /* 3D Profile Filter Buttons css */
         .profile-btn-container { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
@@ -304,17 +328,21 @@
     <div class="header">
         <div class="datetime" id="clock">Loading Time...</div>
         <div class="menu-dropdown">
-            <button class="menu-btn" onclick="toggleMenu(event)">Dashboard ▾</button>
+            <button class="menu-btn" onclick="toggleMenu(event)">☰ Dashboard</button>
+            
             <div class="dropdown-content" id="myDropdown">
-                <a onclick="openProfileSelectionModal()">📋 Target Submit List</a>
-                <a onclick="openSearchModal()">🔍 Search By Target ID</a>
-                <a onclick="openDateSearchModal()">📅 Search By Date</a>
-                <a onclick="openEditTargetListModal()">✏️ Edit Target List</a>
-                <a onclick="openCreateUserModal()">➕ Create New User ID</a>
-                <a onclick="openResetUserModal()">⚙️ Set/Reset User ID & Password</a>
+                <a onclick="openProfileSelectionModal('list')" class="btn-color-1">📋 Target Submit List</a>
+                <a onclick="openProfileSelectionModal('searchId')" class="btn-color-2">🔍 Search By Target ID</a>
+                <a onclick="openProfileSelectionModal('searchDate')" class="btn-color-3">📅 Search By Date</a>
+                <a onclick="openProfileSelectionModal('edit')" class="btn-color-4">✏️ Edit Target List</a>
+                
                 <div class="dropdown-divider"></div>
-                <a onclick="openManageModal()" style="color: #dc3545; border-color: #fecaca; background: #fff5f5;">🗑️ Manage & Delete Targets</a>
-                <a onclick="logoutUser()" style="color: #dc3545; border-color: #fecaca; background: #fff5f5;">🚪 Logout</a>
+                <a onclick="openCreateUserModal()" class="btn-color-5">➕ Create New User ID</a>
+                <a onclick="openResetUserModal()" class="btn-color-6">⚙️ Set/Reset User & Password</a>
+                <div class="dropdown-divider"></div>
+                
+                <a onclick="openProfileSelectionModal('manage')" class="btn-color-7">🗑️ Manage & Delete Targets</a>
+                <a onclick="logoutUser()" class="btn-color-8">🚪 Logout</a>
             </div>
         </div>
     </div>
@@ -349,11 +377,11 @@
     <!-- MAIN FORM -->
     <form id="neetForm" onsubmit="handleFormSubmit(event)">
         <div id="atul" class="tab-content active">
-            <div class="profile-name">Data Upload In: Dr. Atul</div>
+            <div class="profile-name">Data Uploaded In: Dr. Atul Target</div>
             <div id="atul-subjects" class="subject-grid"></div>
         </div>
         <div id="shivani" class="tab-content">
-            <div class="profile-name">Data Upload In: Dr. Shivani</div>
+            <div class="profile-name">Data Uploaded In: Dr. Shivani Target</div>
             <div id="shivani-subjects" class="subject-grid"></div>
         </div>
 
@@ -385,46 +413,44 @@
         </div>
     </form>
 
-    <!-- Profile Selection Modal for Target List -->
+    <!-- Universal Profile Selection Modal -->
     <div class="modal-overlay" id="profileSelectionModal">
         <div class="modal-box" style="max-width: 450px;">
             <h2>Select Profile Report</h2>
             <p style="color: #64748b; font-size: 0.9em; margin-top: -10px;">Aap kiski target list dekhna chahte hain?</p>
             <div class="profile-btn-container">
-                <div class="profile-btn-3d" onclick="openTargetListModal('atul')">Dr. Atul<br>Report</div>
-                <div class="profile-btn-3d shivani-btn" onclick="openTargetListModal('shivani')">Dr. Shivani<br>Report</div>
+                <div class="profile-btn-3d" onclick="handleProfileSelection('atul')">Dr. Atul<br>Report</div>
+                <div class="profile-btn-3d shivani-btn" onclick="handleProfileSelection('shivani')">Dr. Shivani<br>Report</div>
             </div>
             <button class="btn-secondary" style="margin-top: 30px;" onclick="closeProfileSelectionModal()">Close</button>
         </div>
     </div>
 
-    <!-- Modals for User ID Creation & Reset (Truncated structural elements exist below in JS) -->
+    <!-- Modals for User ID Creation & Reset -->
     <div class="modal-overlay" id="createUserModal"><div class="modal-box" style="max-width: 400px;"><h2>➕ Create New User ID</h2><input type="text" id="newUser" class="login-input" placeholder="Enter New User ID"><input type="password" id="newPass" class="login-input" placeholder="Enter New Password"><div class="modal-btn-group"><button class="btn-primary" id="createUserBtn" onclick="createNewUser()">Create</button><button class="btn-secondary" onclick="closeCreateUserModal()">Cancel</button></div></div></div>
     <div class="modal-overlay" id="resetUserModal"><div class="modal-box" style="max-width: 400px;"><h2>⚙️ Set/Reset User ID & Password</h2><p style="font-size: 0.85em; color: #64748b; margin-top: -10px;">Purana User ID Password daalein aur naya set karein.</p><input type="text" id="oldUser" class="login-input" placeholder="Old User ID"><input type="password" id="oldPass" class="login-input" placeholder="Old Password"><hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;"><input type="text" id="resetNewUser" class="login-input" placeholder="New User ID"><input type="password" id="resetNewPass" class="login-input" placeholder="New Password"><div class="modal-btn-group"><button class="btn-primary" id="resetUserBtn" onclick="resetUserPassword()">Reset</button><button class="btn-secondary" onclick="closeResetUserModal()">Cancel</button></div></div></div>
 
     <!-- Modals for Data Rendering -->
     <div class="modal-overlay" id="currentUploadsModal"><div class="modal-box" style="max-width: 550px;"><h2 id="currentUploadsTitle" style="color: var(--primary-color);">Uploaded Files</h2><p style="font-size: 0.9em; color: #64748b; margin-top: -10px;">Agar koi file galat hai to aap yahan se view, download ya delete kar sakte hain.</p><div id="currentUploadsContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-primary" onclick="closeCurrentUploadsModal()">Done</button></div></div>
-    
     <div class="modal-overlay" id="successModal"><div class="modal-box"><div class="success-animation"></div><h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2><p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p><div class="target-id-badge" id="generatedTargetId"></div><button class="btn-primary" onclick="closeSuccessModal()">OK</button></div></div>
-
+    
     <div class="modal-overlay" id="listModal"><div class="modal-box" style="max-width: 600px;"><h2 id="targetListTitle">Target Submit List</h2><div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div><button class="btn-secondary" onclick="closeListModal()">Close</button></div></div>
 
-    <div class="modal-overlay" id="editListModal"><div class="modal-box" style="max-width: 650px;"><h2>✏️ Edit Target List</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to edit files or update details.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="editSearchIdInput" placeholder="Enter Target ID" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="editSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="editListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeEditListModal()">Close</button></div></div>
-
-    <div class="modal-overlay" id="searchModal"><div class="modal-box"><h2>Search By Target ID</h2><input type="text" id="searchInput" placeholder="Enter Target ID" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;"><div class="modal-btn-group"><button class="btn-primary" onclick="executeSearch()">Search</button><button class="btn-secondary" onclick="closeSearchModal()">Cancel</button></div><div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
-
-    <div class="modal-overlay" id="dateSearchModal"><div class="modal-box"><h2>Search By Date</h2><input type="text" id="dateSearchInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"><div class="modal-btn-group"><button class="btn-secondary" onclick="closeDateSearchModal()">Close</button></div><div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
-
-    <div class="modal-overlay" id="manageModal"><div class="modal-box" style="max-width: 650px;"><h2>🗑️ Manage & Delete Targets</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="manageSearchIdInput" placeholder="Enter Target ID" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="manageSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeManageModal()">Close</button></div></div>
+    <div class="modal-overlay" id="editListModal"><div class="modal-box" style="max-width: 650px;"><h2 id="editModalTitle">✏️ Edit Target List</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to edit files or update details.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="editSearchIdInput" placeholder="Enter Target ID" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="editSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="editListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeEditListModal()">Close</button></div></div>
+    <div class="modal-overlay" id="searchModal"><div class="modal-box"><h2 id="searchModalTitle">Search By Target ID</h2><input type="text" id="searchInput" placeholder="Enter Target ID" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;"><div class="modal-btn-group"><button class="btn-primary" onclick="executeSearch()">Search</button><button class="btn-secondary" onclick="closeSearchModal()">Cancel</button></div><div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
+    <div class="modal-overlay" id="dateSearchModal"><div class="modal-box"><h2 id="dateSearchModalTitle">Search By Date</h2><p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p><input type="text" id="dateSearchInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"><div class="modal-btn-group"><button class="btn-secondary" onclick="closeDateSearchModal()">Close</button></div><div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
+    <div class="modal-overlay" id="manageModal"><div class="modal-box" style="max-width: 650px;"><h2 id="manageModalTitle">🗑️ Manage & Delete Targets</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="manageSearchIdInput" placeholder="Enter Target ID" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="manageSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeManageModal()">Close</button></div></div>
 
     <div class="modal-overlay" id="viewFilesModal"><div class="modal-box" style="max-width: 650px;"><h2>Uploaded Files Breakdown 📂</h2><div id="viewFilesContainer" style="text-align: left; margin: 15px 0; max-height: 55vh; overflow-y: auto;"></div><button class="btn-primary" onclick="closeViewFilesModal()">Close</button></div></div>
 
     <script>
         const webAppUrl = "https://script.google.com/macros/s/AKfycbwYW9fUOsnFD3TOXDFCUHW8AyEEsvliwXuqMXv0Acl1W8l8U15gfQiqzgm-lfW_vl8M/exec"; 
         
-        // --- NAYA GLOBAL STATE: Ab saara data sheet se aayega aur idhar save hoga temporay show karne ke liye ---
         let serverTargets = [];
         let loginTimerInterval;
+
+        let activeActionType = '';
+        let activeProfileFilter = '';
 
         function showCustomAlert(title, message, isSuccess = true) {
             document.getElementById('customAlertTitle').innerText = title;
@@ -434,10 +460,8 @@
             document.getElementById('customAlertModal').style.display = 'flex';
         }
         function closeCustomAlert() { document.getElementById('customAlertModal').style.display = 'none'; }
-
         function closeLoginStatusModal() { document.getElementById('loginStatusModal').style.display = 'none'; }
 
-        // NAYA FETCH FUNCTION: Google Sheets se data lane ke liye
         async function loadTargetsFromServer() {
             try {
                 let res = await fetch(webAppUrl, {
@@ -445,9 +469,7 @@
                     body: JSON.stringify({ action: "getTargets" })
                 });
                 let result = await res.json();
-                if (result.status === "success" && result.data) {
-                    serverTargets = result.data;
-                }
+                if (result.status === "success" && result.data) { serverTargets = result.data; }
             } catch(e) { console.error("Data load failed", e); }
         }
 
@@ -462,7 +484,6 @@
             document.getElementById('loginAnimContainer').innerHTML = '<div class="success-animation"></div>';
             document.getElementById('loginStatusModal').style.display = 'flex';
 
-            // Data load hone ka intezar karega
             await loadTargetsFromServer();
 
             setTimeout(() => {
@@ -523,7 +544,6 @@
             if(sessionStorage.getItem('isLoggedIn') === 'true') {
                 document.getElementById('loginOverlay').style.display = 'none';
                 restoreTempState(); 
-                // Ensure data is loaded if page is refreshed while logged in
                 if (serverTargets.length === 0) { await loadTargetsFromServer(); }
             } else {
                 document.getElementById('loginOverlay').style.display = 'flex';
@@ -643,9 +663,18 @@
         let editingTargetId = null;
         let currentViewingField = ''; 
 
+        // NAYA & 100% SAFE: Direct browser download force karne ka smart tarika
         function forceDownloadFile(url, fileName) {
-            const anchor = document.createElement('a'); anchor.style.display = 'none'; anchor.href = url; anchor.setAttribute('download', fileName);
-            document.body.appendChild(anchor); anchor.click(); setTimeout(() => { document.body.removeChild(anchor); }, 100);
+            // Anchor tag mobile me Google Drive App khol deta tha.
+            // Isliye yahan hidden iframe ka use kiya gaya hai. Ye request ko browser ke andar
+            // hi rok kar forcefully file ko aapke browser storage me download karna shuru kar dega.
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+            
+            // 15 seconds baad (jab file download shuru ho jaye) background se is invisible box ko hata do
+            setTimeout(() => { document.body.removeChild(iframe); }, 15000);
         }
 
         async function deleteFilesFromDrive(fileIdsArray) {
@@ -828,7 +857,6 @@
             } else { showCustomAlert("Error", "Invalid OTP!", false); }
         }
 
-        // --- NAYA SUBMIT FORM: Google Sheets me save hone ka intzaar karega ---
         async function handleFormSubmit(e) {
             e.preventDefault();
             if (!isVerified) { showCustomAlert("Warning", "Please verify Mobile Number first!", false); return; }
@@ -851,7 +879,6 @@
                     let result = await res.json();
                     
                     if(result.status === "success") {
-                        // Local Array update
                         let targetIndex = serverTargets.findIndex(item => item.targetId === editingTargetId);
                         if (targetIndex !== -1) {
                             serverTargets[targetIndex].mobile = payload.mobile; serverTargets[targetIndex].profile = payload.profile;
@@ -879,7 +906,7 @@
                     let result = await res.json();
 
                     if(result.status === "success") {
-                        serverTargets.push(payload); // Add locally so next list open shows it instantly
+                        serverTargets.push(payload); 
                         document.getElementById('successModalTitle').innerText = "Submission Successful!";
                         document.getElementById('successModalText').innerText = "Your report has been securely saved to Global Server. Target ID:";
                         document.getElementById('generatedTargetId').innerText = targetId;
@@ -901,21 +928,27 @@
 
         const compactRecordFoundHTML = `<div style="font-size: 1.25em; color: #2ea043; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">Record Found! <span style="background: #2ea043; color: white; border-radius: 4px; padding: 1px 6px; font-size: 0.7em; line-height: 1.3;">✔</span></div>`;
 
-        function openProfileSelectionModal() { document.getElementById('profileSelectionModal').style.display = 'flex'; }
+        function openProfileSelectionModal(actionType) {
+            activeActionType = actionType; document.getElementById('profileSelectionModal').style.display = 'flex';
+        }
         function closeProfileSelectionModal() { document.getElementById('profileSelectionModal').style.display = 'none'; }
 
-        // --- NAYA VIEW LIST: Ab list me Google Sheets wala (serverTargets) filter karke dikhayega ---
-        function openTargetListModal(profileFilter) {
-            closeProfileSelectionModal(); 
+        function handleProfileSelection(profile) {
+            activeProfileFilter = profile; closeProfileSelectionModal();
+            const profileName = profile === 'atul' ? "Dr. Atul" : "Dr. Shivani";
+
+            if (activeActionType === 'list') { openTargetListModal(); } 
+            else if (activeActionType === 'searchId') { document.getElementById('searchModalTitle').innerText = `Search By Target ID (${profileName})`; openSearchModal(); } 
+            else if (activeActionType === 'searchDate') { document.getElementById('dateSearchModalTitle').innerText = `Search By Date (${profileName})`; openDateSearchModal(); } 
+            else if (activeActionType === 'edit') { document.getElementById('editModalTitle').innerText = `✏️ Edit Target List (${profileName})`; openEditTargetListModal(); } 
+            else if (activeActionType === 'manage') { document.getElementById('manageModalTitle').innerText = `🗑️ Manage & Delete Targets (${profileName})`; openManageModal(); }
+        }
+
+        function openTargetListModal() {
             const container = document.getElementById('targetListContainer');
+            let listData = serverTargets.filter(item => item.profile === activeProfileFilter);
             
-            // Checking latest sheet data available
-            let listData = serverTargets;
-            
-            if (profileFilter) {
-                listData = listData.filter(item => item.profile === profileFilter);
-                document.getElementById('targetListTitle').innerText = profileFilter === 'atul' ? "Dr. Atul Target List" : "Dr. Shivani Target List";
-            } else { document.getElementById('targetListTitle').innerText = "Target Submit List"; }
+            document.getElementById('targetListTitle').innerText = activeProfileFilter === 'atul' ? "Dr. Atul Target List" : "Dr. Shivani Target List";
 
             if (listData.length === 0) container.innerHTML = "<p>No submissions found on Global Server for this profile.</p>";
             else {
@@ -933,7 +966,7 @@
         
         function renderEditList(filterType = null, filterValue = null) {
             const container = document.getElementById('editListContainer');
-            let listData = serverTargets;
+            let listData = serverTargets.filter(item => item.profile === activeProfileFilter);
             
             if (filterType === 'id' && filterValue) { listData = listData.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
             else if (filterType === 'date' && filterValue) { listData = listData.filter(item => item.rawDate === filterValue); }
@@ -981,12 +1014,12 @@
         
         function executeSearch() {
             const queryId = document.getElementById('searchInput').value.trim();
-            const found = serverTargets.find(item => item.targetId === queryId);
+            const found = serverTargets.find(item => item.targetId === queryId && item.profile === activeProfileFilter);
             const resultDiv = document.getElementById('searchResultContainer');
             if (found) {
                 let editedInfo = found.edited ? `<br><span style="color: #dc3545; font-weight: bold; font-size: 0.85em;">⚠️ Edited on: ${found.edited}</span>` : '';
                 resultDiv.innerHTML = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<div style="font-size: 0.95em; line-height: 1.4; color: #333;"><b>ID:</b> ${found.targetId}<br><b>Profile:</b> ${found.profile.toUpperCase()}<br><b>Mobile:</b> ${found.mobile}<br><span style="color: #555; font-size: 0.9em;">Submitted on: ${found.date} at ${found.time}</span>${editedInfo}</div><button class="btn-primary" onclick="viewSubmissionFiles('${found.targetId}')" style="margin-top: 12px; padding: 6px 15px; font-size: 0.85em;">👁️ View Uploaded Files</button></div>`;
-            } else { resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found on Server with ID: ${queryId}</p>`; }
+            } else { resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found in this profile for ID: ${queryId}</p>`; }
         }
 
         function openDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'flex'; document.getElementById('dateSearchResultContainer').innerHTML = ''; document.getElementById('dateSearchInput').value = ''; }
@@ -994,7 +1027,7 @@
         
         function executeDateSearch() {
             const queryDate = document.getElementById('dateSearchInput').value; if (!queryDate) return;
-            const matches = serverTargets.filter(item => item.rawDate === queryDate);
+            const matches = serverTargets.filter(item => item.rawDate === queryDate && item.profile === activeProfileFilter);
             const resultDiv = document.getElementById('dateSearchResultContainer');
             if (matches.length > 0) {
                 let html = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<p style="color: #155724; font-weight: bold; font-size: 0.95em; margin-bottom: 8px; margin-top: 5px;">Found ${matches.length} record(s):</p><ul style='padding-left: 20px; font-size: 0.95em; margin-top: 0;'>`;
@@ -1003,12 +1036,12 @@
                     html += `<li style="margin-bottom: 8px;"><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) ${editedBadge} <br><button class="btn-primary" onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-top: 4px;">👁️ View Uploaded Files</button></li>`; 
                 });
                 resultDiv.innerHTML = html + "</ul></div>";
-            } else resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No records found for selected date.</p>`;
+            } else resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No records found for selected date in this profile.</p>`;
         }
 
         function renderManageList(filterType = null, filterValue = null) {
             const container = document.getElementById('manageListContainer');
-            let listData = serverTargets;
+            let listData = serverTargets.filter(item => item.profile === activeProfileFilter);
 
             if (filterType === 'id' && filterValue) { listData = listData.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
             else if (filterType === 'date' && filterValue) { listData = listData.filter(item => item.rawDate === filterValue); }
@@ -1030,7 +1063,6 @@
         }
         function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; }
         
-        // --- NAYA DELETE LOGIC: Server se delete karega ---
         async function deleteSubmission(targetId) {
             if (confirm(`Target ID ${targetId} ko permanently delete karna chahte hain?`)) {
                 
@@ -1051,11 +1083,11 @@
 
                     if (result.status === "success") {
                         serverTargets = serverTargets.filter(item => item.targetId !== targetId);
-                        openManageModal(); // Refresh local list
+                        openManageModal(); 
                     }
                 } catch(e) {
                     showCustomAlert("Error", "Server connection failed.", false);
-                    openManageModal(); // restore
+                    openManageModal(); 
                 }
             }
         }
