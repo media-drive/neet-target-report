@@ -108,20 +108,19 @@
             box-shadow: 0 2px 0 #003366, 0 3px 5px rgba(0,0,0,0.2);
         }
 
-        /* UPDATED: Sleek & Adjusted 3D Dropdown Menu */
         .dropdown-content {
             display: none;
             position: absolute;
             right: 0;
             background: #e2e8f0; 
-            min-width: 250px; /* Reduced width */
+            min-width: 250px; 
             box-shadow: 0 12px 30px rgba(0,0,0,0.25);
             border-radius: 12px;
             overflow: hidden;
             z-index: 100;
             border: 1px solid #cbd5e1;
             margin-top: 10px;
-            padding: 10px; /* Reduced padding */
+            padding: 10px; 
         }
 
         .dropdown-content.show { display: block; }
@@ -129,392 +128,116 @@
         .dropdown-content a {
             background: linear-gradient(145deg, #ffffff, #f1f5f9);
             color: #1e293b;
-            padding: 10px 12px; /* Adjusted padding to be smaller */
+            padding: 10px 12px; 
             text-decoration: none;
             display: block;
-            font-size: 0.9em; /* Smaller font size */
+            font-size: 0.9em; 
             font-weight: 700;
             cursor: pointer;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            margin-bottom: 8px; /* Reduced gap between items */
-            box-shadow: 0 3px 0 #94a3b8, 0 4px 6px rgba(0,0,0,0.08); /* Reduced shadow depth */
+            margin-bottom: 8px; 
+            box-shadow: 0 3px 0 #94a3b8, 0 4px 6px rgba(0,0,0,0.08); 
             transition: all 0.15s ease;
         }
 
-        .dropdown-content a:last-child {
-            margin-bottom: 0;
-        }
-
-        .dropdown-content a:active {
-            transform: translateY(3px); /* Adjusted for new shadow */
-            box-shadow: 0 0 0 #94a3b8, 0 2px 4px rgba(0,0,0,0.08);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background: #cbd5e1;
-            margin: 8px 0;
-            border: none;
-        }
+        .dropdown-content a:last-child { margin-bottom: 0; }
+        .dropdown-content a:active { transform: translateY(3px); box-shadow: 0 0 0 #94a3b8, 0 2px 4px rgba(0,0,0,0.08); }
+        .dropdown-divider { height: 1px; background: #cbd5e1; margin: 8px 0; border: none; }
 
         /* Sliding MBBS Background Banner */
-        .slider-banner {
-            position: relative;
-            height: 360px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .slide::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: 1;
-        }
-
-        .quote-text {
-            position: relative;
-            z-index: 2;
-            color: #fff;
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8em;
-            max-width: 50%;
-            margin-left: 60px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
-            line-height: 1.3;
-        }
-
+        .slider-banner { position: relative; height: 360px; overflow: hidden; background: #000; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.5s ease-in-out; display: flex; align-items: center; justify-content: flex-start; }
+        .slide::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.55); z-index: 1; }
+        .quote-text { position: relative; z-index: 2; color: #fff; font-family: 'Dancing Script', cursive; font-size: 2.8em; max-width: 50%; margin-left: 60px; text-shadow: 3px 3px 6px rgba(0,0,0,0.9); line-height: 1.3; }
         .slide.active { opacity: 1; }
 
         /* Static Dashboard Title & Photo */
-        .dashboard-title-container {
-            max-width: 650px;
-            margin: -110px auto 25px auto;
-            position: relative;
-            z-index: 5;
-            text-align: center;
-            padding: 0 15px;
-        }
-
-        .dashboard-box {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        .dashboard-box img {
-            width: 130px;
-            height: 130px;
-            border-radius: 16px;
-            object-fit: cover;
-            object-position: center top; 
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 6px 15px rgba(0,86,179,0.25);
-        }
-
-        .dashboard-box h1 {
-            color: var(--primary-color);
-            margin-top: 15px;
-            font-size: 2.1em;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-        }
+        .dashboard-title-container { max-width: 650px; margin: -110px auto 25px auto; position: relative; z-index: 5; text-align: center; padding: 0 15px; }
+        .dashboard-box { background: rgba(255, 255, 255, 0.96); padding: 30px; border-radius: 18px; box-shadow: 0 12px 30px rgba(0,0,0,0.18); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.4); }
+        .dashboard-box img { width: 130px; height: 130px; border-radius: 16px; object-fit: cover; object-position: center top; border: 4px solid var(--primary-color); box-shadow: 0 6px 15px rgba(0,86,179,0.25); }
+        .dashboard-box h1 { color: var(--primary-color); margin-top: 15px; font-size: 2.1em; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
 
         /* Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-        }
+        .tabs { display: flex; justify-content: center; gap: 25px; margin-bottom: 30px; }
+        .tab-btn { padding: 14px 35px; font-size: 1.2em; font-weight: bold; border: 2px solid #cbd5e1; border-radius: 14px; cursor: pointer; background: linear-gradient(145deg, #ffffff, #e2e8f0); color: #475569; box-shadow: 0 6px 0 #cbd5e1, 0 8px 15px rgba(0,0,0,0.1); transition: all 0.15s ease; }
+        .tab-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #cbd5e1, 0 4px 8px rgba(0,0,0,0.1); }
+        .tab-btn.active { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); color: white; border-color: #004080; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); }
 
-        .tab-btn {
-            padding: 14px 35px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border: 2px solid #cbd5e1;
-            border-radius: 14px; 
-            cursor: pointer;
-            background: linear-gradient(145deg, #ffffff, #e2e8f0);
-            color: #475569;
-            box-shadow: 0 6px 0 #cbd5e1, 0 8px 15px rgba(0,0,0,0.1);
-            transition: all 0.15s ease;
-        }
-
-        .tab-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 #cbd5e1, 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
-            color: white;
-            border-color: #004080;
-            box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35);
-        }
-
-        .tab-content {
-            display: none;
-            padding: 10px 20px 40px 20px;
-            max-width: 1250px;
-            margin: auto;
-        }
-
+        .tab-content { display: none; padding: 10px 20px 40px 20px; max-width: 1250px; margin: auto; }
         .tab-content.active { display: block; }
 
-        .profile-name {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
-            border: 2px solid #004080;
-            border-radius: 16px;
-            box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35);
-            padding: 15px 30px;
-            text-align: center;
-            color: white;
-            font-size: 1.7em;
-            margin: 0 auto 40px auto;
-            font-weight: 700;
-            max-width: 550px;
-        }
+        .profile-name { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 16px; box-shadow: 0 6px 0 #003366, 0 8px 20px rgba(0, 86, 179, 0.35); padding: 15px 30px; text-align: center; color: white; font-size: 1.7em; margin: 0 auto 40px auto; font-weight: 700; max-width: 550px; }
+
+        /* 3D Profile Filter Buttons css */
+        .profile-btn-container { display: flex; justify-content: center; gap: 25px; margin-top: 20px; flex-wrap: wrap; }
+        .profile-btn-3d { width: 140px; height: 140px; border-radius: 20px; background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); color: white; font-size: 1.25em; font-weight: bold; display: flex; align-items: center; justify-content: center; text-align: center; cursor: pointer; border: 3px solid #004080; box-shadow: 0 8px 0 #003366, 0 15px 20px rgba(0,0,0,0.3); transition: all 0.1s ease; padding: 15px; box-sizing: border-box; line-height: 1.4;}
+        .profile-btn-3d:active { transform: translateY(8px); box-shadow: 0 0 0 #003366, 0 5px 10px rgba(0,0,0,0.2); }
+        .shivani-btn { background: linear-gradient(145deg, #ec4899, #be185d); border-color: #831843; box-shadow: 0 8px 0 #831843, 0 15px 20px rgba(0,0,0,0.3); }
+        .shivani-btn:active { box-shadow: 0 0 0 #831843, 0 5px 10px rgba(0,0,0,0.2); }
 
         /* Subjects Grid */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 35px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            border: 1px solid #edf2f7;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-        }
-
-        .card h2 {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color));
-            border: 2px solid #004080;
-            border-radius: 12px;
-            box-shadow: 0 5px 0 #003366, 0 6px 10px rgba(0,0,0,0.2);
-            padding: 12px 20px;
-            color: white;
-            text-align: center;
-            margin-top: -10px;
-            margin-bottom: 25px;
-            font-size: 1.4em;
-            letter-spacing: 1px;
-            font-weight: bold;
-        }
-
+        .subject-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 35px; }
+        .card { background: var(--card-bg); border-radius: 16px; padding: 25px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid #edf2f7; transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .card h2 { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 2px solid #004080; border-radius: 12px; box-shadow: 0 5px 0 #003366, 0 6px 10px rgba(0,0,0,0.2); padding: 12px 20px; color: white; text-align: center; margin-top: -10px; margin-bottom: 25px; font-size: 1.4em; letter-spacing: 1px; font-weight: bold; }
         .chemistry-card { grid-column: 1 / -1; }
         .chem-columns { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px; }
         .chem-col { flex: 1; min-width: 290px; background: #ffffff; padding: 18px; border-radius: 12px; border: 1px solid #e2e8f0; }
-        
-        .sub-heading {
-            background: linear-gradient(145deg, #fff7ed, #ffedd5);
-            border: 1px solid #fed7aa;
-            border-radius: 8px;
-            box-shadow: 0 4px 0 #fdba74, 0 4px 6px rgba(0,0,0,0.05);
-            color: #c2410c;
-            font-size: 1.1em;
-            margin: 5px 0 20px 0;
-            padding: 10px;
-            font-weight: bold;
-            text-align: center;
-        }
+        .sub-heading { background: linear-gradient(145deg, #fff7ed, #ffedd5); border: 1px solid #fed7aa; border-radius: 8px; box-shadow: 0 4px 0 #fdba74, 0 4px 6px rgba(0,0,0,0.05); color: #c2410c; font-size: 1.1em; margin: 5px 0 20px 0; padding: 10px; font-weight: bold; text-align: center; }
 
-        /* Beautiful Background & 3D Styling for Upload Groups */
-        .upload-group { 
-            background: linear-gradient(145deg, #e0f2fe, #f1f5f9); 
-            padding: 18px; 
-            border-radius: 14px; 
-            border: 1px solid #bae6fd; 
-            margin-bottom: 18px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05), inset 0 2px 4px rgba(255,255,255,0.7);
-            transition: all 0.3s ease;
-        }
-        .upload-group:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,0.9);
-            border-color: #7dd3fc;
-        }
-
+        /* Upload Groups */
+        .upload-group { background: linear-gradient(145deg, #e0f2fe, #f1f5f9); padding: 18px; border-radius: 14px; border: 1px solid #bae6fd; margin-bottom: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05), inset 0 2px 4px rgba(255,255,255,0.7); transition: all 0.3s ease; }
+        .upload-group:hover { transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,0.9); border-color: #7dd3fc; }
         .upload-group label { font-weight: 700; font-size: 1em; color: #0f172a; text-shadow: 1px 1px 0px rgba(255,255,255,0.8); }
-        
-        input[type="file"] {
-            border: 2px dashed #94a3b8;
-            padding: 12px;
-            border-radius: 8px;
-            background: #ffffff;
-            width: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
-            font-weight: 600;
-        }
+        input[type="file"] { border: 2px dashed #94a3b8; padding: 12px; border-radius: 8px; background: #ffffff; width: 100%; box-sizing: border-box; cursor: pointer; transition: all 0.2s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03); font-weight: 600; }
         input[type="file"]:hover { border-color: var(--primary-color); background: #f8fafc; }
-
         .upload-status { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-
-        .file-pill {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(145deg, #dcfce7, #bbf7d0);
-            border: 1px solid #22c55e;
-            color: #14532d;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 700;
-            box-shadow: 0 3px 6px rgba(34, 197, 94, 0.2);
-        }
-
-        .delete-file-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            cursor: pointer;
-            margin-left: 10px;
-            box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4);
-            transition: all 0.2s;
-        }
+        .file-pill { display: inline-flex; align-items: center; background: linear-gradient(145deg, #dcfce7, #bbf7d0); border: 1px solid #22c55e; color: #14532d; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; font-weight: 700; box-shadow: 0 3px 6px rgba(34, 197, 94, 0.2); }
+        .delete-file-btn { background: #dc3545; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; cursor: pointer; margin-left: 10px; box-shadow: 0 2px 4px rgba(220, 53, 69, 0.4); transition: all 0.2s; }
         .delete-file-btn:hover { background: #b02a37; transform: scale(1.1); }
-
         .file-actions { display: flex; gap: 15px; margin-top: 6px; }
-        .action-link {
-            font-size: 0.9em; 
-            color: #ffffff;
-            background: linear-gradient(145deg, #0ea5e9, #0284c7);
-            padding: 6px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            cursor: pointer;
-            font-weight: 700;
-            border: 1px solid #0369a1;
-            box-shadow: 0 3px 0 #075985, 0 4px 8px rgba(0,0,0,0.15);
-            transition: all 0.1s ease;
-            display: inline-block;
-        }
-        .action-link:active { 
-            transform: translateY(3px); 
-            box-shadow: 0 0 0 #075985, 0 2px 3px rgba(0,0,0,0.1); 
-        }
+        .action-link { font-size: 0.9em; color: #ffffff; background: linear-gradient(145deg, #0ea5e9, #0284c7); padding: 6px 14px; border-radius: 6px; text-decoration: none; cursor: pointer; font-weight: 700; border: 1px solid #0369a1; box-shadow: 0 3px 0 #075985, 0 4px 8px rgba(0,0,0,0.15); transition: all 0.1s ease; display: inline-block; }
+        .action-link:active { transform: translateY(3px); box-shadow: 0 0 0 #075985, 0 2px 3px rgba(0,0,0,0.1); }
 
-        /* UPDATED: Authentication & Submit Section matches Upload Box Styling */
-        .auth-submit-container { 
-            max-width: 550px; margin: 45px auto; 
-            background: linear-gradient(145deg, #e0f2fe, #f1f5f9); /* Matched background */
-            padding: 30px; border-radius: 18px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,0.7); 
-            text-align: center; border: 1px solid #bae6fd; 
-        }
+        /* Authentication & Submit Section */
+        .auth-submit-container { max-width: 550px; margin: 45px auto; background: linear-gradient(145deg, #e0f2fe, #f1f5f9); padding: 30px; border-radius: 18px; box-shadow: 0 10px 30px rgba(0,0,0,0.08), inset 0 2px 4px rgba(255,255,255,0.7); text-align: center; border: 1px solid #bae6fd; }
         .auth-group { margin-bottom: 20px; text-align: left; }
         .auth-group label { font-weight: 700; display: block; margin-bottom: 8px; color: #0f172a; text-shadow: 1px 1px 0px rgba(255,255,255,0.8);}
         .mobile-input-row { display: flex; gap: 12px; }
-        
         .auth-group input { flex: 1; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1em; outline: none; transition: all 0.3s; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);}
         .auth-group input:focus { border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(0,86,179,0.15); }
         .success-input { border-color: #28a745 !important; background-color: #f0fdf4 !important; box-shadow: 0 0 0 3px rgba(40,167,69,0.15) !important; }
         .error-input { border-color: #dc3545 !important; background-color: #fff5f5 !important; }
-        
         .auth-btn { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); color: white; border: 1px solid #004080; padding: 0 20px; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #003366, 0 4px 8px rgba(0,0,0,0.1); transition: all 0.1s ease;}
         .auth-btn:active { transform: translateY(4px); box-shadow: 0 0 0 #003366, 0 2px 4px rgba(0,0,0,0.1); }
-        
-        .submit-btn {
-            background: linear-gradient(135deg, #22c55e, var(--accent-color));
-            color: white; font-size: 1.25em; font-weight: bold; padding: 14px 40px; border: 2px solid #14532d; border-radius: 30px; cursor: pointer; box-shadow: 0 6px 0 #14532d, 0 8px 20px rgba(40, 167, 69, 0.35); width: 100%; transition: all 0.1s ease;
-        }
+        .submit-btn { background: linear-gradient(135deg, #22c55e, var(--accent-color)); color: white; font-size: 1.25em; font-weight: bold; padding: 14px 40px; border: 2px solid #14532d; border-radius: 30px; cursor: pointer; box-shadow: 0 6px 0 #14532d, 0 8px 20px rgba(40, 167, 69, 0.35); width: 100%; transition: all 0.1s ease; }
         .submit-btn:active:not(:disabled) { transform: translateY(6px); box-shadow: 0 0 0 #14532d, 0 2px 5px rgba(40, 167, 69, 0.35); }
         .submit-btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; border-color: #94a3b8;}
-
-        .sms-box {
-            background: #ffffff; padding: 10px; border-radius: 8px; font-size: 0.9em;
-            margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px dashed #94a3b8; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03);
-        }
-        .copy-btn {
-            background: #0ea5e9; color: white; border: none; padding: 4px 10px;
-            border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: bold;
-        }
+        .sms-box { background: #ffffff; padding: 10px; border-radius: 8px; font-size: 0.9em; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px dashed #94a3b8; box-shadow: inset 0 2px 5px rgba(0,0,0,0.03); }
+        .copy-btn { background: #0ea5e9; color: white; border: none; padding: 4px 10px; border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: bold; }
 
         /* Modal Popups */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.65); justify-content: center; align-items: center; z-index: 1000; padding: 15px; box-sizing: border-box; backdrop-filter: blur(4px); }
         .modal-box { background: white; padding: 30px; border-radius: 12px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 500px; width: 100%; max-height: 85vh; overflow-y: auto; position: relative; animation: modalFadeIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;}
         .modal-box h2 { color: var(--primary-color); margin-top: 0; font-size: 1.6em; margin-bottom: 20px;}
         .target-id-badge { background: #f8fafc; padding: 14px; border-radius: 10px; font-size: 1.35em; font-weight: bold; color: var(--primary-color); margin: 18px 0; border: 2px dashed var(--primary-color); word-break: break-all; }
-        
-        .modal-btn-group {
-            display: flex; justify-content: center; gap: 12px; margin-top: 15px;
-        }
+        .modal-btn-group { display: flex; justify-content: center; gap: 12px; margin-top: 15px; }
         .modal-box .btn-primary { padding: 10px 25px; font-size: 1em; background: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.3s;}
         .modal-box .btn-primary:hover { background: #004080; }
         .modal-box .btn-secondary { padding: 10px 25px; font-size: 1em; background: #64748b; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.3s;}
         .modal-box .btn-secondary:hover { background: #475569; }
-        
-        .mini-btn {
-            background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 1px solid #004080; padding: 6px 14px !important;
-            font-size: 0.85em !important; border-radius: 6px !important; color: #ffffff !important;
-            margin-left: 8px !important; margin-top: 0 !important; cursor: pointer; font-weight: bold;
-            box-shadow: 0 3px 0 #003366, 0 4px 6px rgba(0,0,0,0.15); transition: all 0.1s ease;
-        }
+        .mini-btn { background: linear-gradient(145deg, var(--secondary-color), var(--primary-color)); border: 1px solid #004080; padding: 6px 14px !important; font-size: 0.85em !important; border-radius: 6px !important; color: #ffffff !important; margin-left: 8px !important; margin-top: 0 !important; cursor: pointer; font-weight: bold; box-shadow: 0 3px 0 #003366, 0 4px 6px rgba(0,0,0,0.15); transition: all 0.1s ease; }
         .mini-btn:active { transform: translateY(3px); box-shadow: 0 0 0 #003366, 0 2px 3px rgba(0,0,0,0.1); }
 
         /* --- ANIMATIONS (SUCCESS & ERROR) --- */
-        .success-animation {
-            margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%;
-            border: 4px solid #28a745; display: flex; align-items: center; justify-content: center;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #e8f5e9;
-        }
-        .success-animation::after {
-            content: '✔'; font-size: 40px; color: #28a745;
-            animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0);
-        }
-
-        .error-animation {
-            margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%;
-            border: 4px solid #dc3545; display: flex; align-items: center; justify-content: center;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #fff5f5;
-        }
-        .error-animation::after {
-            content: '✖'; font-size: 35px; color: #dc3545; line-height: 1;
-            display: flex; justify-content: center; align-items: center;
-            animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0);
-        }
-
+        .success-animation { margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%; border: 4px solid #28a745; display: flex; align-items: center; justify-content: center; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #e8f5e9; }
+        .success-animation::after { content: '✔'; font-size: 40px; color: #28a745; animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0); }
+        .error-animation { margin: 10px auto 15px auto; width: 70px; height: 70px; border-radius: 50%; border: 4px solid #dc3545; display: flex; align-items: center; justify-content: center; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; background: #fff5f5; }
+        .error-animation::after { content: '✖'; font-size: 35px; color: #dc3545; line-height: 1; display: flex; justify-content: center; align-items: center; animation: scaleUp 0.5s ease 0.3s forwards; opacity: 0; transform: scale(0); }
+        
+        .loading-text { color: #0ea5e9; font-weight: bold; font-size: 1.1em; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
         @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
         @keyframes scaleUp { to { opacity: 1; transform: scale(1); } }
         @keyframes modalFadeIn { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
@@ -523,11 +246,7 @@
         #customAlertIcon { font-size: 3.5em; margin-bottom: 10px; }
         #customAlertTitle { margin-top: 0; color: var(--primary-color); font-size: 1.5em; margin-bottom: 10px; }
         #customAlertMessage { font-size: 1.1em; color: #475569; margin-bottom: 20px; line-height: 1.5; }
-        
-        .close-icon-btn {
-            position: absolute; top: 12px; right: 15px; font-size: 1.8em; color: #94a3b8; 
-            cursor: pointer; background: transparent; border: none; padding: 0; line-height: 1;
-        }
+        .close-icon-btn { position: absolute; top: 12px; right: 15px; font-size: 1.8em; color: #94a3b8; cursor: pointer; background: transparent; border: none; padding: 0; line-height: 1; }
         .close-icon-btn:hover { color: #dc3545; }
 
         /* Responsive Mobile adjustments */
@@ -559,7 +278,7 @@
         </div>
     </div>
 
-    <!-- Login Animated Status Modal (Success/Error Animations) -->
+    <!-- Login Animated Status Modal -->
     <div class="modal-overlay" id="loginStatusModal" style="z-index: 10002;">
         <div class="modal-box" style="max-width: 350px;">
             <button class="close-icon-btn" id="loginStatusCloseBtn" onclick="closeLoginStatusModal()">&times;</button>
@@ -587,14 +306,13 @@
         <div class="menu-dropdown">
             <button class="menu-btn" onclick="toggleMenu(event)">Dashboard ▾</button>
             <div class="dropdown-content" id="myDropdown">
-                <a onclick="openTargetListModal()">📋 Target Submit List</a>
+                <a onclick="openProfileSelectionModal()">📋 Target Submit List</a>
                 <a onclick="openSearchModal()">🔍 Search By Target ID</a>
                 <a onclick="openDateSearchModal()">📅 Search By Date</a>
                 <a onclick="openEditTargetListModal()">✏️ Edit Target List</a>
                 <a onclick="openCreateUserModal()">➕ Create New User ID</a>
                 <a onclick="openResetUserModal()">⚙️ Set/Reset User ID & Password</a>
                 <div class="dropdown-divider"></div>
-                <!-- Manage & Delete strictly above Logout -->
                 <a onclick="openManageModal()" style="color: #dc3545; border-color: #fecaca; background: #fff5f5;">🗑️ Manage & Delete Targets</a>
                 <a onclick="logoutUser()" style="color: #dc3545; border-color: #fecaca; background: #fff5f5;">🚪 Logout</a>
             </div>
@@ -631,11 +349,11 @@
     <!-- MAIN FORM -->
     <form id="neetForm" onsubmit="handleFormSubmit(event)">
         <div id="atul" class="tab-content active">
-            <div class="profile-name">Tracking Project: Dr. Atul Target</div>
+            <div class="profile-name">Data Upload In: Dr. Atul</div>
             <div id="atul-subjects" class="subject-grid"></div>
         </div>
         <div id="shivani" class="tab-content">
-            <div class="profile-name">Tracking Project: Dr. Shivani Target</div>
+            <div class="profile-name">Data Upload In: Dr. Shivani</div>
             <div id="shivani-subjects" class="subject-grid"></div>
         </div>
 
@@ -644,7 +362,6 @@
             <div class="auth-group">
                 <label>Mobile Number (Compulsory - 10 Digits):</label>
                 <div class="mobile-input-row">
-                    <!-- NAYA: saveTempState added to save mobile number on type -->
                     <input type="tel" id="mobileInput" maxlength="10" placeholder="Enter 10-digit number" oninput="checkMobileLength(); saveTempState();">
                     <button type="button" class="auth-btn" id="sendOtpBtn" onclick="sendOtp()" disabled>Send OTP</button>
                 </div>
@@ -668,137 +385,47 @@
         </div>
     </form>
 
-    <!-- Modal: Create New User ID -->
-    <div class="modal-overlay" id="createUserModal">
-        <div class="modal-box" style="max-width: 400px;">
-            <h2>➕ Create New User ID</h2>
-            <input type="text" id="newUser" class="login-input" placeholder="Enter New User ID">
-            <input type="password" id="newPass" class="login-input" placeholder="Enter New Password">
-            <div class="modal-btn-group">
-                <button class="btn-primary" id="createUserBtn" onclick="createNewUser()">Create</button>
-                <button class="btn-secondary" onclick="closeCreateUserModal()">Cancel</button>
+    <!-- Profile Selection Modal for Target List -->
+    <div class="modal-overlay" id="profileSelectionModal">
+        <div class="modal-box" style="max-width: 450px;">
+            <h2>Select Profile Report</h2>
+            <p style="color: #64748b; font-size: 0.9em; margin-top: -10px;">Aap kiski target list dekhna chahte hain?</p>
+            <div class="profile-btn-container">
+                <div class="profile-btn-3d" onclick="openTargetListModal('atul')">Dr. Atul<br>Report</div>
+                <div class="profile-btn-3d shivani-btn" onclick="openTargetListModal('shivani')">Dr. Shivani<br>Report</div>
             </div>
+            <button class="btn-secondary" style="margin-top: 30px;" onclick="closeProfileSelectionModal()">Close</button>
         </div>
     </div>
 
-    <!-- Modal: Set/Reset User ID & Password -->
-    <div class="modal-overlay" id="resetUserModal">
-        <div class="modal-box" style="max-width: 400px;">
-            <h2>⚙️ Set/Reset User ID & Password</h2>
-            <p style="font-size: 0.85em; color: #64748b; margin-top: -10px;">Purana User ID Password daalein aur naya set karein.</p>
-            <input type="text" id="oldUser" class="login-input" placeholder="Old User ID">
-            <input type="password" id="oldPass" class="login-input" placeholder="Old Password">
-            <hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;">
-            <input type="text" id="resetNewUser" class="login-input" placeholder="New User ID">
-            <input type="password" id="resetNewPass" class="login-input" placeholder="New Password">
-            <div class="modal-btn-group">
-                <button class="btn-primary" id="resetUserBtn" onclick="resetUserPassword()">Reset</button>
-                <button class="btn-secondary" onclick="closeResetUserModal()">Cancel</button>
-            </div>
-        </div>
-    </div>
+    <!-- Modals for User ID Creation & Reset (Truncated structural elements exist below in JS) -->
+    <div class="modal-overlay" id="createUserModal"><div class="modal-box" style="max-width: 400px;"><h2>➕ Create New User ID</h2><input type="text" id="newUser" class="login-input" placeholder="Enter New User ID"><input type="password" id="newPass" class="login-input" placeholder="Enter New Password"><div class="modal-btn-group"><button class="btn-primary" id="createUserBtn" onclick="createNewUser()">Create</button><button class="btn-secondary" onclick="closeCreateUserModal()">Cancel</button></div></div></div>
+    <div class="modal-overlay" id="resetUserModal"><div class="modal-box" style="max-width: 400px;"><h2>⚙️ Set/Reset User ID & Password</h2><p style="font-size: 0.85em; color: #64748b; margin-top: -10px;">Purana User ID Password daalein aur naya set karein.</p><input type="text" id="oldUser" class="login-input" placeholder="Old User ID"><input type="password" id="oldPass" class="login-input" placeholder="Old Password"><hr style="border: 0; border-top: 1px dashed #cbd5e1; margin: 15px 0;"><input type="text" id="resetNewUser" class="login-input" placeholder="New User ID"><input type="password" id="resetNewPass" class="login-input" placeholder="New Password"><div class="modal-btn-group"><button class="btn-primary" id="resetUserBtn" onclick="resetUserPassword()">Reset</button><button class="btn-secondary" onclick="closeResetUserModal()">Cancel</button></div></div></div>
 
-    <!-- Modal: Current Uploads -->
-    <div class="modal-overlay" id="currentUploadsModal">
-        <div class="modal-box" style="max-width: 550px;">
-            <h2 id="currentUploadsTitle" style="color: var(--primary-color);">Uploaded Files</h2>
-            <p style="font-size: 0.9em; color: #64748b; margin-top: -10px;">Agar koi file galat hai to aap yahan se view, download ya delete kar sakte hain.</p>
-            <div id="currentUploadsContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
-            <button class="btn-primary" onclick="closeCurrentUploadsModal()">Done</button>
-        </div>
-    </div>
+    <!-- Modals for Data Rendering -->
+    <div class="modal-overlay" id="currentUploadsModal"><div class="modal-box" style="max-width: 550px;"><h2 id="currentUploadsTitle" style="color: var(--primary-color);">Uploaded Files</h2><p style="font-size: 0.9em; color: #64748b; margin-top: -10px;">Agar koi file galat hai to aap yahan se view, download ya delete kar sakte hain.</p><div id="currentUploadsContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-primary" onclick="closeCurrentUploadsModal()">Done</button></div></div>
+    
+    <div class="modal-overlay" id="successModal"><div class="modal-box"><div class="success-animation"></div><h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2><p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p><div class="target-id-badge" id="generatedTargetId"></div><button class="btn-primary" onclick="closeSuccessModal()">OK</button></div></div>
 
-    <!-- Success Modal -->
-    <div class="modal-overlay" id="successModal">
-        <div class="modal-box">
-            <div class="success-animation"></div>
-            <h2 style="margin-top: 0;" id="successModalTitle">Submission Successful!</h2>
-            <p id="successModalText">Your report has been securely saved. Your unique Target ID is:</p>
-            <div class="target-id-badge" id="generatedTargetId"></div>
-            <button class="btn-primary" onclick="closeSuccessModal()">OK</button>
-        </div>
-    </div>
+    <div class="modal-overlay" id="listModal"><div class="modal-box" style="max-width: 600px;"><h2 id="targetListTitle">Target Submit List</h2><div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div><button class="btn-secondary" onclick="closeListModal()">Close</button></div></div>
 
-    <!-- List Modal (Normal Submit List) -->
-    <div class="modal-overlay" id="listModal">
-        <div class="modal-box" style="max-width: 600px;">
-            <h2>Target Submit List</h2>
-            <div id="targetListContainer" style="text-align: left; margin: 15px 0;"></div>
-            <button class="btn-secondary" onclick="closeListModal()">Close</button>
-        </div>
-    </div>
+    <div class="modal-overlay" id="editListModal"><div class="modal-box" style="max-width: 650px;"><h2>✏️ Edit Target List</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to edit files or update details.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="editSearchIdInput" placeholder="Enter Target ID" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="editSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="editListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeEditListModal()">Close</button></div></div>
 
-    <!-- Edit Target List Modal -->
-    <div class="modal-overlay" id="editListModal">
-        <div class="modal-box" style="max-width: 650px;">
-            <h2>✏️ Edit Target List</h2>
-            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to edit files or update details.</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <input type="text" id="editSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterEditListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
-                <input type="text" id="editSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterEditListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            </div>
-            <div id="editListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
-            <button class="btn-secondary" onclick="closeEditListModal()">Close</button>
-        </div>
-    </div>
+    <div class="modal-overlay" id="searchModal"><div class="modal-box"><h2>Search By Target ID</h2><input type="text" id="searchInput" placeholder="Enter Target ID" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;"><div class="modal-btn-group"><button class="btn-primary" onclick="executeSearch()">Search</button><button class="btn-secondary" onclick="closeSearchModal()">Cancel</button></div><div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
 
-    <!-- Search By Target ID Modal -->
-    <div class="modal-overlay" id="searchModal">
-        <div class="modal-box">
-            <h2>Search By Target ID</h2>
-            <input type="text" id="searchInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; font-size: 1.05em;">
-            <div class="modal-btn-group">
-                <button class="btn-primary" onclick="executeSearch()">Search</button>
-                <button class="btn-secondary" onclick="closeSearchModal()">Cancel</button>
-            </div>
-            <div id="searchResultContainer" style="margin-top: 20px; text-align: left;"></div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="dateSearchModal"><div class="modal-box"><h2>Search By Date</h2><input type="text" id="dateSearchInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"><div class="modal-btn-group"><button class="btn-secondary" onclick="closeDateSearchModal()">Close</button></div><div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div></div></div>
 
-    <!-- Date Search Modal -->
-    <div class="modal-overlay" id="dateSearchModal">
-        <div class="modal-box">
-            <h2>Search By Date</h2>
-            <p style="font-size:0.9em; color:#64748b; margin-bottom: 5px;">Select a date to search instantly</p>
-            <input type="text" id="dateSearchInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="executeDateSearch()" style="width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; margin: 10px 0; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            <div class="modal-btn-group">
-                <button class="btn-secondary" onclick="closeDateSearchModal()">Close</button>
-            </div>
-            <div id="dateSearchResultContainer" style="margin-top: 20px; text-align: left;"></div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="manageModal"><div class="modal-box" style="max-width: 650px;"><h2>🗑️ Manage & Delete Targets</h2><p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p><div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;"><input type="text" id="manageSearchIdInput" placeholder="Enter Target ID" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;"><input type="text" id="manageSearchDateInput" placeholder="Select Date" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;"></div><div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div><button class="btn-secondary" onclick="closeManageModal()">Close</button></div></div>
 
-    <!-- Manage Modal with Search Functionality -->
-    <div class="modal-overlay" id="manageModal">
-        <div class="modal-box" style="max-width: 650px;">
-            <h2>🗑️ Manage & Delete Targets</h2>
-            <p style="color: #64748b; font-size: 0.9em; margin-bottom: 15px;">Search and select a target to delete it permanently.</p>
-            
-            <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                <input type="text" id="manageSearchIdInput" placeholder="Enter Target ID (e.g. NEET-TRG-123456 )" oninput="filterManageListById()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; font-size: 1.05em;">
-                <input type="text" id="manageSearchDateInput" placeholder="Select Date (e.g. mm/dd/yyyy)" onfocus="(this.type='date')" onblur="(this.type='text')" onchange="filterManageListByDate()" style="flex: 1; min-width: 200px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; outline: none; cursor: pointer; font-size: 1.05em; font-family: inherit; color: #333;">
-            </div>
-
-            <div id="manageListContainer" style="text-align: left; margin: 15px 0; max-height: 50vh; overflow-y: auto;"></div>
-            <button class="btn-secondary" onclick="closeManageModal()">Close</button>
-        </div>
-    </div>
-
-    <!-- View Files Modal -->
-    <div class="modal-overlay" id="viewFilesModal">
-        <div class="modal-box" style="max-width: 650px;">
-            <h2>Uploaded Files Breakdown 📂</h2>
-            <div id="viewFilesContainer" style="text-align: left; margin: 15px 0; max-height: 55vh; overflow-y: auto;"></div>
-            <button class="btn-primary" onclick="closeViewFilesModal()">Close</button>
-        </div>
-    </div>
+    <div class="modal-overlay" id="viewFilesModal"><div class="modal-box" style="max-width: 650px;"><h2>Uploaded Files Breakdown 📂</h2><div id="viewFilesContainer" style="text-align: left; margin: 15px 0; max-height: 55vh; overflow-y: auto;"></div><button class="btn-primary" onclick="closeViewFilesModal()">Close</button></div></div>
 
     <script>
-        const webAppUrl = "https://script.google.com/macros/s/AKfycbxZ8xH0IILV2mkPqdJaJT0br3n4S5BpcicZ-nbzFbu4jwaMMPoq9IqQOq_IexzxYUpl0w/exec"; 
+        const webAppUrl = "https://script.google.com/macros/s/AKfycbwYW9fUOsnFD3TOXDFCUHW8AyEEsvliwXuqMXv0Acl1W8l8U15gfQiqzgm-lfW_vl8M/exec"; 
         
+        // --- NAYA GLOBAL STATE: Ab saara data sheet se aayega aur idhar save hoga temporay show karne ke liye ---
+        let serverTargets = [];
         let loginTimerInterval;
 
-        // --- Custom Professional Alert Logic ---
         function showCustomAlert(title, message, isSuccess = true) {
             document.getElementById('customAlertTitle').innerText = title;
             document.getElementById('customAlertTitle').style.color = isSuccess ? "var(--accent-color)" : "#dc3545";
@@ -806,25 +433,37 @@
             document.getElementById('customAlertIcon').innerHTML = isSuccess ? "✅" : "⚠️";
             document.getElementById('customAlertModal').style.display = 'flex';
         }
-        function closeCustomAlert() {
-            document.getElementById('customAlertModal').style.display = 'none';
+        function closeCustomAlert() { document.getElementById('customAlertModal').style.display = 'none'; }
+
+        function closeLoginStatusModal() { document.getElementById('loginStatusModal').style.display = 'none'; }
+
+        // NAYA FETCH FUNCTION: Google Sheets se data lane ke liye
+        async function loadTargetsFromServer() {
+            try {
+                let res = await fetch(webAppUrl, {
+                    method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    body: JSON.stringify({ action: "getTargets" })
+                });
+                let result = await res.json();
+                if (result.status === "success" && result.data) {
+                    serverTargets = result.data;
+                }
+            } catch(e) { console.error("Data load failed", e); }
         }
 
-        // --- LOGIN STATUS MODAL LOGIC (Animations & English Text) ---
-        function closeLoginStatusModal() {
-            document.getElementById('loginStatusModal').style.display = 'none';
-        }
-
-        function loginSuccess() {
+        async function loginSuccess() {
             document.getElementById('loginStatusCloseBtn').style.display = 'none';
             sessionStorage.setItem('loginAttempts', '0');
             sessionStorage.setItem('isLoggedIn', 'true'); 
             
             document.getElementById('loginStatusTitle').innerText = "Successful Authentication";
             document.getElementById('loginStatusTitle').style.color = "#28a745";
-            document.getElementById('loginStatusMessage').innerText = "Login successful. Redirecting to dashboard...";
+            document.getElementById('loginStatusMessage').innerText = "Loading global server data... please wait.";
             document.getElementById('loginAnimContainer').innerHTML = '<div class="success-animation"></div>';
             document.getElementById('loginStatusModal').style.display = 'flex';
+
+            // Data load hone ka intezar karega
+            await loadTargetsFromServer();
 
             setTimeout(() => {
                 document.getElementById('loginStatusModal').style.display = 'none';
@@ -834,7 +473,7 @@
                 document.getElementById('loginSubmitBtn').disabled = false;
                 document.getElementById('loginUser').value = "";
                 document.getElementById('loginPass').value = "";
-            }, 2000); 
+            }, 1000); 
         }
 
         function loginFailure(isBlocked = false) {
@@ -844,19 +483,16 @@
             document.getElementById('loginStatusTitle').style.color = "#dc3545";
             document.getElementById('loginAnimContainer').innerHTML = '<div class="error-animation"></div>';
             
-            if(isBlocked) {
-                document.getElementById('loginStatusMessage').innerText = "3 consecutive failed attempts! You are now blocked for 30 minutes.";
-            } else {
+            if(isBlocked) { document.getElementById('loginStatusMessage').innerText = "3 consecutive failed attempts! You are now blocked for 30 minutes."; } 
+            else {
                 document.getElementById('loginStatusMessage').innerText = `Incorrect User ID or Password. Attempts left: ${3 - attempts}`;
                 document.getElementById('loginErrorMsg').innerText = `Attempts left: ${3 - attempts}`;
             }
-            
             document.getElementById('loginStatusModal').style.display = 'flex';
             document.getElementById('loginSubmitBtn').innerText = "Login";
             document.getElementById('loginSubmitBtn').disabled = false;
         }
 
-        // --- NAYA: AUTO-SAVE DRAFT SYSTEM (PREVENTS DATA LOSS ON RELOAD/DESKTOP MODE) ---
         function saveTempState() {
             sessionStorage.setItem('tempUploads', JSON.stringify(cumulativeFiles));
             sessionStorage.setItem('tempMobile', document.getElementById('mobileInput').value);
@@ -866,9 +502,7 @@
             let savedUploads = sessionStorage.getItem('tempUploads');
             if (savedUploads) {
                 cumulativeFiles = JSON.parse(savedUploads);
-                for (let key in cumulativeFiles) {
-                    renderCountBadges(key);
-                }
+                for (let key in cumulativeFiles) { renderCountBadges(key); }
             }
             let savedMobile = sessionStorage.getItem('tempMobile');
             if (savedMobile) {
@@ -877,8 +511,7 @@
             }
         }
         
-        // --- LOGIN SYSTEM LOGIC ---
-        function initLoginSystem() {
+        async function initLoginSystem() {
             let blockUntil = localStorage.getItem('loginBlockUntil');
             if (blockUntil && Date.now() < parseInt(blockUntil)) {
                 showBlockTimer(parseInt(blockUntil));
@@ -889,7 +522,9 @@
 
             if(sessionStorage.getItem('isLoggedIn') === 'true') {
                 document.getElementById('loginOverlay').style.display = 'none';
-                restoreTempState(); // NAYA: Reload hone par data wapas aayega
+                restoreTempState(); 
+                // Ensure data is loaded if page is refreshed while logged in
+                if (serverTargets.length === 0) { await loadTargetsFromServer(); }
             } else {
                 document.getElementById('loginOverlay').style.display = 'flex';
             }
@@ -898,33 +533,19 @@
         async function attemptLogin() {
             let u = document.getElementById('loginUser').value.trim();
             let p = document.getElementById('loginPass').value.trim();
-            
-            if(!u || !p) {
-                document.getElementById('loginErrorMsg').innerText = "Please enter User ID and Password.";
-                return;
-            }
-
-            if (u === "9115335905" && p === "NEET2027") {
-                loginSuccess();
-                return;
-            }
+            if(!u || !p) { document.getElementById('loginErrorMsg').innerText = "Please enter User ID and Password."; return; }
+            if (u === "9115335905" && p === "NEET2027") { loginSuccess(); return; }
 
             let btn = document.getElementById('loginSubmitBtn');
             btn.innerText = "Checking..."; btn.disabled = true;
 
             try {
                 let res = await fetch(webAppUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
                     body: JSON.stringify({ action: "login", user: u, pass: p })
                 });
                 let result = await res.json();
-
-                if (result.status === "success") {
-                    loginSuccess();
-                } else {
-                    handleFailedLogin();
-                }
+                if (result.status === "success") { loginSuccess(); } else { handleFailedLogin(); }
             } catch(e) {
                 document.getElementById('loginErrorMsg').innerText = "Network Error. Please check internet connection.";
                 btn.innerText = "Login"; btn.disabled = false;
@@ -936,146 +557,85 @@
             if (attempts >= 3) {
                 let blockTime = Date.now() + 30 * 60 * 1000;
                 localStorage.setItem('loginBlockUntil', blockTime);
-                showBlockTimer(blockTime);
-                loginFailure(true);
+                showBlockTimer(blockTime); loginFailure(true);
             } else {
-                sessionStorage.setItem('loginAttempts', attempts);
-                loginFailure(false);
+                sessionStorage.setItem('loginAttempts', attempts); loginFailure(false);
             }
         }
 
         function showBlockTimer(blockTime) {
-            document.getElementById('loginUser').disabled = true;
-            document.getElementById('loginPass').disabled = true;
-            document.getElementById('loginSubmitBtn').disabled = true;
-            document.getElementById('blockTimerMsg').style.display = 'block';
-            document.getElementById('loginErrorMsg').innerText = "You are temporarily blocked.";
-
+            document.getElementById('loginUser').disabled = true; document.getElementById('loginPass').disabled = true; document.getElementById('loginSubmitBtn').disabled = true;
+            document.getElementById('blockTimerMsg').style.display = 'block'; document.getElementById('loginErrorMsg').innerText = "You are temporarily blocked.";
             loginTimerInterval = setInterval(() => {
-                let now = Date.now();
-                let diff = blockTime - now;
+                let now = Date.now(); let diff = blockTime - now;
                 if (diff <= 0) {
-                    clearInterval(loginTimerInterval);
-                    localStorage.removeItem('loginBlockUntil');
-                    sessionStorage.setItem('loginAttempts', '0');
-                    document.getElementById('loginUser').disabled = false;
-                    document.getElementById('loginPass').disabled = false;
-                    document.getElementById('loginSubmitBtn').disabled = false;
-                    document.getElementById('blockTimerMsg').style.display = 'none';
-                    document.getElementById('loginErrorMsg').innerText = "";
+                    clearInterval(loginTimerInterval); localStorage.removeItem('loginBlockUntil'); sessionStorage.setItem('loginAttempts', '0');
+                    document.getElementById('loginUser').disabled = false; document.getElementById('loginPass').disabled = false; document.getElementById('loginSubmitBtn').disabled = false;
+                    document.getElementById('blockTimerMsg').style.display = 'none'; document.getElementById('loginErrorMsg').innerText = "";
                 } else {
-                    let minutes = Math.floor(diff / 1000 / 60);
-                    let seconds = Math.floor((diff / 1000) % 60);
+                    let minutes = Math.floor(diff / 1000 / 60); let seconds = Math.floor((diff / 1000) % 60);
                     document.getElementById('blockTimerMsg').innerText = `Try again in ${minutes}m ${seconds}s`;
                 }
             }, 1000);
         }
 
         function logoutUser() {
-            sessionStorage.removeItem('isLoggedIn');
-            sessionStorage.removeItem('tempUploads'); // Clear draft on logout
-            sessionStorage.removeItem('tempMobile'); // Clear draft on logout
+            sessionStorage.removeItem('isLoggedIn'); sessionStorage.removeItem('tempUploads'); sessionStorage.removeItem('tempMobile'); 
             document.getElementById('loginOverlay').style.display = 'flex';
         }
 
         window.onload = function() { initLoginSystem(); }
 
-        // --- NEW USER CREATION ---
         function openCreateUserModal() { document.getElementById('createUserModal').style.display = 'flex'; }
-        function closeCreateUserModal() { 
-            document.getElementById('createUserModal').style.display = 'none'; 
-            document.getElementById('newUser').value = '';
-            document.getElementById('newPass').value = '';
-        }
+        function closeCreateUserModal() { document.getElementById('createUserModal').style.display = 'none'; document.getElementById('newUser').value = ''; document.getElementById('newPass').value = ''; }
+        
         async function createNewUser() {
-            let u = document.getElementById('newUser').value.trim();
-            let p = document.getElementById('newPass').value.trim();
+            let u = document.getElementById('newUser').value.trim(); let p = document.getElementById('newPass').value.trim();
             if(!u || !p) { showCustomAlert("Required", "Both User ID and Password are required.", false); return; }
-            
-            if(u === "9115335905") {
-                showCustomAlert("Action Denied", "Cannot use the default Master ID.", false);
-                return;
-            }
+            if(u === "9115335905") { showCustomAlert("Action Denied", "Cannot use the default Master ID.", false); return; }
 
             let btn = document.getElementById('createUserBtn');
             btn.innerText = "Creating..."; btn.disabled = true;
-
             try {
-                let res = await fetch(webAppUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "text/plain;charset=utf-8" },
-                    body: JSON.stringify({ action: "createUser", user: u, pass: p })
-                });
+                let res = await fetch(webAppUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "createUser", user: u, pass: p }) });
                 let result = await res.json();
-                
-                if (result.status === "success") {
-                    showCustomAlert("Success!", `New User ID created successfully.<br><br><b>User ID:</b> ${u}<br><b>Password:</b> ${p}`, true);
-                    closeCreateUserModal();
-                } else if (result.status === "exists") {
-                    showCustomAlert("Warning!", "This User ID already exists. Please choose another.", false);
-                } else {
-                    showCustomAlert("Error", "Error creating User ID.", false);
-                }
+                if (result.status === "success") { showCustomAlert("Success!", `New User ID created successfully.<br><br><b>User ID:</b> ${u}<br><b>Password:</b> ${p}`, true); closeCreateUserModal(); } 
+                else if (result.status === "exists") { showCustomAlert("Warning!", "This User ID already exists. Please choose another.", false); } 
+                else { showCustomAlert("Error", "Error creating User ID.", false); }
             } catch(e) { showCustomAlert("Network Error", "Please check your internet connection.", false); }
             btn.innerText = "Create"; btn.disabled = false;
         }
 
-        // --- RESET USER & PASSWORD ---
         function openResetUserModal() { document.getElementById('resetUserModal').style.display = 'flex'; }
         function closeResetUserModal() {
-            document.getElementById('resetUserModal').style.display = 'none';
-            document.getElementById('oldUser').value = ''; document.getElementById('oldPass').value = '';
-            document.getElementById('resetNewUser').value = ''; document.getElementById('resetNewPass').value = '';
+            document.getElementById('resetUserModal').style.display = 'none'; document.getElementById('oldUser').value = ''; document.getElementById('oldPass').value = ''; document.getElementById('resetNewUser').value = ''; document.getElementById('resetNewPass').value = '';
         }
+        
         async function resetUserPassword() {
-            let ou = document.getElementById('oldUser').value.trim();
-            let op = document.getElementById('oldPass').value.trim();
-            let nu = document.getElementById('resetNewUser').value.trim();
-            let np = document.getElementById('resetNewPass').value.trim();
+            let ou = document.getElementById('oldUser').value.trim(); let op = document.getElementById('oldPass').value.trim();
+            let nu = document.getElementById('resetNewUser').value.trim(); let np = document.getElementById('resetNewPass').value.trim();
 
             if(!ou || !op || !nu || !np) { showCustomAlert("Required", "All fields are required!", false); return; }
-
-            if(ou === "9115335905" || nu === "9115335905") {
-                showCustomAlert("Action Denied", "Default Master ID cannot be changed or reset.", false);
-                return;
-            }
+            if(ou === "9115335905" || nu === "9115335905") { showCustomAlert("Action Denied", "Default Master ID cannot be changed or reset.", false); return; }
 
             let btn = document.getElementById('resetUserBtn');
             btn.innerText = "Processing..."; btn.disabled = true;
-
             try {
-                let res = await fetch(webAppUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "text/plain;charset=utf-8" },
-                    body: JSON.stringify({ action: "resetUser", oldUser: ou, oldPass: op, newUser: nu, newPass: np })
-                });
+                let res = await fetch(webAppUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify({ action: "resetUser", oldUser: ou, oldPass: op, newUser: nu, newPass: np }) });
                 let result = await res.json();
-                
-                if (result.status === "success") {
-                    showCustomAlert("Success!", `User ID and Password updated successfully.<br><br><b>New User ID:</b> ${nu}<br><b>New Password:</b> ${np}`, true);
-                    closeResetUserModal();
-                } else if (result.status === "wrong_old") {
-                    showCustomAlert("Error", "Incorrect Old User ID or Password!", false);
-                } else if (result.status === "exists") {
-                    showCustomAlert("Warning", "The New User ID already exists!", false);
-                } else {
-                    showCustomAlert("Error", "Error updating password.", false);
-                }
+                if (result.status === "success") { showCustomAlert("Success!", `User ID and Password updated successfully.<br><br><b>New User ID:</b> ${nu}<br><b>New Password:</b> ${np}`, true); closeResetUserModal(); } 
+                else if (result.status === "wrong_old") { showCustomAlert("Error", "Incorrect Old User ID or Password!", false); } 
+                else if (result.status === "exists") { showCustomAlert("Warning", "The New User ID already exists!", false); } 
+                else { showCustomAlert("Error", "Error updating password.", false); }
             } catch(e) { showCustomAlert("Network Error", "Please check your internet connection.", false); }
             btn.innerText = "Reset"; btn.disabled = false;
         }
 
-        // Dropdown Toggle
-        function toggleMenu(e) {
-            e.stopPropagation();
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
+        function toggleMenu(e) { e.stopPropagation(); document.getElementById("myDropdown").classList.toggle("show"); }
         window.onclick = function(event) {
             if (!event.target.matches('.menu-btn')) {
                 let dropdowns = document.getElementsByClassName("dropdown-content");
-                for (let i = 0; i < dropdowns.length; i++) {
-                    if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show');
-                }
+                for (let i = 0; i < dropdowns.length; i++) { if (dropdowns[i].classList.contains('show')) dropdowns[i].classList.remove('show'); }
             }
         }
 
@@ -1084,23 +644,15 @@
         let currentViewingField = ''; 
 
         function forceDownloadFile(url, fileName) {
-            const anchor = document.createElement('a');
-            anchor.style.display = 'none';
-            anchor.href = url;
-            anchor.setAttribute('download', fileName);
-            document.body.appendChild(anchor);
-            anchor.click();
-            setTimeout(() => {
-                document.body.removeChild(anchor);
-            }, 100);
+            const anchor = document.createElement('a'); anchor.style.display = 'none'; anchor.href = url; anchor.setAttribute('download', fileName);
+            document.body.appendChild(anchor); anchor.click(); setTimeout(() => { document.body.removeChild(anchor); }, 100);
         }
 
         async function deleteFilesFromDrive(fileIdsArray) {
             if (!fileIdsArray || fileIdsArray.length === 0) return;
             try {
                 await fetch(webAppUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                    redirect: "follow", method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
                     body: JSON.stringify({ action: "delete", fileIds: fileIdsArray })
                 });
             } catch (e) { console.error("Drive file delete error:", e); }
@@ -1108,20 +660,14 @@
 
         function getBase64(file) {
             return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result.split(',')[1]);
-                reader.onerror = error => reject(error);
+                const reader = new FileReader(); reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]); reader.onerror = error => reject(error);
             });
         }
 
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 4000);
+        setInterval(() => { slides[currentSlide].classList.remove('active'); currentSlide = (currentSlide + 1) % slides.length; slides[currentSlide].classList.add('active'); }, 4000);
 
         function updateClock() {
             const now = new Date();
@@ -1132,8 +678,7 @@
         function switchTab(person) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(person).classList.add('active');
-            event.currentTarget.classList.add('active');
+            document.getElementById(person).classList.add('active'); event.currentTarget.classList.add('active');
         }
 
         async function handleFileUpload(fieldKey, input) {
@@ -1144,10 +689,7 @@
 
             for (let i = 0; i < input.files.length; i++) {
                 let file = input.files[i];
-                if (file.size / 1024 / 1024 > 10) { 
-                    showCustomAlert("File Too Large", `File "${file.name}" exceeds 10MB! Please choose a smaller file.`, false); 
-                    continue; 
-                }
+                if (file.size / 1024 / 1024 > 10) { showCustomAlert("File Too Large", `File "${file.name}" exceeds 10MB! Please choose a smaller file.`, false); continue; }
 
                 let tempId = "temp-" + Date.now() + i;
                 statusDiv.innerHTML += `<span id="${tempId}" class="file-pill" style="background:#fff3cd; border-color:#ffeeba; color:#856404;">⏳ Uploading ${file.name.substring(0,10)}...</span>`;
@@ -1155,21 +697,16 @@
                 try {
                     let base64Data = await getBase64(file);
                     let response = await fetch(webAppUrl, {
-                        redirect: "follow", method: "POST",
-                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        redirect: "follow", method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
                         body: JSON.stringify({ fileName: file.name, mimeType: file.type, fileBase64: base64Data })
                     });
                     
                     let result = await response.json();
-                    
                     if(result.status === "success") {
                         document.getElementById(tempId).remove(); 
                         cumulativeFiles[fieldKey].push({ name: file.name, size: (file.size / 1024 / 1024).toFixed(2) + ' MB', link: result.url, fileId: result.id });
-                        renderCountBadges(fieldKey);
-                        saveTempState(); // NAYA: Auto-save on new file upload
-                    } else {
-                        document.getElementById(tempId).innerHTML = "❌ Upload Failed";
-                    }
+                        renderCountBadges(fieldKey); saveTempState(); 
+                    } else { document.getElementById(tempId).innerHTML = "❌ Upload Failed"; }
                 } catch (error) { document.getElementById(tempId).innerHTML = "❌ Error"; }
             }
             input.value = ""; 
@@ -1179,37 +716,28 @@
             if (cumulativeFiles[fieldKey]) { 
                 const fileToDelete = cumulativeFiles[fieldKey][index];
                 if(fileToDelete && fileToDelete.fileId) { deleteFilesFromDrive([fileToDelete.fileId]); }
-                cumulativeFiles[fieldKey].splice(index, 1); 
-                renderCountBadges(fieldKey); 
-                saveTempState(); // NAYA: Auto-save on file remove
+                cumulativeFiles[fieldKey].splice(index, 1); renderCountBadges(fieldKey); saveTempState(); 
             }
         }
 
         function renderCountBadges(fieldKey) {
             const statusDivs = document.querySelectorAll(`[data-field-key="${fieldKey}"]`);
             statusDivs.forEach(div => {
-                div.innerHTML = '';
-                const files = cumulativeFiles[fieldKey] || [];
+                div.innerHTML = ''; const files = cumulativeFiles[fieldKey] || [];
                 for (let i = 0; i < files.length; i++) {
-                    const pill = document.createElement('span');
-                    pill.className = 'file-pill';
+                    const pill = document.createElement('span'); pill.className = 'file-pill';
                     let shortName = files[i].name.length > 18 ? files[i].name.substring(0, 15) + '...' : files[i].name;
                     pill.innerHTML = `<span>📄 ${shortName}</span> <button type="button" class="delete-file-btn" onclick="removeFile('${fieldKey}', ${i})" title="Remove">✖</button>`;
-                    pill.title = `${files[i].name} (${files[i].size})`;
-                    div.appendChild(pill);
+                    pill.title = `${files[i].name} (${files[i].size})`; div.appendChild(pill);
                 }
             });
         }
 
         function openCurrentUploadsModal(fieldKey) {
-            currentViewingField = fieldKey;
-            const title = document.getElementById('currentUploadsTitle');
-            let displayTitle = fieldKey.replace(/^[a-zA-Z]+_/, '').replace('_', ' - ');
-            title.innerText = "📁 " + displayTitle;
-            renderCurrentUploadsList();
-            document.getElementById('currentUploadsModal').style.display = 'flex';
+            currentViewingField = fieldKey; const title = document.getElementById('currentUploadsTitle');
+            let displayTitle = fieldKey.replace(/^[a-zA-Z]+_/, '').replace('_', ' - '); title.innerText = "📁 " + displayTitle;
+            renderCurrentUploadsList(); document.getElementById('currentUploadsModal').style.display = 'flex';
         }
-
         function closeCurrentUploadsModal() { document.getElementById('currentUploadsModal').style.display = 'none'; }
 
         function renderCurrentUploadsList() {
@@ -1224,17 +752,11 @@
             let html = "<ul style='padding:0; list-style:none; margin:0;'>";
             files.forEach((f, index) => {
                 let driveDownloadLink = `https://drive.google.com/uc?export=download&id=${f.fileId}`;
-                let downloadBtnHTML = f.fileId ? 
-                    `<button class="mini-btn" style="background:#10b981; padding: 6px 12px !important; font-size: 0.9em !important;" onclick="forceDownloadFile('${driveDownloadLink}', '${f.name}')">⬇️ Download</button>` : '';
-
+                let downloadBtnHTML = f.fileId ? `<button class="mini-btn" style="background:#10b981; padding: 6px 12px !important; font-size: 0.9em !important;" onclick="forceDownloadFile('${driveDownloadLink}', '${f.name}')">⬇️ Download</button>` : '';
                 html += `<li style="background:#ffffff; padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; box-shadow: 0 2px 5px rgba(0,0,0,0.02);">
-                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%;" title="${f.name}">
-                        <b>📄 ${f.name}</b> <br><small style="color:#64748b;">(${f.size})</small>
-                    </div>
+                    <div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%;" title="${f.name}"><b>📄 ${f.name}</b> <br><small style="color:#64748b;">(${f.size})</small></div>
                     <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <a href="${f.link}" target="_blank" style="text-decoration: none;">
-                            <button class="mini-btn" style="background:#0ea5e9; padding: 6px 12px !important; font-size: 0.9em !important;">👁️ View</button>
-                        </a>
+                        <a href="${f.link}" target="_blank" style="text-decoration: none;"><button class="mini-btn" style="background:#0ea5e9; padding: 6px 12px !important; font-size: 0.9em !important;">👁️ View</button></a>
                         ${downloadBtnHTML}
                         <button class="mini-btn" style="background:#dc3545; padding: 6px 12px !important; font-size: 0.9em !important;" onclick="removeFileFromModal(${index})">🗑️ Delete</button>
                     </div>
@@ -1249,9 +771,7 @@
                 const fileToDelete = cumulativeFiles[currentViewingField][index];
                 if(fileToDelete && fileToDelete.fileId) { deleteFilesFromDrive([fileToDelete.fileId]); }
                 cumulativeFiles[currentViewingField].splice(index, 1);
-                renderCountBadges(currentViewingField); 
-                renderCurrentUploadsList(); 
-                saveTempState(); // NAYA: Auto-save on modal file remove
+                renderCountBadges(currentViewingField); renderCurrentUploadsList(); saveTempState();
             }
         }
 
@@ -1262,15 +782,9 @@
             let html = '';
             options.forEach(opt => {
                 const fieldKey = `${prefix}_${opt}`;
-                html += `
-                <div class="upload-group">
-                    <label>${opt}:</label>
-                    <input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
+                html += `<div class="upload-group"><label>${opt}:</label><input type="file" accept="image/*, application/pdf" multiple onchange="handleFileUpload('${fieldKey}', this)">
                     <div class="upload-status" data-field-key="${fieldKey}"></div>
-                    <div class="file-actions">
-                        <span class="action-link" onclick="openCurrentUploadsModal('${fieldKey}')">👁️ View Uploaded Files</span>
-                    </div>
-                </div>`;
+                    <div class="file-actions"><span class="action-link" onclick="openCurrentUploadsModal('${fieldKey}')">👁️ View Uploaded Files</span></div></div>`;
             });
             return html;
         }
@@ -1292,110 +806,121 @@
         let generatedOtp = "", isVerified = false;
         
         function checkMobileLength() {
-            const mobileInput = document.getElementById('mobileInput');
-            const mobile = mobileInput.value;
+            const mobileInput = document.getElementById('mobileInput'); const mobile = mobileInput.value;
             if (mobile.length === 10 && /^\d+$/.test(mobile)) {
                 mobileInput.classList.add('success-input'); mobileInput.classList.remove('error-input');
                 document.getElementById('sendOtpBtn').disabled = false;
             } else {
                 mobileInput.classList.remove('success-input');
-                if (mobile.length > 0) mobileInput.classList.add('error-input');
-                else mobileInput.classList.remove('error-input');
+                if (mobile.length > 0) mobileInput.classList.add('error-input'); else mobileInput.classList.remove('error-input');
                 document.getElementById('sendOtpBtn').disabled = true;
             }
         }
         function sendOtp() {
-            generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
-            document.getElementById('displayOtp').innerText = generatedOtp;
+            generatedOtp = Math.floor(1000 + Math.random() * 9000).toString(); document.getElementById('displayOtp').innerText = generatedOtp;
             document.getElementById('otpSection').style.display = 'block';
         }
-        function copyOTP() {
-            navigator.clipboard.writeText(generatedOtp).then(() => { showCustomAlert("Copied", "OTP Copied: " + generatedOtp, true); });
-        }
+        function copyOTP() { navigator.clipboard.writeText(generatedOtp).then(() => { showCustomAlert("Copied", "OTP Copied: " + generatedOtp, true); }); }
         function verifyOtp() {
             if (document.getElementById('otpInput').value === generatedOtp) {
-                isVerified = true; 
-                document.getElementById('mobileInput').classList.add('verified-box');
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('otpSection').style.display = 'none';
-                showCustomAlert("Verified", "Authentication Successful! ✅", true);
+                isVerified = true; document.getElementById('mobileInput').classList.add('verified-box'); document.getElementById('submitBtn').disabled = false;
+                document.getElementById('otpSection').style.display = 'none'; showCustomAlert("Verified", "Authentication Successful! ✅", true);
             } else { showCustomAlert("Error", "Invalid OTP!", false); }
         }
 
-        function handleFormSubmit(e) {
+        // --- NAYA SUBMIT FORM: Google Sheets me save hone ka intzaar karega ---
+        async function handleFormSubmit(e) {
             e.preventDefault();
             if (!isVerified) { showCustomAlert("Warning", "Please verify Mobile Number first!", false); return; }
 
-            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
             const now = new Date();
             const editTimeFormatted = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }) + " at " + now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-            if (editingTargetId) {
-                let targetIndex = savedList.findIndex(item => item.targetId === editingTargetId);
-                if (targetIndex !== -1) {
-                    savedList[targetIndex].mobile = document.getElementById('mobileInput').value;
-                    savedList[targetIndex].profile = document.querySelector('.tab-content.active').id;
-                    savedList[targetIndex].files = JSON.parse(JSON.stringify(cumulativeFiles));
-                    savedList[targetIndex].edited = editTimeFormatted; 
-                    localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
+            let submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Saving to Server..."; 
+            submitBtn.disabled = true;
+
+            try {
+                if (editingTargetId) {
+                    let payload = {
+                        action: "updateTarget", targetId: editingTargetId, profile: document.querySelector('.tab-content.active').id,
+                        mobile: document.getElementById('mobileInput').value, files: cumulativeFiles, edited: editTimeFormatted
+                    };
+
+                    let res = await fetch(webAppUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+                    let result = await res.json();
+                    
+                    if(result.status === "success") {
+                        // Local Array update
+                        let targetIndex = serverTargets.findIndex(item => item.targetId === editingTargetId);
+                        if (targetIndex !== -1) {
+                            serverTargets[targetIndex].mobile = payload.mobile; serverTargets[targetIndex].profile = payload.profile;
+                            serverTargets[targetIndex].files = JSON.parse(JSON.stringify(payload.files)); serverTargets[targetIndex].edited = payload.edited;
+                        }
+                        
+                        document.getElementById('successModalTitle').innerText = "Target Updated!";
+                        document.getElementById('successModalText').innerText = `Target ID ${editingTargetId} has been successfully updated in Global Server.`;
+                        document.getElementById('generatedTargetId').innerText = editingTargetId;
+                        document.getElementById('successModal').style.display = 'flex';
+                        editingTargetId = null; document.getElementById('editingBanner').style.display = 'none';
+                    }
+                } else {
+                    const year = now.getFullYear(); const month = String(now.getMonth() + 1).padStart(2, '0'); const day = String(now.getDate()).padStart(2, '0');
+                    const rawDate = `${year}-${month}-${day}`; 
+                    const targetId = 'NEET-TRG-' + Math.floor(100000 + Math.random() * 900000);
+
+                    let payload = {
+                        action: "saveTarget", targetId: targetId, profile: document.querySelector('.tab-content.active').id,
+                        mobile: document.getElementById('mobileInput').value, date: now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
+                        rawDate: rawDate, time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }), files: cumulativeFiles
+                    };
+
+                    let res = await fetch(webAppUrl, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+                    let result = await res.json();
+
+                    if(result.status === "success") {
+                        serverTargets.push(payload); // Add locally so next list open shows it instantly
+                        document.getElementById('successModalTitle').innerText = "Submission Successful!";
+                        document.getElementById('successModalText').innerText = "Your report has been securely saved to Global Server. Target ID:";
+                        document.getElementById('generatedTargetId').innerText = targetId;
+                        document.getElementById('successModal').style.display = 'flex';
+                    }
                 }
+            } catch(e) { showCustomAlert("Network Error", "Could not connect to server to save data.", false); }
 
-                document.getElementById('successModalTitle').innerText = "Target Updated!";
-                document.getElementById('successModalText').innerText = `Target ID ${editingTargetId} has been successfully updated.`;
-                document.getElementById('generatedTargetId').innerText = editingTargetId;
-                document.getElementById('successModal').style.display = 'flex';
-
-                editingTargetId = null;
-                document.getElementById('editingBanner').style.display = 'none';
-                document.getElementById('submitBtn').innerText = "Submit";
-            } else {
-                const year = now.getFullYear();
-                const month = String(now.getMonth() + 1).padStart(2, '0');
-                const day = String(now.getDate()).padStart(2, '0');
-                const rawDate = `${year}-${month}-${day}`; 
-
-                const targetId = 'NEET-TRG-' + Math.floor(100000 + Math.random() * 900000);
-                const record = {
-                    targetId, profile: document.querySelector('.tab-content.active').id,
-                    mobile: document.getElementById('mobileInput').value,
-                    date: now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
-                    rawDate: rawDate, time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    files: JSON.parse(JSON.stringify(cumulativeFiles))
-                };
-
-                savedList.push(record);
-                localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
-
-                document.getElementById('successModalTitle').innerText = "Submission Successful!";
-                document.getElementById('successModalText').innerText = "Your report has been securely saved. Your unique Target ID is:";
-                document.getElementById('generatedTargetId').innerText = targetId;
-                document.getElementById('successModal').style.display = 'flex';
-            }
-
-            // NAYA: Clear temp storage after final submit
-            sessionStorage.removeItem('tempUploads');
-            sessionStorage.removeItem('tempMobile');
+            submitBtn.innerText = "Submit";
+            sessionStorage.removeItem('tempUploads'); sessionStorage.removeItem('tempMobile');
         }
 
         function closeSuccessModal() {
-            document.getElementById('successModal').style.display = 'none';
-            document.getElementById('neetForm').reset();
-            cumulativeFiles = {};
+            document.getElementById('successModal').style.display = 'none'; document.getElementById('neetForm').reset(); cumulativeFiles = {};
             document.querySelectorAll('.upload-status').forEach(div => div.innerHTML = '');
             document.getElementById('mobileInput').classList.remove('success-input', 'error-input', 'verified-box');
-            document.getElementById('submitBtn').disabled = true;
-            isVerified = false;
+            document.getElementById('submitBtn').disabled = true; isVerified = false;
         }
 
         const compactRecordFoundHTML = `<div style="font-size: 1.25em; color: #2ea043; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">Record Found! <span style="background: #2ea043; color: white; border-radius: 4px; padding: 1px 6px; font-size: 0.7em; line-height: 1.3;">✔</span></div>`;
 
-        function openTargetListModal() {
+        function openProfileSelectionModal() { document.getElementById('profileSelectionModal').style.display = 'flex'; }
+        function closeProfileSelectionModal() { document.getElementById('profileSelectionModal').style.display = 'none'; }
+
+        // --- NAYA VIEW LIST: Ab list me Google Sheets wala (serverTargets) filter karke dikhayega ---
+        function openTargetListModal(profileFilter) {
+            closeProfileSelectionModal(); 
             const container = document.getElementById('targetListContainer');
-            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
-            if (savedList.length === 0) container.innerHTML = "<p>No submissions found yet.</p>";
+            
+            // Checking latest sheet data available
+            let listData = serverTargets;
+            
+            if (profileFilter) {
+                listData = listData.filter(item => item.profile === profileFilter);
+                document.getElementById('targetListTitle').innerText = profileFilter === 'atul' ? "Dr. Atul Target List" : "Dr. Shivani Target List";
+            } else { document.getElementById('targetListTitle').innerText = "Target Submit List"; }
+
+            if (listData.length === 0) container.innerHTML = "<p>No submissions found on Global Server for this profile.</p>";
             else {
                 let html = "<ul style='padding-left: 20px; line-height: 1.8;'>";
-                savedList.forEach(item => { 
+                listData.forEach(item => { 
                     let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;" title="Edited on ${item.edited}">Edited on: ${item.edited}</span>` : '';
                     html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="viewSubmissionFiles('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; margin-left: 10px; background: var(--secondary-color); color: white; border: none; border-radius:4px; cursor: pointer;">👁️ View Uploaded Files</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; 
                 });
@@ -1403,23 +928,20 @@
             }
             document.getElementById('listModal').style.display = 'flex';
         }
+        
         function closeListModal() { document.getElementById('listModal').style.display = 'none'; }
         
         function renderEditList(filterType = null, filterValue = null) {
             const container = document.getElementById('editListContainer');
-            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            let listData = serverTargets;
             
-            if (filterType === 'id' && filterValue) {
-                savedList = savedList.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase()));
-            } else if (filterType === 'date' && filterValue) {
-                savedList = savedList.filter(item => item.rawDate === filterValue);
-            }
+            if (filterType === 'id' && filterValue) { listData = listData.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
+            else if (filterType === 'date' && filterValue) { listData = listData.filter(item => item.rawDate === filterValue); }
 
-            if (savedList.length === 0) {
-                container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found.</p>";
-            } else {
+            if (listData.length === 0) { container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found on Server.</p>"; } 
+            else {
                 let html = "<ul style='padding-left: 20px; line-height: 1.8; margin-top: 0;'>";
-                savedList.forEach(item => {
+                listData.forEach(item => {
                     let editedBadge = item.edited ? `<span style="background: #dc3545; color: white; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 5px;">Edited on: ${item.edited}</span>` : '';
                     html += `<li><b>ID:</b> ${item.targetId} | <b>Profile:</b> ${item.profile.toUpperCase()} | <b>Mobile:</b> ${item.mobile} ${editedBadge} <br><small>🕒 ${item.date} at ${item.time}</small> <button onclick="startEditingTarget('${item.targetId}')" style="padding: 4px 12px; font-size: 0.85em; background: var(--secondary-color); color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">✏️ Edit</button></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`;
                 });
@@ -1437,27 +959,21 @@
         function closeEditListModal() { document.getElementById('editListModal').style.display = 'none'; }
 
         function startEditingTarget(targetId) {
-            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
-            const record = savedList.find(item => item.targetId === targetId);
+            const record = serverTargets.find(item => item.targetId === targetId);
             if (!record) return;
 
-            editingTargetId = targetId;
-            closeEditListModal();
+            editingTargetId = targetId; closeEditListModal();
             if (record.profile === 'shivani') { switchTab('shivani'); } else { switchTab('atul'); }
 
-            document.getElementById('mobileInput').value = record.mobile;
-            checkMobileLength(); isVerified = true;
-            document.getElementById('mobileInput').classList.add('verified-box');
-            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('mobileInput').value = record.mobile; checkMobileLength(); isVerified = true;
+            document.getElementById('mobileInput').classList.add('verified-box'); document.getElementById('submitBtn').disabled = false;
 
             cumulativeFiles = JSON.parse(JSON.stringify(record.files || {}));
             for (const fieldKey in cumulativeFiles) { renderCountBadges(fieldKey); }
 
-            const banner = document.getElementById('editingBanner');
-            banner.style.display = 'block';
+            const banner = document.getElementById('editingBanner'); banner.style.display = 'block';
             banner.innerHTML = `✏️ Editing Target ID: ${targetId} (Original submission date preserved)`;
-            document.getElementById('submitBtn').innerText = "Update Target";
-            document.getElementById('neetForm').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('submitBtn').innerText = "Update Target"; document.getElementById('neetForm').scrollIntoView({ behavior: 'smooth' });
         }
         
         function openSearchModal() { document.getElementById('searchModal').style.display = 'flex'; document.getElementById('searchResultContainer').innerHTML = ''; document.getElementById('searchInput').value = ''; }
@@ -1465,21 +981,20 @@
         
         function executeSearch() {
             const queryId = document.getElementById('searchInput').value.trim();
-            const found = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === queryId);
+            const found = serverTargets.find(item => item.targetId === queryId);
             const resultDiv = document.getElementById('searchResultContainer');
             if (found) {
                 let editedInfo = found.edited ? `<br><span style="color: #dc3545; font-weight: bold; font-size: 0.85em;">⚠️ Edited on: ${found.edited}</span>` : '';
                 resultDiv.innerHTML = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<div style="font-size: 0.95em; line-height: 1.4; color: #333;"><b>ID:</b> ${found.targetId}<br><b>Profile:</b> ${found.profile.toUpperCase()}<br><b>Mobile:</b> ${found.mobile}<br><span style="color: #555; font-size: 0.9em;">Submitted on: ${found.date} at ${found.time}</span>${editedInfo}</div><button class="btn-primary" onclick="viewSubmissionFiles('${found.targetId}')" style="margin-top: 12px; padding: 6px 15px; font-size: 0.85em;">👁️ View Uploaded Files</button></div>`;
-            } else { resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found with ID: ${queryId}</p>`; }
+            } else { resultDiv.innerHTML = `<p style="color: #dc3545; font-weight: bold; font-size: 1.05em;">No record found on Server with ID: ${queryId}</p>`; }
         }
 
         function openDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'flex'; document.getElementById('dateSearchResultContainer').innerHTML = ''; document.getElementById('dateSearchInput').value = ''; }
         function closeDateSearchModal() { document.getElementById('dateSearchModal').style.display = 'none'; }
         
         function executeDateSearch() {
-            const queryDate = document.getElementById('dateSearchInput').value; 
-            if (!queryDate) return;
-            const matches = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').filter(item => item.rawDate === queryDate);
+            const queryDate = document.getElementById('dateSearchInput').value; if (!queryDate) return;
+            const matches = serverTargets.filter(item => item.rawDate === queryDate);
             const resultDiv = document.getElementById('dateSearchResultContainer');
             if (matches.length > 0) {
                 let html = `<div style="background: #f4fdf8; padding: 15px; border-radius: 8px; border: 1px solid #2ea043; margin-top: 15px;">${compactRecordFoundHTML}<p style="color: #155724; font-weight: bold; font-size: 0.95em; margin-bottom: 8px; margin-top: 5px;">Found ${matches.length} record(s):</p><ul style='padding-left: 20px; font-size: 0.95em; margin-top: 0;'>`;
@@ -1493,15 +1008,15 @@
 
         function renderManageList(filterType = null, filterValue = null) {
             const container = document.getElementById('manageListContainer');
-            let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
+            let listData = serverTargets;
 
-            if (filterType === 'id' && filterValue) { savedList = savedList.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
-            else if (filterType === 'date' && filterValue) { savedList = savedList.filter(item => item.rawDate === filterValue); }
+            if (filterType === 'id' && filterValue) { listData = listData.filter(item => item.targetId.toLowerCase().includes(filterValue.toLowerCase())); } 
+            else if (filterType === 'date' && filterValue) { listData = listData.filter(item => item.rawDate === filterValue); }
 
-            if (savedList.length === 0) { container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found.</p>"; } 
+            if (listData.length === 0) { container.innerHTML = "<p style='color: #dc3545; font-weight: bold;'>No matching targets found on Server.</p>"; } 
             else {
                 let html = "<ul style='padding-left: 20px; line-height: 1.8; margin-top:0;'>";
-                savedList.forEach(item => { html += `<li><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) | <b>Mobile:</b> ${item.mobile} <button onclick="deleteSubmission('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">🗑️ Delete</button><br><small style="color: #64748b;">🕒 ${item.date} at ${item.time}</small></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; });
+                listData.forEach(item => { html += `<li><b>ID:</b> ${item.targetId} (${item.profile.toUpperCase()}) | <b>Mobile:</b> ${item.mobile} <button onclick="deleteSubmission('${item.targetId}')" style="padding: 4px 10px; font-size: 0.8em; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; float: right;">🗑️ Delete</button><br><small style="color: #64748b;">🕒 ${item.date} at ${item.time}</small></li><hr style='border:0; border-top:1px solid #edf2f7; margin: 8px 0;'>`; });
                 container.innerHTML = html + "</ul>";
             }
         }
@@ -1515,25 +1030,38 @@
         }
         function closeManageModal() { document.getElementById('manageModal').style.display = 'none'; }
         
-        function deleteSubmission(targetId) {
-            if (confirm(`Target ID ${targetId} ko delete karna chahte hain? (Isme upload ki hui saari files Google Drive se bhi permanently delete ho jayengi)`)) {
-                let savedList = JSON.parse(localStorage.getItem('neetSubmissions') || '[]');
-                const record = savedList.find(item => item.targetId === targetId);
+        // --- NAYA DELETE LOGIC: Server se delete karega ---
+        async function deleteSubmission(targetId) {
+            if (confirm(`Target ID ${targetId} ko permanently delete karna chahte hain?`)) {
                 
+                const record = serverTargets.find(item => item.targetId === targetId);
+                let fileIdsToDelete = [];
                 if (record && record.files) {
-                    let fileIdsToDelete = [];
                     for (const fieldKey in record.files) { record.files[fieldKey].forEach(f => { if (f.fileId) fileIdsToDelete.push(f.fileId); }); }
-                    deleteFilesFromDrive(fileIdsToDelete);
                 }
 
-                savedList = savedList.filter(item => item.targetId !== targetId);
-                localStorage.setItem('neetSubmissions', JSON.stringify(savedList));
-                openManageModal(); 
+                document.getElementById('manageListContainer').innerHTML = '<p class="loading-text">Deleting from Server... Please wait.</p>';
+
+                try {
+                    let res = await fetch(webAppUrl, { 
+                        method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+                        body: JSON.stringify({ action: "deleteTarget", targetId: targetId, fileIds: fileIdsToDelete }) 
+                    });
+                    let result = await res.json();
+
+                    if (result.status === "success") {
+                        serverTargets = serverTargets.filter(item => item.targetId !== targetId);
+                        openManageModal(); // Refresh local list
+                    }
+                } catch(e) {
+                    showCustomAlert("Error", "Server connection failed.", false);
+                    openManageModal(); // restore
+                }
             }
         }
 
         function viewSubmissionFiles(targetId) {
-            const record = JSON.parse(localStorage.getItem('neetSubmissions') || '[]').find(item => item.targetId === targetId);
+            const record = serverTargets.find(item => item.targetId === targetId);
             const container = document.getElementById('viewFilesContainer');
             if (!record || !record.files || Object.keys(record.files).length === 0) container.innerHTML = "<p>No files were uploaded in this submission.</p>";
             else {
@@ -1547,20 +1075,16 @@
                         
                         files.forEach(f => { 
                             let driveDownloadLink = `https://drive.google.com/uc?export=download&id=${f.fileId}`;
-                            let downloadBtnHTML = f.fileId ? 
-                                `<button class="mini-btn" style="background:#10b981; padding: 4px 10px !important;" onclick="forceDownloadFile('${driveDownloadLink}', '${f.name}')">⬇️ Download</button>` : '';
+                            let downloadBtnHTML = f.fileId ? `<button class="mini-btn" style="background:#10b981; padding: 4px 10px !important;" onclick="forceDownloadFile('${driveDownloadLink}', '${f.name}')">⬇️ Download</button>` : '';
 
                             html += `<li style="margin-bottom: 10px; display: flex; flex-direction: column; background:#ffffff; padding:10px; border-radius:6px; border:1px solid #cbd5e1;">
                                 <div>📄 <span style="color:#334155;">${f.name}</span> <small style="color: #64748b;">(${f.size})</small></div>
                                 <div style="margin-top: 5px; margin-left: 20px;">
-                                    <a href="${f.link}" target="_blank" style="text-decoration: none;">
-                                        <button class="mini-btn" style="background:#0ea5e9; padding: 4px 10px !important;">👁️ View</button>
-                                    </a>
+                                    <a href="${f.link}" target="_blank" style="text-decoration: none;"><button class="mini-btn" style="background:#0ea5e9; padding: 4px 10px !important;">👁️ View</button></a>
                                     ${downloadBtnHTML}
                                 </div>
                             </li>`; 
                         });
-                        
                         html += `</ul></div>`;
                     }
                 }
